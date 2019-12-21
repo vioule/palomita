@@ -1,0 +1,1 @@
+module.exports = (env,argv) => require('./frontend/config/webpack')(env,argv)

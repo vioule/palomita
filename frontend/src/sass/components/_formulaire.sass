@@ -1,0 +1,66 @@
+.formulaire
+  max-width: 500px
+  margin: 0 auto
+  padding: 50px
+  top: 50%
+  transform: translateY(-50%)
+  &-title
+    font-size: 1.56rem
+  &-input
+    padding-bottom: .5rem
+    margin-top: 1.88rem
+    width: 100%
+    font-size: 1rem
+  &-btn
+    margin-top: 1.88rem
+    float: right
+    font-size: 1rem
+    &-wrapper
+      float: right
+    &:hover
+      cursor: pointer
+  &-help
+    position: absolute
+    display: inline-block
+    bottom: -1.5rem
+    left: 0
+    font-size: .83rem
+    width: 100%
+    text-align: center
+    &:hover
+      cursor: pointer
+
+@include media(tablet)
+  .formulaire
+    max-width: 350px
+    padding: 30px
+
+.formulaire-light
+  font-family: 'Playfair Display', serif
+  border: .5px solid $color-palomita-light
+  background-color: $color-white
+  & .formulaire
+    &-title
+      color: $color-palomita-light
+    &-input
+      color: $color-light-gray
+      border: none
+      border-bottom: .5px solid $color-light-gray
+      font-family: inherit
+      font-style: italic
+      transition: color 1s
+      &:focus::placeholder
+        color: darken($color-light-gray, 33%)
+      &:focus
+        color: darken($color-light-gray, 33%)
+        border-bottom-color: darken($color-light-gray, 33%)
+    &-btn
+      border: none
+      background-color: transparent
+      font-family: inherit
+      color: $color-palomita-light 
+      &-wrapper
+        border-color: $color-palomita-light
+    &-help
+      font-style: italic
+      color: $color-palomita-light

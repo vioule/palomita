@@ -1,0 +1,9 @@
+//MEDIAS//
+@mixin media($type)
+  @if $type == tablet
+    @media (max-width: 1023px)
+      @content
+  @if $type == phone
+    @media (max-width: 767px)
+      @content
+  

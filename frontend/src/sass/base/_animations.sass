@@ -1,0 +1,19 @@
+.border
+  &-bottom
+    &-center
+      &::after
+        content: ""
+        display: block
+        background-color: red
+        position: absolute
+        left: 50%
+        bottom: -.2rem
+        width: 0
+        height: 1px
+        background-color: transparent
+        border-bottom: .5px solid
+        border-color: inherit
+        transition: width 250ms, left 250ms
+      &:hover::after
+        width: 100%
+        left: 0
