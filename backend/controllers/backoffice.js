@@ -4,7 +4,10 @@ exports.index = (req,res) => {
 }
 
 exports.checkAuthentication = function(req, res) {
-  res.send({payload: req.isAuthenticated()});
+  res.send({
+    user: req.user,
+    isAuthenticated: req.isAuthenticated()
+  });
 };
 
 exports.login = (req,res) => {

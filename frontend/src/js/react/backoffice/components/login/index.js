@@ -37,7 +37,7 @@ class Login extends React.Component {
   };
   render() {
     if (this.props.isAuthenticated===null) { return <div></div> }
-    if (this.props.isAuthenticated) {return <Redirect to="/administration" />}
+    if (this.props.isAuthenticated) {return <Redirect to="/administration/articles" />}
     return (
     <div className="login">
       <div className="formulaire formulaire-light">

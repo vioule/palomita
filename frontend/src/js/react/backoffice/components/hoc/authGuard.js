@@ -6,7 +6,7 @@ export default (OriginalComponent) => {
 
   class MixedComponent extends React.Component {
     checkAuth() {
-      if (!this.props.isAuthenticated) {
+      if (this.props.isAuthenticated===false) {
         this.props.history.push('/administration/login');
       }
     };
@@ -17,7 +17,11 @@ export default (OriginalComponent) => {
       this.checkAuth();
     };
     render() {
-      return <OriginalComponent {...this.props} />;
+      if (this.props.isAuthenticated) {
+        return <OriginalComponent {...this.props} />;
+      } else {
+        return <div></div>
+      }
     };
   };
 

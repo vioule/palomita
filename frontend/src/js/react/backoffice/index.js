@@ -18,8 +18,8 @@ render(
     <BrowserRouter>
       <App>
         <Switch>
-          <Route exact path="/administration" component={AuthGuard(Administration)} />
           <Route exact path="/administration/login" component={Login} />
+          <Route path="/administration" component={AuthGuard(Administration)} />
           <Route path="*"><div>404</div></Route>
         </Switch>
       </App>

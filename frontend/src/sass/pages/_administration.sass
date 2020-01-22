@@ -1,0 +1,15 @@
+.content
+  position: fixed
+  top: 0
+  left: 300px
+  width: calc(100% - 300px)
+
+@include media(tablet)
+  .content
+    width: calc(100% - 175px)
+    left: 175px
+
+@include media(phone)
+  .content
+    width: 100%
+    left: 0

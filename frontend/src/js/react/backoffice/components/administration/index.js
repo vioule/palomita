@@ -1,9 +1,7 @@
 const React = require("react");
 import { connect } from 'react-redux';
-import { userLogout as logout } from '../../actions/auth';
 import Menu from '../menu';
-
-const mapDispatchToProps = { logout };
+import Content from '../content';
 
 class Administration extends React.Component {
   constructor(props) {
@@ -12,10 +10,11 @@ class Administration extends React.Component {
   render() {
     return (
     <div>
+      <Content />
       <Menu {...this.props} />
     </div>
     )
   };
 };
 
-export default connect(null, mapDispatchToProps)(Administration);
+export default connect(null, null)(Administration);

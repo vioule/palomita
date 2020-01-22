@@ -17,3 +17,21 @@
       &:hover::after
         width: 100%
         left: 0
+
+.hamburger
+  transition: transform .25s 0
+  &::after
+    transition: transform .25s 0, top .25s .25s
+  &::before
+    transition: transform .25s 0, top .25s .25s
+  &-close
+    transition: transform .25s .25s
+    &::after
+      transition: transform .25s .25s, top .25s 0
+    &::before
+      transition: transform .25s .25s, top .25s 0
+
+
+@include media(phone)
+  .menu
+    transition: left 250ms

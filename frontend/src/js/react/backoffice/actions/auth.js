@@ -1,11 +1,8 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from "./actionTypes";
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR } from "./actionTypes";
 const axios = require('axios');
 
 export function authLogin(payload) {
   return { type: AUTH_LOGIN, payload }
-};
-export function authCheck(payload) {
-  return { type: AUTH_CHECK, payload }
 };
 export function authError(payload) {
   return { type: AUTH_ERROR, payload }
@@ -14,7 +11,11 @@ export function authError(payload) {
 export function checkAuthentication(){
   return (dispatch) => {
       return axios.get('/api/checkAuthentication')
-      .then(res=>dispatch(authCheck(res.data.payload)))
+      .then(res=>{
+        res.data.isAuthenticated ?
+          dispatch(authLogin(res.data.user)) :
+          dispatch({type: AUTH_LOGOUT})}
+        )
       .catch(err=>dispatch(authError("Une erreur est survenue.")))
     }
 };

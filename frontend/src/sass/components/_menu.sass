@@ -1,5 +1,9 @@
 .menu
   width: 300px
+  height: 100vh
+  position: fixed
+  top: 0
+  left: 0
   &-title
     padding-top: 20px
     text-align: center
@@ -10,13 +14,112 @@
     font-size: .88rem
     font-family: Roboto, sans-serif
     font-weight: 300
+    font-style: italic
+  &-user
+    margin-top: 15px
+    display: inline-block
+    width: 100%
+    text-align: center
+    font-size: .88rem
+    font-family: Roboto, sans-serif
+    font-weight: 300
+    font-style: italic
   &-avatar
     width: 150px
     height: 150px
     border-radius: 50%
     background-color: $color-backoffice-light
     margin: 30px auto 0
+    border: 3px solid
+  &-btn
+    padding: 8px 18px
+    font-size: .75rem
+    font-family: Roboto, sans-serif
+    font-weight: 300
+    border: none
+    margin: 30px auto 0
+    display: block
+    &:hover
+      cursor: pointer
+    &-phone
+      width: 30px
+      height: 30px
+      position: fixed
+      top: 0
+      left: 0
+      display: none
+      border: none
+      &:hover
+        cursor: pointer
+  &-item
+    height: 60px
+    line-height: 60px
+    &:hover
+      cursor: pointer
+    &-link
+      color: inherit
+    &-icon
+      margin: 0 20px 0 30px
+      width: 15px
+      height: 15px
+  &-items
+    font-family: Roboto, sans-serif
+    font-size: 1.13rem
+    font-weight: 400
+    margin-top: 30px
 
 .menu-dark
-  background-color: $color-backoffice
-  color: $color-white
+  & .menu
+    background-color: $color-backoffice
+    color: $color-white
+    &-item
+      background-color: $color-backoffice-dark
+    &-off
+      opacity: .6
+      background-color: $color-backoffice
+      &:hover
+        opacity: .8
+    &-avatar
+      border-color: $color-white
+    &-btn
+      color: $color-white
+      background-color: $color-backoffice-light
+      &-phone
+        background-color: $color-backoffice
+
+@include media(tablet)
+  .menu
+    width: 175px
+    &-avatar
+      width: 120px
+      height: 120px
+    &-btn
+      padding: 8px 12px
+    &-item
+      height: 45px
+      line-height: 45px
+      &-icon
+        margin: 0 15px
+        width: 10px
+        height: 10px
+
+@include media(phone)
+  .menu
+    width: 170px
+    left: -170px
+    &-avatar
+      width: 100px
+      height: 100px
+    &-btn
+      padding: 5px 10px
+      &-phone
+        display: inline
+    &-item
+      height: 45px
+      line-height: 45px
+      &-icon
+        margin: 0 10px 0 15px
+        width: 8px
+        height: 8px
+    &-visible
+      left: 0
