@@ -1,7 +1,7 @@
 const React = require("react");
 import { connect } from 'react-redux';
 import Topbar from './topbar';
-import Articles from './articles';
+import Articles from '../articles';
 import Statistiques from './statistiques';
 import Commentaires from './commentaires';
 import Notfound from './notfound';

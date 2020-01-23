@@ -8,6 +8,7 @@ class Topbar extends React.Component {
   render() {
     return (
     <div className="topbar topbar-light">
+      <img className="menu-item-icon" src="/img/backoffice.svg#loupe-black"/>
       TOPBAR
     </div>
     )
