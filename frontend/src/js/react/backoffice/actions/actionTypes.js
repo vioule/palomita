@@ -1,12 +1,16 @@
 //SECURITY//
 export const SET_CSRF_TOKEN = "SET_CSRF_TOKEN";
 
-
 //LOGIN//
 export const AUTH_LOGIN  = "AUTH_LOGIN";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 export const AUTH_ERROR  = "AUTH_ERROR";
 
-
 //MENU//
 export const MENU_SHOW  = "MENU_SHOW";
+
+//ARTICLES//
+export const FETCH_ARTICLES = "FETCH_ARTICLES";
+export const FETCH_ARTICLES_VALIDATE = "FETCH_ARTICLES_VALIDATE";
+export const FETCH_ARTICLES_ERROR = "FETCH_ARTICLES_ERROR";
+export const SORT_ARTICLES = "SORT_ARTICLES";

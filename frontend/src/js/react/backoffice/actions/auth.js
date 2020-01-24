@@ -10,14 +10,14 @@ export function authError(payload) {
 
 export function checkAuthentication(){
   return (dispatch) => {
-      return axios.get('/api/checkAuthentication')
-      .then(res=>{
-        res.data.isAuthenticated ?
-          dispatch(authLogin(res.data.user)) :
-          dispatch({type: AUTH_LOGOUT})}
-        )
-      .catch(err=>dispatch(authError("Une erreur est survenue.")))
-    }
+    return axios.get('/api/checkAuthentication')
+    .then(res=>{
+      res.data.isAuthenticated ?
+        dispatch(authLogin(res.data.user)) :
+        dispatch({type: AUTH_LOGOUT})}
+      )
+    .catch(err=>dispatch(authError("Une erreur est survenue.")))
+  }
 };
 
 export function userLogin(_csrf, username, password){

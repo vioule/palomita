@@ -11,6 +11,37 @@
     height: 50px
     line-height: 50px
     text-indent: 1rem
+    &-btn
+      border: none
+      background-color: inherit
+      color: inherit
+      font-size: inherit
+      &:hover
+        cursor: pointer
+        color: $color-backoffice-light
+    &-asort
+      color: $color-backoffice-light
+      &::after
+        content: ""
+        display: inline-block
+        width: 0
+        height: 0
+        margin-left: 5px
+        border-left: 4px solid transparent
+        border-right: 4px solid transparent
+        border-top: 6px solid $color-backoffice-light
+    &-dsort
+      color: $color-backoffice-light
+      &::after
+        content: ""
+        display: inline-block
+        width: 0
+        height: 0
+        margin-left: 5px
+        border-left: 4px solid transparent
+        border-right: 4px solid transparent
+        border-bottom: 6px solid $color-backoffice-light
+
   &-body
     height: 50px
     line-height: 50px
