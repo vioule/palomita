@@ -9,4 +9,7 @@ ApiRouter.get('/checkAuthentication', require('../controllers/backoffice/login')
 //ARTICLES//
 ApiRouter.get('/getArticles', require('../controllers/backoffice/articles').getData);
 
+//COMMENTS//
+ApiRouter.get('/getComments', require('../controllers/backoffice/comments').getData);
+
 module.exports = ApiRouter;
