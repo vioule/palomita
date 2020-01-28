@@ -6,4 +6,13 @@ exports.getData = (req,res) => {
   .populate("parent", "title")
   .exec()
   .then(data=>res.send(data))
-}
+};
+
+exports.getConversation = (req,res) => {
+  Comment
+  .findOne({_id: req.query.id})
+  .populate("reponse")
+  .populate("parent")
+  .exec()
+  .then(data=>res.send(data))
+};

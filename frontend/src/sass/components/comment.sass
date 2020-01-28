@@ -1,0 +1,87 @@
+.comment
+  padding: 20px 50px
+  font-family: Roboto, sans-serif
+  font-weight: 400
+  font-size: 1rem
+  line-height: 1.4rem
+  margin-top: 80px
+  &-reponse
+    margin-left: 50px
+  &-author
+    position: absolute
+    top: -30px
+    left: 0
+    text-transform: uppercase
+  &-date
+    position: absolute
+    top: -30px
+    right: 0
+  &-content
+    font-size: .88rem
+  &-title
+    font-size: 1.56rem
+    line-height: 2rem
+    font-family: Roboto, sans-serif
+    font-weight: 700
+    text-transform: uppercase
+  &-categorie
+    font-weight: 300
+  &-btns
+    position: absolute
+    right: 0
+    bottom: -30px
+  &-btn
+    border: none
+    background-color: inherit
+    padding-right: 15px
+    &:hover
+      cursor: pointer
+  &-icon
+    width: .9rem
+    height: .9rem
+    &:hover
+      cursor: pointer
+    &-edit:hover
+      content: url("/img/backoffice.svg#edit-bluedark")
+    &-delete:hover
+      content: url("/img/backoffice.svg#delete-bluedark")
+    &-reponse:hover
+      content: url("/img/backoffice.svg#reponse-bluedark")
+
+.comment-light
+  & .comment
+    color: $color-black
+    background-color: $color-white
+    box-shadow: 0 5px 20px $color-shadow
+    &-title
+      color: $color-backoffice-light
+
+@include media(tablet)
+  .comment
+    padding: 10px 30px
+    margin-top: 60px
+    &-author
+      top: -20px
+    &-date
+      top: -20px
+    &-btns
+      bottom: -20px
+    &-btn
+      padding-right: 12px
+    &-reponse
+      margin-left: 30px
+
+@include media(phone)
+  .comment
+    padding: 8px 15px
+    margin-top: 45px
+    &-author
+      top: -15px
+    &-date
+      top: -15px
+    &-btns
+      bottom: -18px
+    &-btn
+      padding-right: 10px
+    &-reponse
+      margin-left: 20px

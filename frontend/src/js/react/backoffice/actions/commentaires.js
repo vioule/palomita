@@ -20,7 +20,6 @@ export function getComments() {
   }
 };
 
-
 export function sort(data, sort, type) {
   var content = [];
   var ascending = data.ascending;

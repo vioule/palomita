@@ -11,5 +11,6 @@ ApiRouter.get('/getArticles', require('../controllers/backoffice/articles').getD
 
 //COMMENTS//
 ApiRouter.get('/getComments', require('../controllers/backoffice/comments').getData);
+ApiRouter.get('/getConversation', require('../controllers/backoffice/comments').getConversation);
 
 module.exports = ApiRouter;

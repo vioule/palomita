@@ -6,7 +6,7 @@ const commentSchema = Schema({
   date: Date,
   content: String,
   parent: { type: Schema.Types.ObjectId, ref: "Article" },
-  reponse: [String],
+  reponse: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   type: String
 })
 

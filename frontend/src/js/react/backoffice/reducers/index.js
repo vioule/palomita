@@ -4,11 +4,13 @@ import loginReducer from './auth';
 import menuReducer from './menu';
 import articlesReducer from './articles';
 import commentsReducer from './comments';
+import commentReducer from './comment';
 
 export default combineReducers({
   _csrf: csrfReducer,
   login: loginReducer,
   menu: menuReducer,
   articles: articlesReducer,
-  comments: commentsReducer
+  comments: commentsReducer,
+  comment: commentReducer,
 });
