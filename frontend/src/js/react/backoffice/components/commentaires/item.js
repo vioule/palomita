@@ -22,11 +22,21 @@ class Item extends React.Component {
       </td>
       <td className="table-td">{new Date(this.props.date).toLocaleDateString()}</td>
       <td className="table-td">{this.props.reponse.length}</td>
-      <td className="table-td"><Link to={"/administration/commentaire/"+(this.props._id)}>
+      <td className="table-td">
+        <Link to={"commentaire/"+(this.props._id)}>
         <img className="table-icon table-icon-loupe" src="/img/backoffice.svg#loupe-blue"/>
-      </Link></td>
-      <td className="table-td"><img className="table-icon table-icon-reponse" src="/img/backoffice.svg#reponse-blue"/></td>
-      <td className="table-td"><img className="table-icon table-icon-delete" src="/img/backoffice.svg#delete-blue"/></td>
+        </Link>
+      </td>
+      <td className="table-td">
+        <Link to={{pathname:"commentaire/"+this.props._id+"/answer", state: this.props}}>
+          <img className="table-icon table-icon-reponse" src="/img/backoffice.svg#reponse-blue"/>
+        </Link>
+      </td>
+      <td className="table-td">
+        <Link to={{pathname:"commentaire/"+this.props._id+"/delete", state: this.props}}>
+          <img className="table-icon table-icon-delete" src="/img/backoffice.svg#delete-blue"/>
+        </Link>
+      </td>
     </tr>
     {this.state.open ?
     <tr className={"table-tr " + (this.state.open ? "table-tr-open" : "")}>

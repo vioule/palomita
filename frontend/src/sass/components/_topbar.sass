@@ -1,15 +1,59 @@
 .topbar
   height: 80px
   line-height: 80px
-  padding-left: 100px
+  padding-left: 50px
+  font-family: Roboto, sans-serif
+  font-weight: 700
+  font-size: 1.5rem
+  &-btn
+    border: none
+    background-color: inherit
+    top: 6px
+    margin-right: 30px
+    &-publish
+      left: 30px
+      top: 15px
+    &-right
+      position: absolute
+      right: 10px
+      top: 25px
+    &:hover
+      cursor: pointer
+  &-icon
+    width: 30px
+    height: 30px
+    &-big
+      width: 50px
+      height: 50px
+    &-leftarrow:hover
+      content: url("/img/backoffice.svg#leftarrow-bluedark")
+    &-rightarrow:hover
+      content: url("/img/backoffice.svg#rightarrow-bluedark")
 
 .topbar-light
   box-shadow: 0 5px 20px $color-shadow
+  color: $color-backoffice-light
 
 @include media(tablet)
   .topbar
     height: 50px
     line-height: 50px
+    padding-left: 30px
+    &-btn
+      top: 3px
+      margin-right: 20px
+      &-publish
+        left: 20px
+        top: 8px
+      &-right
+        top: 16px
+        right: 0
+    &-icon
+      width: 20px
+      height: 20px
+      &-big
+        width: 30px
+        height: 30px
     &-light
       box-shadow: 0 5px 10px $color-shadow
 
@@ -17,5 +61,19 @@
   .topbar
     height: 30px
     line-height: 30px
+    padding-left: 50px
+    &-btn
+      top: 2px
+      &-publish
+        left: 12px
+        top: 3px
+      &-right
+        top: 8px
+    &-icon
+      width: 15px
+      height: 15px
+      &-big
+        width: 20px
+        height: 20px
     &-light
       box-shadow: 0 1px 5px $color-shadow

@@ -1,6 +1,7 @@
 const React = require("react");
 import { connect } from 'react-redux';
 import Navbar from './navbar';
+import Searchbar from '../topbar/searchbar';
 import Item from './item';
 import { sort, getComments as populate } from '../../actions/commentaires';
 
@@ -17,6 +18,8 @@ class Commentaires extends React.Component {
   };
   render() {
     return (
+    <>
+    <Searchbar />
     <div className="content-page">
       <Navbar articles={this.props.data.content.length}/>
       <table className="table table-light">
@@ -53,6 +56,7 @@ class Commentaires extends React.Component {
         </tbody>
       </table>
     </div>
+    </>
     )
   };
   componentDidMount() {

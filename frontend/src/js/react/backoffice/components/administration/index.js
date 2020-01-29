@@ -9,10 +9,10 @@ class Administration extends React.Component {
   };
   render() {
     return (
-    <div>
-      <Content />
+    <>
+      <Content {...this.props}/>
       <Menu {...this.props} />
-    </div>
+    </>
     )
   };
 };

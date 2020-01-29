@@ -3,7 +3,7 @@ const Comment = require('../../models/comment').Comment;
 exports.getData = (req,res) => {
   Comment
   .find()
-  .populate("parent", "title")
+  .populate("parent")
   .exec()
   .then(data=>res.send(data))
 };
@@ -11,8 +11,16 @@ exports.getData = (req,res) => {
 exports.getConversation = (req,res) => {
   Comment
   .findOne({_id: req.query.id})
-  .populate("reponse")
+  .populate({path:"reponse", populate: {path:"parent"}})
   .populate("parent")
   .exec()
-  .then(data=>res.send(data))
+  .then(data=>{
+    data.type === "reponse" ?
+    Comment.findOne({reponse: { $all: [data._id]}})
+    .populate({path:"reponse", populate: {path:"parent"}})
+    .populate("parent")
+    .exec()
+    .then(data=>res.send(data)) :
+    res.send(data)
+  })
 };

@@ -1,6 +1,7 @@
 const React = require("react");
 import { connect } from 'react-redux';
 import Navbar from './navbar';
+import Searchbar from '../topbar/searchbar';
 import { sort, getArticles as populate } from '../../actions/articles';
 
 const mapStateToProps = state => { return {...state.articles} };
@@ -16,6 +17,8 @@ class Articles extends React.Component {
   };
   render() {
     return (
+    <>
+    <Searchbar />
     <div className="content-page">
       <Navbar articles={this.props.data.content.length}/>
       <table className="table table-light">
@@ -59,6 +62,7 @@ class Articles extends React.Component {
         </tbody>
       </table>
     </div>
+    </>
     )
   };
   componentDidMount() {

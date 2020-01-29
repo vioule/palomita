@@ -24,10 +24,10 @@ class Menu extends React.Component {
         <span className="menu-user">{this.props.user.username} <span className="menu-off">({this.props.user.role.name})</span></span>
         <button className="menu-btn" onClick={this.props.logout}>déconnexion</button>
         <ul className="menu-items">
-          <li className={this.props.location.pathname.includes("articles") ? "menu-item" : "menu-item menu-off"}>
+          <li className={this.props.location.pathname.includes("article") ? "menu-item" : "menu-item menu-off"}>
             <img className="menu-item-icon" src="/img/backoffice.svg#articles-white"/>
             <Link className="menu-item-link" to="/administration/articles">Articles</Link></li>
-          <li className={this.props.location.pathname.includes("commentaires") ? "menu-item" : "menu-item menu-off"}>
+          <li className={this.props.location.pathname.includes("commentaire") ? "menu-item" : "menu-item menu-off"}>
             <img className="menu-item-icon" src="/img/backoffice.svg#commentaires-white"/>
             <Link className="menu-item-link" to="/administration/commentaires">Commentaires</Link></li>
           <li className={this.props.location.pathname.includes("statistiques") ? "menu-item" : "menu-item menu-off"}>

@@ -7,6 +7,10 @@
   margin-top: 80px
   &-reponse
     margin-left: 50px
+  &-role
+    font-size: .75rem
+    font-style: italic
+    text-transform: initial
   &-author
     position: absolute
     top: -30px
@@ -18,6 +22,12 @@
     right: 0
   &-content
     font-size: .88rem
+    border: none
+    color: inherit
+    width: 100%
+    resize: none
+    border: 1px solid black
+    height: auto
   &-title
     font-size: 1.56rem
     line-height: 2rem
@@ -39,6 +49,11 @@
   &-icon
     width: .9rem
     height: .9rem
+    &-conversation
+      top: 1px
+      margin-right: .5rem
+      width: .9rem
+      height: .9rem
     &:hover
       cursor: pointer
     &-edit:hover
@@ -53,6 +68,10 @@
     color: $color-black
     background-color: $color-white
     box-shadow: 0 5px 20px $color-shadow
+    &-selected
+      background-color: $color-backoffice-transparent
+      color: $color-backoffice-light
+      box-shadow: 0 5px 20px $color-shadow
     &-title
       color: $color-backoffice-light
 
@@ -74,7 +93,7 @@
 @include media(phone)
   .comment
     padding: 8px 15px
-    margin-top: 45px
+    margin-top: 40px
     &-author
       top: -15px
     &-date
