@@ -6,6 +6,7 @@ import articlesReducer from './articles';
 import commentsReducer from './comments';
 import commentReducer from './comment';
 import answerReducer from './answer';
+import searchReducer from './search';
 
 export default combineReducers({
   _csrf: csrfReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   articles: articlesReducer,
   comments: commentsReducer,
   comment: commentReducer,
-  answer: answerReducer
+  answer: answerReducer,
+  search: searchReducer
 });

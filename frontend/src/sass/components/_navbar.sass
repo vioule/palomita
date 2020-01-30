@@ -8,6 +8,8 @@
   &-item
     display: inline
     margin-left: 1.56rem
+    &:hover
+      cursor: pointer
   &-showall
     font-weight: 300
     font-size: .8rem
@@ -18,5 +20,6 @@
 .navbar-light
   color: $color-black
   & .navbar
-    &-link
+    &-selected
       color: $color-backoffice-light
+      border-bottom: 4px solid $color-backoffice-light

@@ -7,7 +7,8 @@ const commentSchema = Schema({
   content: String,
   parent: { type: Schema.Types.ObjectId, ref: "Article" },
   reponse: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
-  type: String
+  type: String,
+  read: Boolean
 })
 
 exports.Comment = mongoose.model('Comment', commentSchema, 'comments');

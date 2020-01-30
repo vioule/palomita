@@ -18,7 +18,7 @@ class Articles extends React.Component {
   render() {
     return (
     <>
-    <Searchbar />
+    <Searchbar title="article"/>
     <div className="content-page">
       <Navbar articles={this.props.data.content.length}/>
       <table className="table table-light">

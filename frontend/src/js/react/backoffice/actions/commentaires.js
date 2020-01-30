@@ -1,4 +1,4 @@
-import { FETCH_COMMENTS, FETCH_COMMENTS_VALIDATE, FETCH_COMMENTS_ERROR, SORT_COMMENTS } from "./actionTypes";
+import { FETCH_COMMENTS, FETCH_COMMENTS_VALIDATE, FETCH_COMMENTS_ERROR, SORT_COMMENTS, SHOWALL_COMMENTS } from "./actionTypes";
 const axios = require('axios');
 
 export function fetchCommentsValidate(payload) {
@@ -7,6 +7,10 @@ export function fetchCommentsValidate(payload) {
 
 export function fetchCommentsError(payload) {
   return {type: FETCH_COMMENTS_ERROR, payload}
+};
+
+export function showAllComments(payload) {
+  return {type: SHOWALL_COMMENTS, payload}
 };
 
 export function getComments() {

@@ -5,6 +5,36 @@
   font-family: Roboto, sans-serif
   font-weight: 700
   font-size: 1.5rem
+  z-index: 2
+  &-form
+    display: none
+  &-search
+    width: 70%
+    margin-left: 1rem
+    border: none
+    font-weight: 700
+    font-size: 1.13rem
+    font-style: italic
+    &::placeholder
+      font-weight: 300
+    &-types
+      height: 50px
+      line-height: 50px
+      position: absolute
+      left: 0
+      top: 0
+      width: 100%
+      z-index: 1
+      &-show
+        top: 80px
+    &-type
+      display: inline-block
+      margin-left: 50px
+      font-size: 1rem
+      font-weight: 400
+      top: -2px
+      &:hover
+        cursor: pointer
   &-btn
     border: none
     background-color: inherit
@@ -22,6 +52,9 @@
   &-icon
     width: 30px
     height: 30px
+    &-search
+      width: 1rem
+      height: 1rem
     &-big
       width: 50px
       height: 50px
@@ -33,6 +66,22 @@
 .topbar-light
   box-shadow: 0 5px 20px $color-shadow
   color: $color-backoffice-light
+  background-color: $color-white
+  & .topbar
+    &-search
+      color: inherit
+.topbar-search
+  &-type
+    &:hover
+      border-bottom: 1px solid $color-backoffice-light
+    &-selected
+      border-bottom: 1px solid $color-backoffice-light
+  &-types
+    color: $color-backoffice-light
+    font-family: Roboto, sans-serif
+    background-color: $color-white
+    border-top: 1px solid $color-shadow
+    box-shadow: 0 5px 10px $color-shadow
 
 @include media(tablet)
   .topbar
@@ -54,6 +103,14 @@
       &-big
         width: 30px
         height: 30px
+    &-search
+      &-types
+        height: 30px
+        line-height: 30px
+        &-show
+          top: 50px
+      &-type
+        margin-left: 30px
     &-light
       box-shadow: 0 5px 10px $color-shadow
 
@@ -75,5 +132,14 @@
       &-big
         width: 20px
         height: 20px
+    &-search
+      &-types
+        height: 20px
+        line-height: 20px
+        padding-left: 30px
+        &-show
+          top: 30px
+      &-type
+        margin-left: 20px
     &-light
       box-shadow: 0 1px 5px $color-shadow

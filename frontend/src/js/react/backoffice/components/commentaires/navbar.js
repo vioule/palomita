@@ -1,5 +1,11 @@
 const React = require("react");
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setSearchFilters } from '../../actions/search';
+import { showAllComments } from '../../actions/commentaires';
+
+const mapStateToProps = state => { return {...state.search, showAll: state.comments.showAll} };
+
+const mapDispatchToProps = {setSearchFilters, showAllComments};
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -9,17 +15,19 @@ class Navbar extends React.Component {
     return (
     <div className="navbar navbar-light">
       <ul>
-        <li className="navbar-item">
+        <li onClick={()=>this.props.setSearchFilters({new: false, own: false})} className={"navbar-item "+ (!this.props.new && ! this.props.own ? "navbar-selected" : "")}>
           <span className="navbar-number">{this.props.articles}</span><span> Commentaires</span>
         </li>
-        <li className="navbar-item">
-          <Link className="navbar-link" to="/">Mes commentaires</Link>
+        <li onClick={()=>this.props.setSearchFilters({new: false, own: true})} className={"navbar-item "+ (this.props.own ? "navbar-selected" : "")}>
+          <span>Mes commentaires</span>
         </li>
-        <li className="navbar-item">
-          <span className="navbar-newcomments"><span className="navbar-number">{this.props.articles}</span><span> Nouveaux Commentaires</span></span>
+        <li onClick={()=>this.props.setSearchFilters({new: true, own: false})} className={"navbar-item "+ (this.props.new ? "navbar-selected" : "")}>
+          <span className="navbar-newcomments"><span className="navbar-number">{this.props.newArticles}</span><span> Nouveaux Commentaires</span></span>
         </li>
-        <li className="navbar-item">
-          <span className="navbar-showall">Afficher tous les contenus</span>
+        <li onClick={()=>this.props.showAllComments(!this.props.showAll)} className="navbar-item">
+          <span className="navbar-showall">
+            {this.props.showAll ? "Cacher " : "Afficher "}tous les contenus
+            </span>
         </li>
       </ul>
     </div>
@@ -27,4 +35,4 @@ class Navbar extends React.Component {
   };
 };
 
-export default Navbar;
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);;

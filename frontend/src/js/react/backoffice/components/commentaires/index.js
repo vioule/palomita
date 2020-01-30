@@ -5,7 +5,7 @@ import Searchbar from '../topbar/searchbar';
 import Item from './item';
 import { sort, getComments as populate } from '../../actions/commentaires';
 
-const mapStateToProps = state => { return {...state.comments} };
+const mapStateToProps = state => { return {...state.comments, search: state.search} };
 
 const mapDispatchToProps = {
   populate,
@@ -17,11 +17,34 @@ class Commentaires extends React.Component {
     super(props);
   };
   render() {
+    //FILTER//
+    let data = Object.assign({},this.props.data);
+    data.content = data.content.filter(commentaire=>{
+      switch(this.props.search.type) {
+        case "title":
+          return commentaire.parent.title.toLowerCase().includes(this.props.search.content.toLowerCase())
+        case "author":
+          return commentaire.author.name.toLowerCase().includes(this.props.search.content.toLowerCase())
+        case "date":
+          return new Date(commentaire.date).toLocaleDateString().toLowerCase().includes(this.props.search.content.toLowerCase())
+        default:
+          return commentaire[this.props.search.type].toLowerCase().includes(this.props.search.content.toLowerCase())
+      }
+    });
+
+    if (this.props.search.own) {
+      data.content = data.content.filter(commentaire=>commentaire.author.role=="admin")
+    }
+    if (this.props.search.new) {
+      data.content = data.content.filter(commentaire=>!commentaire.read)
+    }
+
+
     return (
     <>
-    <Searchbar />
+    <Searchbar title="commentaire"/>
     <div className="content-page">
-      <Navbar articles={this.props.data.content.length}/>
+      <Navbar articles={this.props.data.content.length} newArticles={this.props.data.content.filter(x=>!x.read).length}/>
       <table className="table table-light">
         <thead className="table-head">
           <tr>
@@ -52,7 +75,7 @@ class Commentaires extends React.Component {
           </tr>
         </thead>
         <tbody className="table-body">
-          {this.props.data.content.map(article=><Item {...article} key={article._id}/>)}
+          {data.content.map(article=><Item article={{...article}} key={article._id}/>)}
         </tbody>
       </table>
     </div>

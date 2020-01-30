@@ -11,6 +11,7 @@ const DEFAULT_STATE = {
     parent: "",
     reponse: [],
     type: "comment",
+    read: false
   }
 }
 
