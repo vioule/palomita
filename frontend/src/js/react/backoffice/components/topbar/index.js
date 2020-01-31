@@ -20,7 +20,7 @@ class Topbar extends React.Component {
         ()=>this.props.history.goBack()}>
         <img className="topbar-icon topbar-icon-leftarrow" src="/img/backoffice.svg#leftarrow-blue"/>
       </button>
-      {this.props.title=="commentaire" ? 
+      {this.props.title!="Conversation" ? 
       window.location.pathname.includes("delete") ? "Supprimer " :
       this.props.validate ? "Publier " : "Nouveau " : ""}
       {this.props.title}
