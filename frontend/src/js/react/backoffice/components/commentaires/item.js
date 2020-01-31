@@ -11,7 +11,9 @@ class Item extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   };
   handleClick() {
-    this.setState({open: !this.state.open});
+    if (!this.props.showAll) {
+      this.setState({open: !this.state.open});
+    }
   };
   render() {
     return (
@@ -51,6 +53,11 @@ class Item extends React.Component {
     </>
     )
   };
+  componentDidUpdate(prevProps){
+    if (this.props.showAll !== prevProps.showAll && this.props.showAll) {
+      this.setState({open: false})
+    }
+  }
 };
 
 export default connect(mapStateToProps, null)(Item);

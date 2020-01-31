@@ -23,6 +23,8 @@ class Commentaires extends React.Component {
       switch(this.props.search.type) {
         case "title":
           return commentaire.parent.title.toLowerCase().includes(this.props.search.content.toLowerCase())
+        case "categorie":
+          return -1
         case "author":
           return commentaire.author.name.toLowerCase().includes(this.props.search.content.toLowerCase())
         case "date":

@@ -30,12 +30,23 @@ class Searchbar extends React.Component {
     </div>
     <ul className={"topbar-search-types " + (this.props.content ? "topbar-search-types-show" : "")}>
       <li onClick={()=>this.props.setSearchType("title")} className={"topbar-search-type " + (this.props.type=="title" ? "topbar-search-type-selected" : "")}>Article</li>
-      <li onClick={()=>this.props.setSearchType("author")} className={"topbar-search-type " + (this.props.type=="author" ? "topbar-search-type-selected" : "")}>Auteur</li>
+      {this.props.title=="commentaire" ? 
+      <li onClick={()=>this.props.setSearchType("author")} className={"topbar-search-type " + (this.props.type=="author" ? "topbar-search-type-selected" : "")}>Auteur</li> :
+      <li onClick={()=>this.props.setSearchType("categorie")} className={"topbar-search-type " + (this.props.type=="categorie" ? "topbar-search-type-selected" : "")}>Catégorie</li>
+      }
       <li onClick={()=>this.props.setSearchType("content")} className={"topbar-search-type " + (this.props.type=="content" ? "topbar-search-type-selected" : "")}>Contenu</li>
       <li onClick={()=>this.props.setSearchType("date")} className={"topbar-search-type " + (this.props.type=="date" ? "topbar-search-type-selected" : "")}>Date</li>
     </ul>
     </>
     )
+  };
+  componentDidMount() {
+    if (this.props.title == "article" && this.props.type=="author") {
+      this.props.setSearchType("categorie")
+    }
+    if (this.props.title == "commentaire" && this.props.type=="categorie") {
+      this.props.setSearchType("author")
+    }
   };
 };
 

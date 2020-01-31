@@ -2,9 +2,10 @@ const React = require("react");
 import { connect } from 'react-redux';
 import Navbar from './navbar';
 import Searchbar from '../topbar/searchbar';
+import Item from './item';
 import { sort, getArticles as populate } from '../../actions/articles';
 
-const mapStateToProps = state => { return {...state.articles} };
+const mapStateToProps = state => { return {...state.articles, search: state.search} };
 
 const mapDispatchToProps = {
   populate,
@@ -16,6 +17,19 @@ class Articles extends React.Component {
     super(props)
   };
   render() {
+    //FILTER//
+    let data = Object.assign({},this.props.data);
+    data.content = data.content.filter(article=>{
+      switch(this.props.search.type) {
+        case "author":
+          return -1
+        case "date":
+          return new Date(article.date).toLocaleDateString().toLowerCase().includes(this.props.search.content.toLowerCase())
+        default:
+          return article[this.props.search.type].toLowerCase().includes(this.props.search.content.toLowerCase())
+      }
+    });
+
     return (
     <>
     <Searchbar title="article"/>
@@ -49,16 +63,7 @@ class Articles extends React.Component {
           </tr>
         </thead>
         <tbody className="table-body">
-          {this.props.data.content.map(article=>
-          <tr key={article._id} className="table-tr">
-            <td className="table-td"><span className="table-td-wrap">{article.title}</span></td>
-            <td className="table-td">{article.categorie}</td>
-            <td className="table-td">{new Date(article.date).toLocaleDateString()}</td>
-            <td className="table-td">{article.comments.length}</td>
-            <td className="table-td"><img className="table-icon table-icon-edit" src="/img/backoffice.svg#edit-blue"/></td>
-            <td className="table-td"><img className="table-icon table-icon-delete" src="/img/backoffice.svg#delete-blue"/></td>
-          </tr>
-          )}
+          {data.content.map(article=><Item {...article} key={article._id} />)}
         </tbody>
       </table>
     </div>
