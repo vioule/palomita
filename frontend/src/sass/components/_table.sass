@@ -4,13 +4,15 @@
   font-weight: 400
   width: 100%
   text-align: left
-  margin-top: 50px
   border-collapse: collapse
   table-layout: fixed
   &-head
     font-weight: 700
     height: 50px
     line-height: 50px
+    position: sticky
+    top: 109px
+    z-index: 1
     &-btn
       border: none
       background-color: inherit
@@ -46,8 +48,6 @@
         border-left: 4px solid transparent
         border-right: 4px solid transparent
         border-bottom: 6px solid $color-backoffice-light
-  &-body
-    height: 50px
   &-tr
     &:hover
       cursor: pointer
@@ -112,6 +112,8 @@
 .table-light
   color: $color-black
   & .table
+    &-head
+      background-color: $color-white
     &-tr
       background-color: $color-white
       &:hover
@@ -141,10 +143,10 @@
 
 @include media(tablet)
   .table
-    margin-top: 30px
     &-head
       height: 30px
       line-height: 30px
+      top: 88px
     &-icon
       width: 10px
       height: 10px
@@ -171,10 +173,10 @@
 
 @include media(phone)
   .table
-    margin-top: 15px
     &-head
       height: 20px
       line-height: 20px
+      top: 64px
     &-icon
       width: 8px
       height: 8px

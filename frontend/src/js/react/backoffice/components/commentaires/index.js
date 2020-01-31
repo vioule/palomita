@@ -45,6 +45,7 @@ class Commentaires extends React.Component {
     <Searchbar title="commentaire"/>
     <div className="content-page">
       <Navbar articles={this.props.data.content.length} newArticles={this.props.data.content.filter(x=>!x.read).length}/>
+      <div className="scroll">
       <table className="table table-light">
         <thead className="table-head">
           <tr>
@@ -78,6 +79,7 @@ class Commentaires extends React.Component {
           {data.content.map(article=><Item article={{...article}} key={article._id}/>)}
         </tbody>
       </table>
+      </div>
     </div>
     </>
     )

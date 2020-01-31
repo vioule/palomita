@@ -5,7 +5,7 @@
   font-family: Roboto, sans-serif
   font-weight: 700
   font-size: 1.5rem
-  z-index: 2
+  z-index: 3
   &-form
     display: none
   &-search
@@ -18,13 +18,13 @@
     &::placeholder
       font-weight: 300
     &-types
-      height: 50px
-      line-height: 50px
+      height: 40px
+      line-height: 40px
       position: absolute
       left: 0
       top: 0
       width: 100%
-      z-index: 1
+      z-index: 2
       &-show
         top: 80px
     &-type
@@ -32,7 +32,6 @@
       margin-left: 50px
       font-size: 1rem
       font-weight: 400
-      top: -2px
       &:hover
         cursor: pointer
   &-btn
@@ -73,11 +72,12 @@
 .topbar-search
   &-type
     &:hover
-      border-bottom: 1px solid $color-backoffice-light
+      color: $color-backoffice-light
     &-selected
-      border-bottom: 1px solid $color-backoffice-light
+      color: $color-backoffice-light
+      font-weight: 700
   &-types
-    color: $color-backoffice-light
+    color: $color-black
     font-family: Roboto, sans-serif
     background-color: $color-white
     border-top: 1px solid $color-shadow

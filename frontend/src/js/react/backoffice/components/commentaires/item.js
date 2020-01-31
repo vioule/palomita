@@ -20,7 +20,7 @@ class Item extends React.Component {
       <td className={"table-td " + (this.props.article.type === "reponse" ? "table-td-reponse" : "")}><span className="table-td-wrap">{this.props.article.parent.title}</span></td>
       <td className="table-td">
         <span className="table-td-wrap">{this.props.article.author.name}</span>
-        {this.state.open || this.props.article.showAll ? 
+        {this.state.open || this.props.showAll ? 
           <span className="table-td-info table-td-wrap"> <br/> {this.props.article.author.contact} <br/> {this.props.article.author.web} </span> : null}
       </td>
       <td className="table-td">{new Date(this.props.article.date).toLocaleDateString()}</td>
@@ -46,7 +46,7 @@ class Item extends React.Component {
       <td className="table-td table-td-content" colSpan="4">
         <span className="table-td-span">{this.props.article.content}</span>
       </td>
-      <td colSpan="3"></td>
+      <td className="table-td" colSpan="3"></td>
     </tr>:null}
     </>
     )

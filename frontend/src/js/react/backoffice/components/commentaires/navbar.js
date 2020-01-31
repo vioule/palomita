@@ -15,18 +15,18 @@ class Navbar extends React.Component {
     return (
     <div className="navbar navbar-light">
       <ul>
-        <li onClick={()=>this.props.setSearchFilters({new: false, own: false})} className={"navbar-item "+ (!this.props.new && ! this.props.own ? "navbar-selected" : "")}>
+        <li onClick={()=>this.props.setSearchFilters({new: false, own: false})} className={"navbar-item navbar-hover "+ (!this.props.new && ! this.props.own ? "navbar-selected" : "")}>
           <span className="navbar-number">{this.props.articles}</span><span> Commentaires</span>
         </li>
-        <li onClick={()=>this.props.setSearchFilters({new: false, own: true})} className={"navbar-item "+ (this.props.own ? "navbar-selected" : "")}>
+        <li onClick={()=>this.props.setSearchFilters({new: false, own: true})} className={"navbar-item navbar-hover "+ (this.props.own ? "navbar-selected" : "")}>
           <span>Mes commentaires</span>
         </li>
-        <li onClick={()=>this.props.setSearchFilters({new: true, own: false})} className={"navbar-item "+ (this.props.new ? "navbar-selected" : "")}>
-          <span className="navbar-newcomments"><span className="navbar-number">{this.props.newArticles}</span><span> Nouveaux Commentaires</span></span>
+        <li onClick={()=>this.props.setSearchFilters({new: true, own: false})} className={"navbar-item navbar-hover "+ (this.props.new ? "navbar-selected" : "")}>
+          <span className="navbar-newcomments"><span className="navbar-number">{this.props.newArticles}</span><span> Nouveaux</span></span>
         </li>
         <li onClick={()=>this.props.showAllComments(!this.props.showAll)} className="navbar-item">
           <span className="navbar-showall">
-            {this.props.showAll ? "Cacher " : "Afficher "}tous les contenus
+            {this.props.showAll ? "Cacher " : "Afficher "}tout
             </span>
         </li>
       </ul>
