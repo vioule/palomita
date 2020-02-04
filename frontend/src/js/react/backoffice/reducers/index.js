@@ -7,6 +7,7 @@ import commentsReducer from './comments';
 import commentReducer from './comment';
 import answerReducer from './answer';
 import searchReducer from './search';
+import popupReducer from './popup';
 
 export default combineReducers({
   _csrf: csrfReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   comments: commentsReducer,
   comment: commentReducer,
   answer: answerReducer,
-  search: searchReducer
+  search: searchReducer,
+  popup: popupReducer
 });

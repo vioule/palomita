@@ -14,7 +14,7 @@ class Comment extends React.Component {
         }>
         <span className="comment-author">
           {this.props.type === "reponse" ? <img className="comment-icon-conversation" src="/img/backoffice.svg#reponse-blue"/> : null}
-          {this.props.author.name}
+          {this.props.author.name} {this.props.author.role == "admin" ?  <span className="comment-role">({this.props.author.role})</span> : null}
           </span>
         <span className="comment-date">{new Date(this.props.date).toLocaleDateString()}</span>
         <span className="comment-content">{this.props.content}</span>

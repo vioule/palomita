@@ -21,7 +21,7 @@ class Item extends React.Component {
     <tr className={"table-tr " + (!this.props.article.read ? "table-tr-new ": "")+ (this.state.open || this.props.showAll ? "table-tr-open" : "")} onClick={this.handleClick}>
       <td className={"table-td " + (this.props.article.type === "reponse" ? "table-td-reponse" : "")}><span className="table-td-wrap">{this.props.article.parent.title}</span></td>
       <td className="table-td">
-        <span className="table-td-wrap">{this.props.article.author.name}</span>
+        <span className="table-td-wrap">{this.props.article.author.name} {this.props.article.author.role == "admin" ?  <span className="comment-role">({this.props.article.author.role})</span> : null}</span>
         {this.state.open || this.props.showAll ? 
           <span className="table-td-info table-td-wrap"> <br/> {this.props.article.author.contact} <br/> {this.props.article.author.web} </span> : null}
       </td>

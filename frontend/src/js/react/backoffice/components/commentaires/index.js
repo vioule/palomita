@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Navbar from './navbar';
 import Searchbar from '../topbar/searchbar';
 import Item from './item';
+import Popup from '../popup';
 import { sort, getComments as populate } from '../../actions/commentaires';
 
 const mapStateToProps = state => { return {...state.comments, search: state.search} };
@@ -44,6 +45,7 @@ class Commentaires extends React.Component {
 
     return (
     <>
+    <Popup/>
     <Searchbar title="commentaire"/>
     <div className="content-page">
       <Navbar articles={this.props.data.content.length} newArticles={this.props.data.content.filter(x=>!x.read).length}/>

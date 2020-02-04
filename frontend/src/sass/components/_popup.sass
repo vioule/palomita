@@ -1,0 +1,36 @@
+.popup
+  position: fixed
+  top: -100px
+  right: 75px
+  padding: 1rem 1.25rem
+  width: 200px
+  z-index: 10
+  border-radius: 0 0 10px 10px
+  font-family: Roboto, sans-serif
+  font-weight: 300
+  font-size: .88rem
+  &-show
+    top: 0
+  &-icon
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    width: 1rem
+    height: 1rem
+  &-message
+    float: left
+    margin-left: 2rem
+
+.popup-dark
+  background-color: $color-backoffice
+  color: $color-white
+
+@include media(tablet)
+  .popup
+    width: 150px
+    right: 50px
+
+@include media(phone)
+  .popup
+    width: 125px
+    right: 30px
