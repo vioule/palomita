@@ -4,15 +4,16 @@ import Topbar from '../topbar';
 import Popup from '../popup';
 import { connect } from 'react-redux';
 import { showPopup } from '../../actions/popup';
+import { deleteComments } from '../../actions/commentaires';
 
-const mapDispatchToProps = {showPopup};
+const mapStateToProps = state => {return {_csrf: state._csrf}};
+const mapDispatchToProps = {showPopup, deleteComments};
 
 class Delete extends React.Component {
   constructor(props) {
     super(props);
   };
   render() {
-    if(this.props.show) {console.log("TIME")}
     const data = this.props.location.state;
     return (
     <>
@@ -26,9 +27,9 @@ class Delete extends React.Component {
       <div className="publish-text"><span>
         Etes-vous sûr de vouloir continuer ?
         <button className="topbar-btn topbar-btn-publish" 
-        onClick={()=>{
+        onClick={async()=>{
+          await this.props.deleteComments([data._id, ...data.reponse.map(x=>x._id)], this.props._csrf, data.parent._id); //comment + reponse
           this.props.history.push('/administration/commentaires');
-          setTimeout(()=>this.props.showPopup({message: "Le commentaire a bien été supprimé.", error: false}), 1000);
         }}><img className="topbar-icon-big topbar-icon-rightarrow" src="/img/backoffice.svg#rightarrow-blue"/></button>
         </span></div>
     </div>
@@ -37,4 +38,4 @@ class Delete extends React.Component {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Delete);
+export default connect(mapStateToProps, mapDispatchToProps)(Delete);

@@ -1,4 +1,12 @@
-import { FETCH_COMMENTS, FETCH_COMMENTS_VALIDATE, FETCH_COMMENTS_ERROR, SORT_COMMENTS, SHOWALL_COMMENTS } from "./actionTypes";
+import { 
+  FETCH_COMMENTS, 
+  FETCH_COMMENTS_VALIDATE, 
+  FETCH_COMMENTS_ERROR, 
+  SORT_COMMENTS, 
+  SHOWALL_COMMENTS,
+  DELETE_COMMENTS_VALIDATE 
+} from "./actionTypes";
+import {showPopup} from './popup'; 
 const axios = require('axios');
 
 export function fetchCommentsValidate(payload) {
@@ -47,4 +55,34 @@ export function sort(data, sort, type) {
     }
   }
   return {type: SORT_COMMENTS, content, sort, ascending}
+};
+
+export function deleteComments(ids, _csrf, parentID) {
+  return (dispatch) => {
+    dispatch({type: FETCH_COMMENTS})
+    return axios.delete('/api/deleteComments', {params: {ids, _csrf, parentID}})
+    .then(res=>{
+      dispatch({type: DELETE_COMMENTS_VALIDATE});
+      setTimeout(()=>dispatch(showPopup({message: "Le commentaire a bien été supprimé.", error: false})),1000);
+    })
+    .catch(err=>{
+      dispatch(fetchCommentsError(err));
+      setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
+    })
+  }
+};
+
+export function createAnswer(answer, id, type, _csrf) {
+  return (dispatch) => {
+    dispatch({type: FETCH_COMMENTS})
+    return axios.post('/api/createAnswer', {answer, id, type, _csrf})
+    .then(res=>{
+      dispatch({type: DELETE_COMMENTS_VALIDATE});
+      setTimeout(()=>dispatch(showPopup({message: "Le commentaire a bien été publié.", error: false})),1000);
+    })
+    .catch(err=>{
+      dispatch(fetchCommentsError(err));
+      setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
+    })
+  }
 };

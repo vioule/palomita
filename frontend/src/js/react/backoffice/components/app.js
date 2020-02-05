@@ -2,7 +2,9 @@ const React = require("react");
 import { connect } from 'react-redux';
 
 import { checkAuthentication } from '../actions/auth';
-const mapDispatchToProps = {checkAuthentication};
+import { setCsrfToken } from '../actions/csrf';
+const mapStateToProps = state => { return { _csrf: state._csrf } };
+const mapDispatchToProps = {checkAuthentication, setCsrfToken};
 
 class App extends React.Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class App extends React.Component {
   };
   componentDidMount() {
     this.props.checkAuthentication();
+    this.props.setCsrfToken(_csrf);
   };
   render() {
     return (
@@ -20,4 +23,4 @@ class App extends React.Component {
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -12,5 +12,7 @@ ApiRouter.get('/getArticles', require('../controllers/backoffice/articles').getD
 //COMMENTS//
 ApiRouter.get('/getComments', require('../controllers/backoffice/comments').getData);
 ApiRouter.get('/getConversation', require('../controllers/backoffice/comments').getConversation);
+ApiRouter.delete('/deleteComments', require('../controllers/backoffice/comments').deleteComments);
+ApiRouter.post('/createAnswer', require('../controllers/backoffice/comments').createAnswer);
 
 module.exports = ApiRouter;

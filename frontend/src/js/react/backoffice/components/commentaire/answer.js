@@ -5,9 +5,10 @@ import Topbar from '../topbar';
 import Newcomment from './newcomment';
 import Popup from '../popup';
 import { initAnswer } from '../../actions/answer';
+import { createAnswer } from '../../actions/commentaires';
 
-const mapStateToProps = state => { return {...state.answer, user: state.login.user} };
-const mapDispatchToProps = { initAnswer };
+const mapStateToProps = state => { return {...state.answer, user: state.login.user, _csrf: state._csrf}};
+const mapDispatchToProps = { initAnswer, createAnswer };
 
 class Answer extends React.Component {
   constructor(props) {
@@ -27,7 +28,20 @@ class Answer extends React.Component {
       <Newcomment />
       {this.props.validate ? <div className="publish-text"><span>
         Etes-vous sûr de vouloir continuer ?
-        <button className="topbar-btn topbar-btn-publish" onClick={()=>"toto"}><img className="topbar-icon-big topbar-icon-rightarrow" src="/img/backoffice.svg#rightarrow-blue"/></button>
+        <button className="topbar-btn topbar-btn-publish" onClick={async()=>{
+          await this.props.createAnswer({
+            author: this.props.data.author,
+            date: new Date(),
+            content: this.props.data.content,
+            parent: this.props.data.parent,
+            reponse: [],
+            type: "reponse",
+            read: true
+          }, data._id, data.type, this.props._csrf);
+          this.props.history.push('/administration/commentaires');
+        }}>
+          <img className="topbar-icon-big topbar-icon-rightarrow" src="/img/backoffice.svg#rightarrow-blue"/>
+        </button>
         </span></div> : null}
     </div>
     </>
