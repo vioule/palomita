@@ -46,7 +46,7 @@ class Commentaires extends React.Component {
     <>
     <Searchbar title="commentaire"/>
     <div className="content-page">
-      <Navbar articles={this.props.data.content.length} newArticles={this.props.data.content.filter(x=>!x.read).length}/>
+      <Navbar comments={this.props.data.content} newComments={this.props.data.content.filter(x=>!x.read).length}/>
       <div className="scroll">
       <table className="table table-light">
         <thead className="table-head">

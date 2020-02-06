@@ -14,5 +14,6 @@ ApiRouter.get('/getComments', require('../controllers/backoffice/comments').getD
 ApiRouter.get('/getConversation', require('../controllers/backoffice/comments').getConversation);
 ApiRouter.delete('/deleteComments', require('../controllers/backoffice/comments').deleteComments);
 ApiRouter.post('/createAnswer', require('../controllers/backoffice/comments').createAnswer);
+ApiRouter.put('/readComments', require('../controllers/backoffice/comments').readComments);
 
 module.exports = ApiRouter;

@@ -76,3 +76,9 @@ exports.createAnswer = (req,res) => {
     }
   })
 };
+
+exports.readComments = (req,res) => {
+  Comment
+  .updateMany({_id: {$in : req.body.ids}}, {read: true})
+  .then(()=>this.getData(req,res))
+};

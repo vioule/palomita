@@ -4,7 +4,8 @@ import {
   FETCH_COMMENTS_ERROR, 
   SORT_COMMENTS, 
   SHOWALL_COMMENTS,
-  DELETE_COMMENTS_VALIDATE 
+  DELETE_COMMENTS_VALIDATE, 
+  SET_COMMENTS_CONTENT
 } from "./actionTypes";
 import {showPopup, closePopup} from './popup'; 
 const axios = require('axios');
@@ -88,3 +89,16 @@ export function createAnswer(answer, id, type, _csrf) {
     })
   }
 };
+
+export function readComments(ids, _csrf) {
+  return (dispatch) => {
+    dispatch({type: FETCH_COMMENTS})
+    return axios.put('/api/readComments', {ids, _csrf})
+    .then(res=>{
+      dispatch({type:  SET_COMMENTS_CONTENT, content: res.data});
+    })
+    .catch(err=>{
+      dispatch(fetchCommentsError(err));
+    })
+  }
+}

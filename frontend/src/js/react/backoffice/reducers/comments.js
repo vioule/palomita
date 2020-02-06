@@ -4,7 +4,8 @@ import {
   FETCH_COMMENTS_ERROR, 
   SORT_COMMENTS, 
   SHOWALL_COMMENTS,
-  DELETE_COMMENTS_VALIDATE 
+  DELETE_COMMENTS_VALIDATE,
+  SET_COMMENTS_CONTENT 
 } from "../actions/actionTypes";
 
 const DEFAULT_STATE = {
@@ -33,6 +34,8 @@ export default (state=DEFAULT_STATE, action) => {
       return Object.assign({}, state, { data: {content: action.content, sort: action.sort, ascending: action.ascending} })
     case SHOWALL_COMMENTS:
       return Object.assign({}, state, {showAll: action.payload})
+    case SET_COMMENTS_CONTENT:
+      return Object.assign({}, state, { data: {content: action.content} })
     default:
       return state
   };

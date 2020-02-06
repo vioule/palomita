@@ -1,8 +1,10 @@
 const React = require("react");
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { readComments } from '../../actions/commentaires';
 
-const mapStateToProps = state => { return {showAll: state.comments.showAll} };
+const mapStateToProps = state => { return {showAll: state.comments.showAll, _csrf: state._csrf} };
+const mapDispatchToProps = { readComments };
 
 class Item extends React.Component {
   constructor(props) {
@@ -13,6 +15,10 @@ class Item extends React.Component {
   handleClick() {
     if (!this.props.showAll) {
       this.setState({open: !this.state.open});
+    }
+    //LIRE LE MESSAGE//
+    if (!this.props.article.read && !this.state.open && !this.props.showAll) {
+      this.props.readComments([this.props.article._id], this.props._csrf)
     }
   };
   render() {
@@ -60,4 +66,4 @@ class Item extends React.Component {
   }
 };
 
-export default connect(mapStateToProps, null)(Item);
+export default connect(mapStateToProps, mapDispatchToProps)(Item);
