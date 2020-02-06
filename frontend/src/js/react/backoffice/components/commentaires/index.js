@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import Navbar from './navbar';
 import Searchbar from '../topbar/searchbar';
 import Item from './item';
-import { sort, getComments as populate } from '../../actions/commentaires';
+import { sort } from '../../actions/commentaires';
 
 const mapStateToProps = state => { return {...state.comments, search: state.search} };
 
-const mapDispatchToProps = {
-  populate,
-  sort
-};
+const mapDispatchToProps = { sort };
 
 class Commentaires extends React.Component {
   constructor(props) {
@@ -86,9 +83,6 @@ class Commentaires extends React.Component {
     </>
     )
   };
-  componentDidMount() {
-   this.props.populate();
-  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Commentaires);

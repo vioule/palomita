@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { userLogout as logout } from '../../actions/auth';
 import { showMenu } from '../../actions/menu';
 import { Link } from 'react-router-dom';
+import { getComments } from '../../actions/commentaires';
 
-const mapDispatchToProps = { logout, showMenu };
+const mapDispatchToProps = { logout, showMenu, getComments };
 const mapStateToProps = state => {
   return {
-    menu: state.menu
+    menu: state.menu,
+    newComments: state.comments.data.content.filter(x=>!x.read).length
   } 
 };
 
@@ -31,7 +33,9 @@ class Menu extends React.Component {
           </li>
           <li>
             <Link className={this.props.location.pathname.includes("commentaire") ? "menu-item" : "menu-item menu-off"} to="/administration/commentaires">
-            <img className="menu-item-icon" src="/img/backoffice.svg#commentaires-white"/>Commentaires
+            <img className="menu-item-icon" src="/img/backoffice.svg#commentaires-white"/>
+              Commentaires 
+              {this.props.newComments != 0 ? <span className="menu-newcomments">{this.props.newComments}</span> : ""}
             </Link>
           </li>
           <li>
@@ -47,6 +51,9 @@ class Menu extends React.Component {
     </div>
     )
   };
+  componentDidMount() {
+    this.props.getComments();
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);
