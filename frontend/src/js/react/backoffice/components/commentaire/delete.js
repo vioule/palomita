@@ -2,11 +2,10 @@ const React = require("react");
 import Comment from './comment';
 import Topbar from '../topbar';
 import { connect } from 'react-redux';
-import { showPopup } from '../../actions/popup';
 import { deleteComments } from '../../actions/commentaires';
 
 const mapStateToProps = state => {return {_csrf: state._csrf}};
-const mapDispatchToProps = {showPopup, deleteComments};
+const mapDispatchToProps = {deleteComments};
 
 class Delete extends React.Component {
   constructor(props) {

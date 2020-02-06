@@ -7,7 +7,7 @@ exports.getData = (req,res) => {
   .populate("reponse")
   .populate("parent")
   .exec()
-  .then(data=>res.send(data))
+  .then(data=>{res.send(data)})
 };
 
 exports.getConversation = (req,res) => {
@@ -35,7 +35,7 @@ exports.deleteComments = (req,res) => {
     .then(()=>{
       Article
       .updateOne({_id: req.query.parentID}, {$pull: {comments: {$in: req.query.ids}}}) // enleve les commentaires de l'article parent
-      .then((data)=>res.send(data))
+      .then(()=>this.getData(req,res))
     })
   })
 };
@@ -54,7 +54,7 @@ exports.createAnswer = (req,res) => {
         .then((data)=>{
           Article
           .updateOne({_id: answer.parent._id}, {$push: {comments: {$each: [answer._id], $position: data.comments.indexOf(req.body.id)+1}}}) //update de son array comments ajout de la reponse juste après le commentaire parent
-          .then((data)=>res.send(data))
+          .then(()=>this.getData(req,res))
         })
       })
     }else { //si le commentaire parent est de type reponse
@@ -69,11 +69,22 @@ exports.createAnswer = (req,res) => {
           .then((data)=>{
             Article
             .updateOne({_id: answer.parent._id}, {$push: {comments: {$each: [answer._id], $position: data.comments.indexOf(req.body.id)+1}}}) //update de son array comments ajout de la reponse juste après le commentaire parent
-            .then((data)=>res.send(data))
+            .then(()=>this.getData(req,res))
           })
         })
       })
     }
+  })
+};
+
+exports.createComment = (req,res) => {
+  let comment = new Comment(req.body.comment)
+  comment
+  .save()
+  .then((data)=>{
+    Article
+    .updateOne({_id: req.body.comment.parent},  {$push : {comments: data._id}})
+    .then(()=>this.getData(req,res))
   })
 };
 

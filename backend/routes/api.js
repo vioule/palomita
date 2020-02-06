@@ -8,12 +8,14 @@ ApiRouter.get('/checkAuthentication', require('../controllers/backoffice/login')
 
 //ARTICLES//
 ApiRouter.get('/getArticles', require('../controllers/backoffice/articles').getData);
+ApiRouter.delete('/deleteArticle', require('../controllers/backoffice/articles').deleteArticle);
 
 //COMMENTS//
 ApiRouter.get('/getComments', require('../controllers/backoffice/comments').getData);
 ApiRouter.get('/getConversation', require('../controllers/backoffice/comments').getConversation);
 ApiRouter.delete('/deleteComments', require('../controllers/backoffice/comments').deleteComments);
 ApiRouter.post('/createAnswer', require('../controllers/backoffice/comments').createAnswer);
+ApiRouter.post('/createComment', require('../controllers/backoffice/comments').createComment);
 ApiRouter.put('/readComments', require('../controllers/backoffice/comments').readComments);
 
 module.exports = ApiRouter;

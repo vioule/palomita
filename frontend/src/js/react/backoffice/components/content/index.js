@@ -5,6 +5,7 @@ import Statistiques from './statistiques';
 import Commentaires from '../commentaires';
 import Commentaire from '../commentaire';
 import Answer from '../commentaire/answer';
+import Comment from '../commentaire/create';
 import DeleteCommentaire from '../commentaire/delete';
 import DeleteArticle from '../article/delete';
 import Notfound from './notfound';
@@ -20,6 +21,7 @@ class Content extends React.Component {
       <Switch>
         <Route exact path="/administration/articles"><Articles /></Route>
         <Route exact path="/administration/article/:articleID/delete" component={(props=this.props)=><DeleteArticle {...props}/>}/>
+        <Route exact path="/administration/article/:articleID/comment" component={(props=this.props)=><Comment {...props}/>}/>
         <Route exact path="/administration/commentaires"><Commentaires /></Route>
         <Route exact path="/administration/commentaire/:commentID" component={(props=this.props)=><Commentaire {...props}/>}/>
         <Route exact path="/administration/commentaire/:commentID/answer" component={(props=this.props)=><Answer {...props}/>}/>

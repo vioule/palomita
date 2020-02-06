@@ -35,6 +35,7 @@ class Articles extends React.Component {
     <Searchbar title="article"/>
     <div className="content-page">
       <Navbar articles={this.props.data.content.length}/>
+      <div className="scroll">
       <table className="table table-light">
         <thead className="table-head">
           <tr>
@@ -43,7 +44,7 @@ class Articles extends React.Component {
             className={this.props.data.sort=="title" ? 
             this.props.data.ascending ? "table-head-btn table-head-asort" : "table-head-btn table-head-dsort" : "table-head-btn"}
             >Article</button></th>
-            <th className="table-th-date"><button 
+            <th><button 
             onClick={()=>this.props.sort(this.props.data, "categorie", "string")} 
             className={this.props.data.sort=="categorie" ? 
             this.props.data.ascending ? "table-head-btn table-head-asort" : "table-head-btn table-head-dsort" : "table-head-btn"}
@@ -60,12 +61,14 @@ class Articles extends React.Component {
             >Commentaires</button></th>
             <th className="table-th-icon"></th>
             <th className="table-th-icon"></th>
+            <th className="table-th-icon"></th>
           </tr>
         </thead>
         <tbody className="table-body">
           {data.content.map(article=><Item {...article} key={article._id} />)}
         </tbody>
       </table>
+      </div>
     </div>
     </>
     )

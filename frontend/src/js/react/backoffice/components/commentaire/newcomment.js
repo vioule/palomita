@@ -16,9 +16,10 @@ class Newcomment extends React.Component {
   };
   render() {
     return (
-      <div className={"comment"}>
+      <div className="comment">
         <span className="comment-author">
-          <img className="comment-icon-conversation" src="/img/backoffice.svg#reponse-blue"/>
+          {this.props.type=="reponse" ?
+          <img className="comment-icon-conversation" src="/img/backoffice.svg#reponse-blue"/> : null}
           {this.props.user.username} <span className="comment-role">({this.props.user.role.name})</span></span>
         <span className="comment-date">{new Date().toLocaleDateString()}</span>
         <form id="comment-content" onSubmit={this.handleSubmit} autoComplete="off" />

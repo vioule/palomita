@@ -9,7 +9,7 @@ const mapDispatchToProps = { logout, showMenu, getComments };
 const mapStateToProps = state => {
   return {
     menu: state.menu,
-    newComments: state.comments.data.content.filter(x=>!x.read).length
+    comments: state.comments.data.content
   } 
 };
 
@@ -18,6 +18,7 @@ class Menu extends React.Component {
     super(props)
   };
   render() {
+    let newComments = this.props.comments.filter(x=>!x.read).length
     return (
     <div className="menu-dark">
       <nav className={this.props.menu.open ? "menu menu-visible" : "menu"}>
@@ -35,7 +36,7 @@ class Menu extends React.Component {
             <Link className={this.props.location.pathname.includes("commentaire") ? "menu-item" : "menu-item menu-off"} to="/administration/commentaires">
             <img className="menu-item-icon" src="/img/backoffice.svg#commentaires-white"/>
               Commentaires 
-              {this.props.newComments != 0 ? <span className="menu-newcomments">{this.props.newComments}</span> : ""}
+              {newComments != 0 ? <span className="menu-newcomments">{newComments}</span> : ""}
             </Link>
           </li>
           <li>
@@ -53,6 +54,9 @@ class Menu extends React.Component {
   };
   componentDidMount() {
     this.props.getComments();
+  }
+  componentDidUpdate() {
+    //this.props.getComments();
   }
 };
 

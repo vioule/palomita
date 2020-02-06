@@ -9,10 +9,10 @@ class Navbar extends React.Component {
     return (
     <div className="navbar navbar-light">
       <ul>
-        <li className="navbar-item">
+        <li className="navbar-li">
           <span className="navbar-number">{this.props.articles}</span><span> Articles</span>
         </li>
-        <li className="navbar-item">
+        <li className="navbar-item navbar-hover">
           <Link className="navbar-link" to="/">Ajouter un article</Link>
         </li>
       </ul>

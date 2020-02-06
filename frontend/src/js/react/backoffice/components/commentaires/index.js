@@ -38,7 +38,6 @@ class Commentaires extends React.Component {
       data.content = data.content.filter(commentaire=>!commentaire.read)
     }
 
-
     return (
     <>
     <Searchbar title="commentaire"/>

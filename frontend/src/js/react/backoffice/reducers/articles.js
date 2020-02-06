@@ -1,4 +1,10 @@
-import { FETCH_ARTICLES, FETCH_ARTICLES_VALIDATE, FETCH_ARTICLES_ERROR, SORT_ARTICLES } from "../actions/actionTypes";
+import { 
+  FETCH_ARTICLES, 
+  FETCH_ARTICLES_VALIDATE, 
+  FETCH_ARTICLES_ERROR, 
+  SORT_ARTICLES, 
+  DELETE_ARTICLE_VALIDATE
+} from "../actions/actionTypes";
 
 const DEFAULT_STATE = {
   isFetching: false,
@@ -21,6 +27,8 @@ export default (state=DEFAULT_STATE, action) => {
       return Object.assign({}, state, {isFetching: false, didInvalidate: true, error: action.payload})
     case SORT_ARTICLES:
       return Object.assign({}, state, { data: {content: action.content, sort: action.sort, ascending: action.ascending} })
+    case DELETE_ARTICLE_VALIDATE:
+      return Object.assign({}, state, {isFetching: false, didInvalidate: false});
     default:
       return state
   };

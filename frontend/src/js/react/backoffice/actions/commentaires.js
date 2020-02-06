@@ -64,6 +64,7 @@ export function deleteComments(ids, _csrf, parentID) {
     return axios.delete('/api/deleteComments', {params: {ids, _csrf, parentID}})
     .then(res=>{
       dispatch({type: DELETE_COMMENTS_VALIDATE});
+      dispatch({type: SET_COMMENTS_CONTENT, content: res.data});
       dispatch(closePopup());
       setTimeout(()=>dispatch(showPopup({message: "Le commentaire a bien été supprimé.", error: false})),1000);
     })
@@ -80,11 +81,31 @@ export function createAnswer(answer, id, type, _csrf) {
     return axios.post('/api/createAnswer', {answer, id, type, _csrf})
     .then(res=>{
       dispatch({type: DELETE_COMMENTS_VALIDATE});
+      dispatch({type: SET_COMMENTS_CONTENT, content: res.data});
       dispatch(closePopup());
       setTimeout(()=>dispatch(showPopup({message: "Le commentaire a bien été publié.", error: false})),1000);
     })
     .catch(err=>{
       dispatch(fetchCommentsError(err));
+      dispatch(closePopup())
+      setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
+    })
+  }
+};
+
+export function createComment(comment, _csrf) {
+  return (dispatch) => {
+    dispatch({type: FETCH_COMMENTS})
+    return axios.post('/api/createComment', {comment, _csrf})
+    .then(res=>{
+      dispatch({type: DELETE_COMMENTS_VALIDATE});
+      dispatch({type: SET_COMMENTS_CONTENT, content: res.data});
+      dispatch(closePopup());
+      setTimeout(()=>dispatch(showPopup({message: "Le commentaire a bien été publié.", error: false})),1000);
+    })
+    .catch(err=>{
+      dispatch(fetchCommentsError(err));
+      dispatch(closePopup())
       setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
     })
   }
@@ -95,7 +116,8 @@ export function readComments(ids, _csrf) {
     dispatch({type: FETCH_COMMENTS})
     return axios.put('/api/readComments', {ids, _csrf})
     .then(res=>{
-      dispatch({type:  SET_COMMENTS_CONTENT, content: res.data});
+      dispatch({type: DELETE_COMMENTS_VALIDATE});
+      dispatch({type: SET_COMMENTS_CONTENT, content: res.data});
     })
     .catch(err=>{
       dispatch(fetchCommentsError(err));

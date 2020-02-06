@@ -34,6 +34,8 @@
 	</defs>
 	<view id="articles-white" viewBox="0 0 20 20"/>
 	<view id="commentaires-white" viewBox="0 20 20 20"/>
+	<view id="commentaires-blue" viewBox="20 20 20 20"/>
+	<view id="commentaires-bluedark" viewBox="40 20 20 20"/>
 	<view id="statistiques-white" viewBox="0 40 20 20"/>
 	<view id="loupe-black" viewBox="0 60 20 20"/>
 	<view id="loupe-blue" viewBox="20 60 20 20"/>
@@ -52,6 +54,8 @@
 	<view id="warning-white" viewBox="0 200 20 20"/>
 	<use x="0" y="0" xlink:href="#articles" fill="white"/>
 	<use x="0" y="20" xlink:href="#commentaires" fill="white"/>
+	<use x="20" y="20" xlink:href="#commentaires" fill="#485E84"/>
+	<use x="40" y="20" xlink:href="#commentaires" fill="#283447"/>
 	<use x="0" y="40" xlink:href="#statistiques" fill="white"/>
 	<use x="0" y="60" xlink:href="#loupe" fill="black"/>
 	<use x="20" y="60" xlink:href="#loupe" fill="#485E84"/>

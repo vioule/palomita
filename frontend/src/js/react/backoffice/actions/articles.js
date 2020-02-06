@@ -1,5 +1,13 @@
-import { FETCH_ARTICLES, FETCH_ARTICLES_VALIDATE, FETCH_ARTICLES_ERROR, SORT_ARTICLES } from "./actionTypes";
+import { 
+  FETCH_ARTICLES, 
+  FETCH_ARTICLES_VALIDATE, 
+  FETCH_ARTICLES_ERROR, 
+  SORT_ARTICLES,
+  DELETE_ARTICLE_VALIDATE,
+  SET_COMMENTS_CONTENT 
+} from "./actionTypes";
 const axios = require('axios');
+import {showPopup, closePopup} from './popup'; 
 
 export function fetchArticlesValidate(payload) {
   return {type: FETCH_ARTICLES_VALIDATE, payload}
@@ -19,7 +27,6 @@ export function getArticles() {
     .catch(err=>dispatch(fetchArticlesError(err)))
   }
 };
-
 
 export function sort(data, sort, type) {
   var content = [];
@@ -41,4 +48,22 @@ export function sort(data, sort, type) {
     }
   }
   return {type: SORT_ARTICLES, content, sort, ascending}
+};
+
+export function deleteArticle(id, comments, _csrf) {
+  return (dispatch) => {
+    dispatch({type: FETCH_ARTICLES})
+    return axios.delete('/api/deleteArticle', {params: {id, comments, _csrf}})
+    .then(res=>{
+      dispatch({type: DELETE_ARTICLE_VALIDATE});
+      dispatch({type: SET_COMMENTS_CONTENT, content: res.data});
+      dispatch(closePopup());
+      setTimeout(()=>dispatch(showPopup({message: "L'article a bien été supprimé.", error: false})),1000);
+    })
+    .catch(err=>{
+      dispatch(fetchArticlesError(err));
+      dispatch(closePopup())
+      setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
+    })
+  }
 };
