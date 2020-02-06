@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { getConversation as populate } from '../../actions/commentaire';
 import Comment from './comment';
 import Topbar from '../topbar';
-import Popup from '../popup';
 
 const mapStateToProps = state => { return {...state.comment} };
 const mapDispatchToProps = {populate};
@@ -15,7 +14,6 @@ class Commentaire extends React.Component {
   render() {
     return (
     <>
-    <Popup/>
     <Topbar title="Conversation" {...this.props}/>
     <div className="content-page comment-light">
       <div className="comment-title comment-categorie">{this.props.data.parent.categorie}</div>

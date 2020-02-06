@@ -1,7 +1,6 @@
 const React = require("react");
 import Comment from './comment';
 import Topbar from '../topbar';
-import Popup from '../popup';
 import { connect } from 'react-redux';
 import { showPopup } from '../../actions/popup';
 import { deleteComments } from '../../actions/commentaires';
@@ -17,10 +16,12 @@ class Delete extends React.Component {
     const data = this.props.location.state;
     return (
     <>
-    <Popup/>
     <Topbar title="commentaire" {...this.props} rightBtn={false}/>
     <div className="content-page comment-light">
-      <div className="publish-text">Vous êtes sur le point de supprimer un commentaire sur le blog.</div>
+      <div className="publish-text">
+        Vous êtes sur le point de supprimer un commentaire 
+        {data.reponse.length > 0 ? " et ses "+ data.reponse.length + " réponses " : ""} sur le blog.
+      </div>
       <div className="comment-title comment-categorie">{data.parent.categorie}</div>
       <div className="comment-title">{data.parent.title}</div>
       <Comment {...data} showBtns={false}/>

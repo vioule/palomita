@@ -7,10 +7,13 @@ const mapDispatchToProps = {closePopup};
 
 class Popup extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   };
   render() {
-    if(this.props.show) {setTimeout(this.props.closePopup, 5000)}
+    if(this.props.show) {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(this.props.closePopup, 5000);
+    }
     return (
     <div className={"popup popup-dark " + (this.props.show ? "popup-show" : "")}>
       {this.props.error ?

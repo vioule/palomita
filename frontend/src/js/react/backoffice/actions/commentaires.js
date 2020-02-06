@@ -6,7 +6,7 @@ import {
   SHOWALL_COMMENTS,
   DELETE_COMMENTS_VALIDATE 
 } from "./actionTypes";
-import {showPopup} from './popup'; 
+import {showPopup, closePopup} from './popup'; 
 const axios = require('axios');
 
 export function fetchCommentsValidate(payload) {
@@ -63,6 +63,7 @@ export function deleteComments(ids, _csrf, parentID) {
     return axios.delete('/api/deleteComments', {params: {ids, _csrf, parentID}})
     .then(res=>{
       dispatch({type: DELETE_COMMENTS_VALIDATE});
+      dispatch(closePopup());
       setTimeout(()=>dispatch(showPopup({message: "Le commentaire a bien été supprimé.", error: false})),1000);
     })
     .catch(err=>{
@@ -78,6 +79,7 @@ export function createAnswer(answer, id, type, _csrf) {
     return axios.post('/api/createAnswer', {answer, id, type, _csrf})
     .then(res=>{
       dispatch({type: DELETE_COMMENTS_VALIDATE});
+      dispatch(closePopup());
       setTimeout(()=>dispatch(showPopup({message: "Le commentaire a bien été publié.", error: false})),1000);
     })
     .catch(err=>{

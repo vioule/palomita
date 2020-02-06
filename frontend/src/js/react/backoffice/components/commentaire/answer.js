@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Comment from './comment';
 import Topbar from '../topbar';
 import Newcomment from './newcomment';
-import Popup from '../popup';
 import { initAnswer } from '../../actions/answer';
 import { createAnswer } from '../../actions/commentaires';
 
@@ -18,7 +17,6 @@ class Answer extends React.Component {
     const data = this.props.location.state
     return (
     <>
-    <Popup/>
     <Topbar title="commentaire" {...this.props} rightBtn={true}/>
     <div className="content-page comment-light">
       {this.props.validate ? <div className="publish-text">Vous êtes sur le point de publier un commentaire sur le blog.</div> : null}

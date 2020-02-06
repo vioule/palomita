@@ -26,7 +26,7 @@ class Item extends React.Component {
           <span className="table-td-info table-td-wrap"> <br/> {this.props.article.author.contact} <br/> {this.props.article.author.web} </span> : null}
       </td>
       <td className="table-td">{new Date(this.props.article.date).toLocaleDateString()}</td>
-      <td className="table-td">{this.props.article.reponse.length}</td>
+      <td className="table-td">{this.props.article.type=="comment" ? this.props.article.reponse.length : ""}</td>
       <td className="table-td">
         <Link to={"commentaire/"+(this.props.article._id)}>
         <img className="table-icon table-icon-loupe" src="/img/backoffice.svg#loupe-blue"/>

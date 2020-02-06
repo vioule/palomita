@@ -29,11 +29,14 @@ exports.getConversation = (req,res) => {
 
 exports.deleteComments = (req,res) => {
   Comment
-  .deleteMany({_id: {$in: req.query.ids}})
+  .deleteMany({_id: {$in: req.query.ids}}) // supprime le commentaire et ses reponses
   .then(()=>{
-    Article
-    .updateOne({_id: req.query.parentID}, {$pull: {comments: {$in: req.query.ids}}})
-    .then((data)=>res.send(data))
+    Comment.updateOne({reponse: req.query.ids[0]}, {$pull: {reponse: {$in: req.query.ids}}}) // update le commentaire qui possede en reponse le commentaire supprimé
+    .then(()=>{
+      Article
+      .updateOne({_id: req.query.parentID}, {$pull: {comments: {$in: req.query.ids}}}) // enleve les commentaires de l'article parent
+      .then((data)=>res.send(data))
+    })
   })
 };
 
