@@ -13,7 +13,7 @@ class Navbar extends React.Component {
           <span className="navbar-number">{this.props.articles}</span><span> Articles</span>
         </li>
         <li className="navbar-item navbar-hover">
-          <Link className="navbar-link" to="/">Ajouter un article</Link>
+          <Link className="navbar-link" to="article/create">Ajouter un article</Link>
         </li>
       </ul>
     </div>

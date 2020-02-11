@@ -8,6 +8,7 @@ import Answer from '../commentaire/answer';
 import Comment from '../commentaire/create';
 import DeleteCommentaire from '../commentaire/delete';
 import DeleteArticle from '../article/delete';
+import CreateArticle from '../article/create/';
 import Notfound from './notfound';
 import { Route, Switch } from 'react-router-dom';
 
@@ -22,6 +23,7 @@ class Content extends React.Component {
         <Route exact path="/administration/articles"><Articles /></Route>
         <Route exact path="/administration/article/:articleID/delete" component={(props=this.props)=><DeleteArticle {...props}/>}/>
         <Route exact path="/administration/article/:articleID/comment" component={(props=this.props)=><Comment {...props}/>}/>
+        <Route exact path="/administration/article/create" component={(props=this.props)=><CreateArticle {...props}/>}/>
         <Route exact path="/administration/commentaires"><Commentaires /></Route>
         <Route exact path="/administration/commentaire/:commentID" component={(props=this.props)=><Commentaire {...props}/>}/>
         <Route exact path="/administration/commentaire/:commentID/answer" component={(props=this.props)=><Answer {...props}/>}/>

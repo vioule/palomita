@@ -3,6 +3,7 @@ import csrfReducer from './csrf';
 import loginReducer from './auth';
 import menuReducer from './menu';
 import articlesReducer from './articles';
+import articleReducer from './article/';
 import commentsReducer from './comments';
 import commentReducer from './comment';
 import answerReducer from './answer';
@@ -14,6 +15,7 @@ export default combineReducers({
   login: loginReducer,
   menu: menuReducer,
   articles: articlesReducer,
+  article: articleReducer,
   comments: commentsReducer,
   comment: commentReducer,
   answer: answerReducer,

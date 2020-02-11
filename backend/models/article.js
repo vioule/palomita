@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const articleSchema = Schema({
   title: String,
-  date: Date,
   categorie: String,
+  date: Date,
+  content: String,
   comments: [String]
 })
 

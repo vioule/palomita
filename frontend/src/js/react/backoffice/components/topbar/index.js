@@ -22,7 +22,7 @@ class Topbar extends React.Component {
       </button>
       {this.props.title!="Conversation" ? 
       window.location.pathname.includes("delete") ? "Supprimer " :
-      this.props.validate ? "Publier " : "Nouveau " : ""}
+      this.props.validate ? "Publier " : this.props.title=="commentaire" ? "Nouveau " : "Nouvel " : ""}
       {this.props.title}
       {this.props.rightBtn && !this.props.validate && this.props.content ? 
       <button className="topbar-btn topbar-btn-right" onClick={()=>this.props.setAnswerValidate(true)}><img className="topbar-icon topbar-icon-rightarrow" src="/img/backoffice.svg#rightarrow-blue"/></button> : null}
