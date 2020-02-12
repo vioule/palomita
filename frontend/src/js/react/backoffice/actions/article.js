@@ -2,9 +2,11 @@ import {
   SET_ARTICLE_TITLE,
   SET_ARTICLE_CATEGORIE,
   ADD_ARTICLE_PARAGRAPH,
-  ADD_ARTICLE_IMAGE,
+  ADD_ARTICLE_IMAGES,
   DELETE_ARTICLE_ITEM,
-  SORT_ARTICLE_CONTENT
+  SORT_ARTICLE_CONTENT,
+  SET_ARTICLE_CONTENT,
+  SET_ARTICLE_CONTENT_SELECTED
 } from "./actionTypes";
 const arrayMove = require('array-move');
 
@@ -20,8 +22,14 @@ export function addArticleParagraph() {
 export function deleteArticleItem(index) {
   return {type: DELETE_ARTICLE_ITEM, index}
 };
-export function addArticleImage() {
-  return {type: ADD_ARTICLE_IMAGE}
+export function addArticleImages(files) {
+  return {type: ADD_ARTICLE_IMAGES, files}
+};
+export function setArticleContentSelected(payload) {
+  return {type: SET_ARTICLE_CONTENT_SELECTED, payload}
+};
+export function setArticleContent(index, payload) {
+  return {type: SET_ARTICLE_CONTENT, index, payload}
 };
 export function sortArticleContent(array, {oldIndex, newIndex}) {
   const payload = arrayMove(array, oldIndex, newIndex)

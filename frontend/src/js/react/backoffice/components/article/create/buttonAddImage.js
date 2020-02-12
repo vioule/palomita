@@ -1,7 +1,14 @@
 const React = require("react");
 import { connect } from 'react-redux';
-import { addArticleImage } from '../../../actions/article';
+import { addArticleImages } from '../../../actions/article';
 
-const mapDispatchToProps = { addArticleImage };
+const mapDispatchToProps = { addArticleImages };
 
-export default connect(null, mapDispatchToProps)((props) => (<button className="article-btn" onClick={props.addArticleImage}>Ajouter une image</button>))
+export default connect(null, mapDispatchToProps)(
+  (props) => (
+  <>
+  <label className="article-btn" htmlFor="imageUploader">Ajouter des images</label>
+  <input type="file" id="imageUploader" name="imageUploader" accept=".jpg, .jpeg, .png" hidden multiple onChange={(e)=>props.addArticleImages(e.target.files)} value=""/>
+  </>
+  )
+);

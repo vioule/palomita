@@ -6,7 +6,7 @@ export default (OriginalComponent) => {
     render() {
       return (
         <div className="article-item">
-          <OriginalComponent/>
+          <OriginalComponent index={this.props.i} data={this.props.data}/>
           <ButtonDeleteArticleItem index={this.props.i}/>
         </div>
       )

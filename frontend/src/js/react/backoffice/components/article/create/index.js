@@ -1,6 +1,7 @@
 const React = require("react");
 import { connect } from 'react-redux';
 import Topbar from '../../topbar';
+import TextEditBar from '../../topbar/texteditbar';
 import { setArticleTitle, setArticleCategorie, sortArticleContent } from '../../../actions/article';
 import ButtonAddParagraph from './buttonAddParagraph';
 import ButtonAddImage from './buttonAddImage';
@@ -17,6 +18,7 @@ class Create extends React.Component {
     return (
     <>
     <Topbar title="article" {...this.props} rightBtn={true}/>
+    <TextEditBar/>
     <div className="content-page article-light">
       <form id="article-create" onSubmit={this.handleSubmit} autoComplete="off"/>
       <select form="article-create" className="article-infos article-categorie" name="article-categorie" onChange={(e)=>this.props.setArticleCategorie(e.target.value)}>
