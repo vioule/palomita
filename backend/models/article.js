@@ -5,7 +5,7 @@ const articleSchema = Schema({
   title: String,
   categorie: String,
   date: Date,
-  content: String,
+  content: [{}],
   comments: [String]
 })
 

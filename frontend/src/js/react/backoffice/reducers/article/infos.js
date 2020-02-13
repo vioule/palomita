@@ -1,7 +1,8 @@
 import { 
   SET_ARTICLE_TITLE, 
   SET_ARTICLE_CATEGORIE,
-  SET_ARTICLE_CONTENT_SELECTED
+  SET_ARTICLE_CONTENT_SELECTED,
+  SET_ARTICLE_VALIDATE
 } from "../../actions/actionTypes";
 
 const DEFAULT_STATE = {
@@ -9,7 +10,8 @@ const DEFAULT_STATE = {
   categorie: "",
   date: "",
   comments: [],
-  selected: -1
+  selected: -1,
+  validate: false
 }
 
 export default (state=DEFAULT_STATE, action) => {
@@ -20,6 +22,8 @@ export default (state=DEFAULT_STATE, action) => {
       return Object.assign({}, state, {categorie: action.payload});
     case SET_ARTICLE_CONTENT_SELECTED:
       return Object.assign({}, state, {selected: action.payload});
+    case SET_ARTICLE_VALIDATE:
+      return Object.assign({}, state, {validate: action.payload});
     default:
       return state
   };

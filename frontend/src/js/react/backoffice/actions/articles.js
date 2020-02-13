@@ -67,3 +67,20 @@ export function deleteArticle(id, comments, _csrf) {
     })
   }
 };
+
+export function createArticle(article, _csrf) {
+  return (dispatch) => {
+    dispatch({type: FETCH_ARTICLES})
+    return axios.post('/api/createArticle', {article, _csrf})
+    .then(res=>{
+      dispatch(fetchArticlesValidate(res.data));
+      dispatch(closePopup());
+      setTimeout(()=>dispatch(showPopup({message: "L'article a bien été publié.", error: false})),1000);
+    })
+    .catch(err=>{
+      dispatch(fetchArticlesError(err));
+      dispatch(closePopup())
+      setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
+    })
+  }
+};

@@ -14,3 +14,10 @@ exports.deleteArticle = (req,res) => {
     .then(()=>getComments(req,res))
   })
 };
+
+exports.createArticle = (req,res) => {
+  let article = new Article(req.body.article);
+  article
+  .save()
+  .then(()=>this.getData(req,res))
+};

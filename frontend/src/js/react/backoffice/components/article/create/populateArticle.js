@@ -7,13 +7,13 @@ import Image from './image';
 export const SortableParagraph = SortableElement(MakeEditable(TextAreaConnected));
 export const SortableImage = SortableElement(MakeEditable(Image));
 
-export default SortableContainer(({items}) => {
+export default SortableContainer(({items, validate}) => {
   return (
     <div>
       {items.map((item, index) => {
         return item.type === "paragraph" ?
-          <SortableParagraph key={item.id} index={index} i={index}/> :
-          <SortableImage key={item.id} index={index} i={index} data={item.data}/>
+          <SortableParagraph key={item.id} index={index} i={index} validate={validate}/> :
+          <SortableImage key={item.id} index={index} i={index} data={item.data} validate={validate}/>
       })}
     </div>
   );

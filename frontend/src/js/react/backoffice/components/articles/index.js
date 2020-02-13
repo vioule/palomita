@@ -25,6 +25,22 @@ class Articles extends React.Component {
           return -1
         case "date":
           return new Date(article.date).toLocaleDateString().toLowerCase().includes(this.props.search.content.toLowerCase())
+        case "content":
+          if (this.props.search.content) {
+            let data = article.content.filter(content=>{
+              if (content.data) {
+              return content.data.toLowerCase().includes(this.props.search.content.toLowerCase())
+              } else { 
+                return false
+            }})
+            if(data.length>0){
+              return data
+            } else {
+              return false
+            }
+          } else {
+            return -1
+          }
         default:
           return article[this.props.search.type].toLowerCase().includes(this.props.search.content.toLowerCase())
       }
