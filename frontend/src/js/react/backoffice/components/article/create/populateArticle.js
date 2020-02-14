@@ -12,7 +12,7 @@ export default SortableContainer(({items, validate}) => {
     <div>
       {items.map((item, index) => {
         return item.type === "paragraph" ?
-          <SortableParagraph key={item.id} index={index} i={index} validate={validate}/> :
+          <SortableParagraph key={item.id} index={index} i={index} data={item.data} validate={validate}/> :
           <SortableImage key={item.id} index={index} i={index} data={item.data} validate={validate}/>
       })}
     </div>

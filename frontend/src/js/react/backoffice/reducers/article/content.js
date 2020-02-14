@@ -3,7 +3,8 @@ import {
   ADD_ARTICLE_IMAGES,
   DELETE_ARTICLE_ITEM,
   SORT_ARTICLE_CONTENT,
-  SET_ARTICLE_CONTENT
+  SET_ARTICLE_CONTENT,
+  SET_ARTICLE
 } from "../../actions/actionTypes";
 const uuidv4 = require('uuid/v4');
 
@@ -30,6 +31,8 @@ export default (state=DEFAULT_STATE, action) => {
       return newState;
     case SORT_ARTICLE_CONTENT:
       return action.payload
+    case SET_ARTICLE:
+      return action.payload.content
     case SET_ARTICLE_CONTENT:
       var newState = [...state];
       newState[action.index].data = action.payload;

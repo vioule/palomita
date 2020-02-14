@@ -21,3 +21,9 @@ exports.createArticle = (req,res) => {
   .save()
   .then(()=>this.getData(req,res))
 };
+
+exports.updateArticle = (req,res) => {
+  Article
+  .updateOne({_id: req.body.article.id}, {title: req.body.article.title, categorie: req.body.article.categorie, content: req.body.article.content})
+  .then(()=>this.getData(req,res))
+};

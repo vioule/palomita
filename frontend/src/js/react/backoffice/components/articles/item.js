@@ -2,9 +2,6 @@ const React = require("react");
 import { Link } from 'react-router-dom';
 
 class Item extends React.Component {
-  constructor(props) {
-    super(props);
-  };
   render() {
     return (
     <tr className="table-tr">
@@ -17,7 +14,11 @@ class Item extends React.Component {
           <img className="table-icon table-icon-comment" src="/img/backoffice.svg#commentaires-blue"/>
         </Link>
         </td>
-      <td className="table-td"><img className="table-icon table-icon-edit" src="/img/backoffice.svg#edit-blue"/></td>
+      <td className="table-td">
+        <Link to={{pathname:"article/"+this.props._id+"/edit", state: this.props}}>
+          <img className="table-icon table-icon-edit" src="/img/backoffice.svg#edit-blue"/>
+        </Link>
+      </td>
       <td className="table-td">
         <Link to={{pathname:"article/"+this.props._id+"/delete", state: this.props}}>
           <img className="table-icon table-icon-delete" src="/img/backoffice.svg#delete-blue"/>

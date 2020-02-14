@@ -10,6 +10,7 @@ ApiRouter.get('/checkAuthentication', require('../controllers/backoffice/login')
 ApiRouter.get('/getArticles', require('../controllers/backoffice/articles').getData);
 ApiRouter.delete('/deleteArticle', require('../controllers/backoffice/articles').deleteArticle);
 ApiRouter.post('/createArticle', require('../controllers/backoffice/articles').createArticle);
+ApiRouter.put('/updateArticle', require('../controllers/backoffice/articles').updateArticle);
 
 //COMMENTS//
 ApiRouter.get('/getComments', require('../controllers/backoffice/comments').getData);

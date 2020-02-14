@@ -11,8 +11,22 @@ const mapStateToProps = (state) => { return {
 class Topbar extends React.Component {
   constructor(props) {
     super(props)
+    this.info = "";
   };
   render() {
+    if (this.props.validate) {
+      this.info = "Publier "
+    }else if(window.location.pathname.includes("delete")) {
+      this.info = "Supprimer "
+    }else if (window.location.pathname.includes("edit")) {
+      this.info = "Modifier "
+    }else {
+      if (this.props.title=="commentaire") {
+        this.info = "Nouveau "
+      }else {
+        this.info = "Nouvel "
+      }
+    }
     return (
     <div className="topbar topbar-light">
       <button className="topbar-btn" onClick={this.props.validate ? 
@@ -20,10 +34,7 @@ class Topbar extends React.Component {
         ()=>this.props.history.goBack()}>
         <img className="topbar-icon topbar-icon-leftarrow" src="/img/backoffice.svg#leftarrow-blue"/>
       </button>
-      {this.props.title!="Conversation" ? 
-      window.location.pathname.includes("delete") ? "Supprimer " :
-      this.props.validate ? "Publier " : this.props.title=="commentaire" ? "Nouveau " : "Nouvel " : ""}
-      {this.props.title}
+      {this.info + this.props.title}
       {this.props.rightBtn && !this.props.validate && this.props.content ? 
       <button className="topbar-btn topbar-btn-right" onClick={()=>this.props.onClick(true)}><img className="topbar-icon topbar-icon-rightarrow" src="/img/backoffice.svg#rightarrow-blue"/></button> : null}
     </div>

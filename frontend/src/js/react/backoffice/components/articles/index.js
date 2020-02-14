@@ -45,7 +45,6 @@ class Articles extends React.Component {
           return article[this.props.search.type].toLowerCase().includes(this.props.search.content.toLowerCase())
       }
     });
-
     return (
     <>
     <Searchbar title="article"/>

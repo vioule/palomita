@@ -7,7 +7,8 @@ import {
   SORT_ARTICLE_CONTENT,
   SET_ARTICLE_CONTENT,
   SET_ARTICLE_CONTENT_SELECTED,
-  SET_ARTICLE_VALIDATE
+  SET_ARTICLE_VALIDATE,
+  SET_ARTICLE
 } from "./actionTypes";
 const arrayMove = require('array-move');
 
@@ -34,6 +35,9 @@ export function setArticleContent(index, payload) {
 };
 export function setArticleValidate(payload) {
   return {type: SET_ARTICLE_VALIDATE, payload}
+};
+export function setArticle(payload) {
+  return {type: SET_ARTICLE, payload}
 };
 export function sortArticleContent(array, {oldIndex, newIndex}) {
   const payload = arrayMove(array, oldIndex, newIndex)

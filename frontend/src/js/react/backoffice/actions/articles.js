@@ -84,3 +84,20 @@ export function createArticle(article, _csrf) {
     })
   }
 };
+
+export function updateArticle(article, _csrf) {
+  return (dispatch) => {
+    dispatch({type: FETCH_ARTICLES})
+    return axios.put('/api/updateArticle', {article, _csrf})
+    .then(res=>{
+      dispatch(fetchArticlesValidate(res.data));
+      dispatch(closePopup());
+      setTimeout(()=>dispatch(showPopup({message: "L'article a bien été modifié.", error: false})),1000);
+    })
+    .catch(err=>{
+      dispatch(fetchArticlesError(err));
+      dispatch(closePopup())
+      setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
+    })
+  }
+};

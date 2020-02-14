@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { setArticleContentSelected as onFocus, setArticleContent as onInput } from '../../../actions/article';
 
 export default class TextArea extends React.Component {
+  constructor(props){
+    super(props)
+    this.data= this.props.data
+  }
   render() {
     return (
       <div 
@@ -14,6 +18,7 @@ export default class TextArea extends React.Component {
       onKeyDown={this.props.onKeyDown}
       ref={c => (this.textarea = c)}
       readOnly={this.props.readOnly}
+      dangerouslySetInnerHTML={{__html: this.data}}
       >
       </div>
     )
@@ -27,6 +32,7 @@ const TextAreaConnect = (props) => (
   onInput = { (e) => props.onInput(props.index, e.target.innerHTML) }
   onKeyDown = { (e) => { if( e.keyCode==13 && !e.ctrlKey ) { e.preventDefault() }}} 
   readOnly = {props.validate}
+  data = {props.data}
   />
 )
 
