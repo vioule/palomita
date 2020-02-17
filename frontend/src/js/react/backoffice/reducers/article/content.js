@@ -23,7 +23,8 @@ export default (state=DEFAULT_STATE, action) => {
     case ADD_ARTICLE_PARAGRAPH:
       return state.concat(createContent("paragraph", ""));
     case ADD_ARTICLE_IMAGES:
-      let images = Array.from(action.files).map(file=>createContent("image", window.URL.createObjectURL(file)))
+      //let images = Array.from(action.files).map(file=>createContent("image", window.URL.createObjectURL(file)))
+      let images = action.urls.map(url=>createContent("image", url))
       return state.concat(images);
     case DELETE_ARTICLE_ITEM:
       var newState = [...state];

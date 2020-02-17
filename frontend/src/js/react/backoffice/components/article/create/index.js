@@ -7,6 +7,7 @@ import { createArticle } from '../../../actions/articles';
 import ButtonAddParagraph from './buttonAddParagraph';
 import ButtonAddImage from './buttonAddImage';
 import PopulateArticle from './populateArticle';
+const bson = require('bson');
 
 const mapStateToProps = state => { return {article: state.article, _csrf: state._csrf}};
 const mapDispatchToProps = { setArticleTitle, setArticleCategorie, sortArticleContent, createArticle, setArticle };
@@ -66,6 +67,7 @@ export class Create extends React.Component {
 const CreateConnected = (props) => <Create onClick={
   async() => {
     await props.createArticle({
+      _id: props.article.infos._id,
       title: props.article.infos.title,
       categorie: props.article.infos.categorie,
       date: new Date(),
@@ -78,7 +80,7 @@ const CreateConnected = (props) => <Create onClick={
     title: "", 
     categorie: "", 
     content: [], 
-    _id: ""
+    _id: new bson.ObjectId()
   })}
   {...props}
 />
