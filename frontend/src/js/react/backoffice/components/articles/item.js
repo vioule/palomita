@@ -5,7 +5,7 @@ class Item extends React.Component {
   render() {
     return (
     <tr className="table-tr">
-      <td className="table-td"><span className="table-td-wrap">{this.props.title}</span></td>
+      <td className="table-td"><span className="table-td-wrap table-td-title">{this.props.title}</span></td>
       <td className="table-td">{this.props.categorie}</td>
       <td className="table-td">{new Date(this.props.date).toLocaleDateString()}</td>
       <td className="table-td">{this.props.comments.length}</td>
