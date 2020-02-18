@@ -8,6 +8,7 @@ import {
 } from "./actionTypes";
 const axios = require('axios');
 import {showPopup, closePopup} from './popup'; 
+import {setArticlePublished} from './article'; 
 
 export function fetchArticlesValidate(payload) {
   return {type: FETCH_ARTICLES_VALIDATE, payload}
@@ -74,8 +75,26 @@ export function createArticle(article, _csrf) {
     return axios.post('/api/createArticle', {article, _csrf})
     .then(res=>{
       dispatch(fetchArticlesValidate(res.data));
+      dispatch(setArticlePublished(true));
       dispatch(closePopup());
       setTimeout(()=>dispatch(showPopup({message: "L'article a bien été publié.", error: false})),1000);
+    })
+    .catch(err=>{
+      dispatch(fetchArticlesError(err));
+      dispatch(closePopup())
+      setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
+    })
+  }
+};
+
+export function createRough(article, _csrf) {
+  return (dispatch) => {
+    dispatch({type: FETCH_ARTICLES})
+    return axios.post('/api/createArticle', {article, _csrf})
+    .then(res=>{
+      dispatch(fetchArticlesValidate(res.data));
+      dispatch(closePopup());
+      setTimeout(()=>dispatch(showPopup({message: "Un brouillon a été enregistré.", error: false})),1000);
     })
     .catch(err=>{
       dispatch(fetchArticlesError(err));
@@ -93,6 +112,23 @@ export function updateArticle(article, _csrf) {
       dispatch(fetchArticlesValidate(res.data));
       dispatch(closePopup());
       setTimeout(()=>dispatch(showPopup({message: "L'article a bien été modifié.", error: false})),1000);
+    })
+    .catch(err=>{
+      dispatch(fetchArticlesError(err));
+      dispatch(closePopup())
+      setTimeout(()=>dispatch(showPopup({message: "Une erreur est survenue.", error: true})),1000);
+    })
+  }
+};
+
+export function updateRough(article, _csrf) {
+  return (dispatch) => {
+    dispatch({type: FETCH_ARTICLES})
+    return axios.put('/api/updateArticle', {article, _csrf})
+    .then(res=>{
+      dispatch(fetchArticlesValidate(res.data));
+      dispatch(closePopup());
+      setTimeout(()=>dispatch(showPopup({message: "Le brouillon a bien été enregistré.", error: false})),1000);
     })
     .catch(err=>{
       dispatch(fetchArticlesError(err));

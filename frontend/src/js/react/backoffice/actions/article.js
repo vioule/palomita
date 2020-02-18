@@ -8,6 +8,7 @@ import {
   SET_ARTICLE_CONTENT,
   SET_ARTICLE_CONTENT_SELECTED,
   SET_ARTICLE_VALIDATE,
+  SET_ARTICLE_PUBLISHED,
   SET_ARTICLE
 } from "./actionTypes";
 const arrayMove = require('array-move');
@@ -15,6 +16,9 @@ const axios = require('axios');
 
 export function setArticleTitle(payload) {
   return {type: SET_ARTICLE_TITLE, payload}
+};
+export function setArticlePublished(payload) {
+  return {type: SET_ARTICLE_PUBLISHED, payload}
 };
 export function setArticleCategorie(payload) {
   return {type: SET_ARTICLE_CATEGORIE, payload}
@@ -25,9 +29,6 @@ export function addArticleParagraph() {
 export function deleteArticleItem(index) {
   return {type: DELETE_ARTICLE_ITEM, index}
 };
-
-
-
 
 export function addArticleImages(urls) {
   return {type: ADD_ARTICLE_IMAGES, urls}
@@ -47,8 +48,6 @@ export function uploadArticleImages(imgs, _csrf, articleID='') {
     .catch(err=>err)
   }
 };
-
-
 
 export function setArticleContentSelected(payload) {
   return {type: SET_ARTICLE_CONTENT_SELECTED, payload}

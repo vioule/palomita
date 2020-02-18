@@ -44,4 +44,4 @@ class Navbar extends React.Component {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);;
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

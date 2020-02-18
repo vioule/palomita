@@ -45,11 +45,17 @@ class Articles extends React.Component {
           return article[this.props.search.type].toLowerCase().includes(this.props.search.content.toLowerCase())
       }
     });
+    let published = data.content.filter(article=>article.published);
+    let rough = data.content.filter(article=>!article.published)
+    this.props.search.published ?
+    data.content = published :
+    data.content = rough
+
     return (
     <>
     <Searchbar title="article"/>
     <div className="content-page">
-      <Navbar articles={this.props.data.content.length}/>
+      <Navbar articles={published.length} roughs={rough.length}/>
       <div className="scroll">
       <table className="table table-light">
         <thead className="table-head">

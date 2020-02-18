@@ -6,7 +6,8 @@ const articleSchema = Schema({
   categorie: String,
   date: Date,
   content: [{}],
-  comments: [String]
+  comments: [String],
+  published: Boolean
 })
 
 exports.Article = mongoose.model('Article', articleSchema, 'articles');

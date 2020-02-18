@@ -4,7 +4,8 @@ const DEFAULT_STATE = {
   content: "",
   type: "title",
   new: false,
-  own: false
+  own: false,
+  published: true
 }
 
 export default (state=DEFAULT_STATE, action) => {
