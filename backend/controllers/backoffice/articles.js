@@ -25,6 +25,9 @@ exports.createArticle = (req,res) => {
 };
 
 exports.updateArticle = (req,res) => {
+  let urls = req.body.article.content.filter(content=>content.type=="image")
+  urls = urls.map(url=>'!'+process.cwd()+'/frontend/static'+url.data)
+  del.sync([process.cwd()+'/frontend/static/img/articles/'+req.body.article.id+'/*'].concat(urls))
   Article
   .updateOne({_id: req.body.article.id}, {title: req.body.article.title, categorie: req.body.article.categorie, content: req.body.article.content})
   .then(()=>this.getData(req,res))

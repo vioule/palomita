@@ -8,10 +8,10 @@ import {
 } from "../../actions/actionTypes";
 const uuidv4 = require('uuid/v4');
 
-function createContent(type, data) {
+function createContent(type, data, id=uuidv4()) {
   return {
     type,
-    id: uuidv4(),
+    id,
     data
   }
 };
@@ -23,8 +23,11 @@ export default (state=DEFAULT_STATE, action) => {
     case ADD_ARTICLE_PARAGRAPH:
       return state.concat(createContent("paragraph", ""));
     case ADD_ARTICLE_IMAGES:
-      //let images = Array.from(action.files).map(file=>createContent("image", window.URL.createObjectURL(file)))
-      let images = action.urls.map(url=>createContent("image", url))
+      let images = action.urls.map(url=>{
+        let id = url.split('/');
+        id = id[id.length-1].split('.')[0];
+        return createContent("image", url, id);
+      })
       return state.concat(images);
     case DELETE_ARTICLE_ITEM:
       var newState = [...state];
