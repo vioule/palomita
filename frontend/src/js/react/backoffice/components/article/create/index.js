@@ -76,7 +76,7 @@ export class Create extends React.Component {
     this.props.componentDidMount();
   };
   componentWillUnmount(){
-    if (!this.props.article.infos.published && this.props.article.infos.title && this.props.article.infos.categorie && this.props.componentWillUnmount){
+    if (!this.props.article.infos.published && ( this.props.article.infos.title && this.props.article.infos.categorie || this.props.article.content.length>0 ) && this.props.componentWillUnmount){
       this.props.componentWillUnmount()
     }
   }
