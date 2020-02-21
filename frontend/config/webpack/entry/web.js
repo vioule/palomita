@@ -1,12 +1,11 @@
 module.exports = (env) => {
   return {
-    index: [
-      './js/react/web/components/app.js',
-      './sass/main.sass'
-    ].concat(
-      env==='development' ? [
+    index: (env==='development' ? [
         'webpack-hot-middleware/client?reload=true',
         '../views/web/index.pug'
-      ] : [] )
+    ] : []).concat([
+      './js/react/web/index.js',
+      './sass/main.sass'
+    ])
   }
 };

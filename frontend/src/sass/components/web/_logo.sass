@@ -1,0 +1,21 @@
+.logo
+  font-family: $font-playfair
+  font-weight: 700
+  position: absolute
+  left: 20px
+  top: 15px
+  z-index: 1000
+  &-phone
+    display: none
+
+@include media(portrait)
+  .logo
+    &-desktop
+      display: none
+    &-phone
+      display: inline
+
+@include media(phone)
+  .logo
+    left: 5px
+    top: 5px

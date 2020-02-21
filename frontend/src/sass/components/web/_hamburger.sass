@@ -1,0 +1,61 @@
+.hamburger
+  transition: transform .25s 0s
+  &::after
+    transition: transform .25s 0s, top .25s .25s
+  &::before
+    transition: transform .25s 0s, top .25s .25s
+  &-close
+    transition: transform .25s .25s
+    &::after
+      transition: transform .25s .25s, top .25s 0s
+    &::before
+      transition: transform .25s .25s, top .25s 0s
+  
+.hamburger
+  border-top: 1px solid $color-black
+  top: 0
+  z-index: 1000
+  &-wrapper
+    position: absolute
+    top: 15px
+    right: 20px
+    height: 13px
+    width: 15px
+  &::before
+    content: ""
+    position: absolute
+    left: 0
+    top: -7px
+    width: 100%
+    border-top: inherit
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+    top: 5px
+    width: 100%
+    border-top: inherit
+  &-close
+    transform: rotateZ(45deg)
+    &::before
+      top: -1px
+    &::after
+      top: -1px
+      transform: rotateZ(-90deg)
+
+@include media(phone)
+  .hamburger
+    &-wrapper
+      height: 8px
+      width: 10px    
+      right: 5px
+      top: 8px
+    &::before
+      top: -4px
+    &::after
+      top: 2px
+    &-close
+      &::before
+        top: -1px
+      &::after
+        top: -1px

@@ -1,0 +1,117 @@
+.menu
+  font-family: $font-playfair
+  height: 100vh
+  &-sided
+    width: 50%
+    height: 100%
+  &-center
+    top: 50%
+    transform: translateY(-50%)
+  &-categorie
+    font-weight: 700
+    text-transform: uppercase
+    font-size: 6.25rem
+    text-align: right
+    height: 130px
+    line-height: 130px
+    &-item
+      position: absolute
+      right: 0
+      padding-right: calc( (100% - 460px)/2 )
+      padding-left: 50px
+      height: 100%
+    &-hover
+      opacity: 0
+      z-index: 3
+      &:hover
+        cursor: pointer
+        & + .menu-categorie-overlay
+          clip-path: inset(0 0 0 0)
+    &-overlay
+      color: $color-palomita-lighten
+      background-color: $color-palomita-dark
+      clip-path: inset(0 0 0 100%)
+      transition: clip-path .5s cubic-bezier(.23, 1.25, .46, 1)
+      z-index: 2
+    &-text
+      z-index: 1
+
+.menu
+  background-color: $color-white
+  opacity: 0
+  //display: none
+  transition: opacity 1s 1s ease-in-out
+  &-color
+    background-color: $color-palomita-lighten
+    border-right: 1px solid $color-palomita-light
+  &-sided
+    transition: opacity 1s 0s ease-in-out
+    opacity: 0
+
+.menu-visible
+  opacity: 1
+  transition: opacity 1s 0s ease-in-out
+  //display: block
+  & .menu-sided
+    transition: opacity 1s 1s ease-in-out
+    opacity: 1
+
+
+@include media(mid)
+  .menu
+    &-categorie
+      height: 110px
+      line-height: 110px
+      &-item
+        padding-left: 40px
+        padding-right: calc( (100% - 400px )/2 )
+@include media(sml)
+  .menu
+    &-categorie
+      height: 90px
+      line-height: 90px
+      &-item
+        padding-left: 30px
+        padding-right: calc( (100% - 345px )/2 )
+
+@include media(portrait)
+  .menu
+    &-sided
+      width: 100%
+      height: 50vh
+      min-height: 450px
+    &-color
+      border-right: none
+      border-bottom: 1px solid $color-palomita-light
+    &-categorie
+      text-align: left
+      &-item
+        padding-left: 100px
+        padding-right: 50px
+        left: 0
+        right: unset
+      &-overlay
+        clip-path: inset(0 100% 0 0)
+
+@include media(phone)
+  .menu
+    &-sided
+      min-height: 300px
+    &-categorie
+      height: 60px
+      line-height: 60px
+      font-size: 5rem
+      &-item
+        padding-left: 50px
+        padding-right: 40px
+
+@include media(phonexs)
+  .menu
+    &-sided
+      min-height: 250px
+    &-categorie
+      height: 53px
+      line-height: 53px
+      &-item
+        padding-left: 20px
+        padding-right: 20px

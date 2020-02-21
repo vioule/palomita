@@ -1,0 +1,18 @@
+//MEDIAS//
+@mixin media($type)
+  @if $type == mid
+    @media (max-width: 1440px)
+      @content
+  @if $type == sml
+    @media (max-width: 1024px)
+      @content
+  @if $type == portrait
+    @media (max-width: 768px)
+      @content
+  @if $type == phone
+    @media (max-width: 480px)
+      @content
+  @if $type == phonexs
+    @media (max-width: 320px)
+      @content
+  
