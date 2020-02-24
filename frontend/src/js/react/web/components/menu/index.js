@@ -1,14 +1,21 @@
 const React = require("react");
 import { connect } from 'react-redux';
-import { Side, Categories } from "./side";
+import { CSSTransition } from 'react-transition-group';
+import { Infos, Categories } from "./side";
 
 class Menu extends React.Component {
   render(){
     return (
-    <div className={"menu" + (this.props.open ? " menu-visible" : "")}>
-      <Categories/>
-      <Side/>
-    </div>
+    <CSSTransition
+      in={this.props.open}
+      timeout={2200}
+      classNames={"menu"}
+    >
+      <div className="menu">
+        <Categories/>
+        <Infos/>
+      </div>
+    </CSSTransition>
     )
   };
 };

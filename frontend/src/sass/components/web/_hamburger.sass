@@ -1,61 +1,59 @@
 .hamburger
-  transition: transform .25s 0s
+  position: absolute
+  top: 15px
+  right: 20px
+  z-index: 1000
+  width: 15px
+  height: 12px
+  &::before
+    content: ""
+    width: 100%
+    position: absolute
+    top: 0
+    left: 0
+    height: 50%
+    border-top: 1px solid black
+    box-sizing: border-box
   &::after
-    transition: transform .25s 0s, top .25s .25s
+    content: ""
+    width: 100%
+    position: absolute
+    top: 50%
+    left: 0
+    height: calc( 50% + 1px )
+    border-top: 1px solid black
+    border-bottom: 1px solid black
+    box-sizing: border-box
+
+  &-close
+    &::before
+      top: 50%
+      height: 1px
+      border-top: 1px solid black
+      transform: rotateZ(45deg)
+    &::after
+      top: 50%
+      height: 1px
+      border-top: 1px solid black
+      border-bottom: 0px solid black
+      transform: rotateZ(-45deg)
+
+.hamburger
+  transition: transform .25s 0s
   &::before
     transition: transform .25s 0s, top .25s .25s
+  &::after
+    transition: transform .25s 0s, height .25s .25s, border-bottom .25s .25s
   &-close
     transition: transform .25s .25s
-    &::after
-      transition: transform .25s .25s, top .25s 0s
     &::before
       transition: transform .25s .25s, top .25s 0s
-  
-.hamburger
-  border-top: 1px solid $color-black
-  top: 0
-  z-index: 1000
-  &-wrapper
-    position: absolute
-    top: 15px
-    right: 20px
-    height: 13px
-    width: 15px
-  &::before
-    content: ""
-    position: absolute
-    left: 0
-    top: -7px
-    width: 100%
-    border-top: inherit
-  &::after
-    content: ""
-    position: absolute
-    left: 0
-    top: 5px
-    width: 100%
-    border-top: inherit
-  &-close
-    transform: rotateZ(45deg)
-    &::before
-      top: -1px
     &::after
-      top: -1px
-      transform: rotateZ(-90deg)
+      transition: transform .25s .25s, height .25s 0s, border-bottom 0s, .25s
 
 @include media(phone)
   .hamburger
-    &-wrapper
-      height: 8px
-      width: 10px    
-      right: 5px
-      top: 8px
-    &::before
-      top: -4px
-    &::after
-      top: 2px
-    &-close
-      &::before
-        top: -1px
-      &::after
-        top: -1px
+    height: 8px
+    width: 10px    
+    right: 5px
+    top: 8px

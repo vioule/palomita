@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { setMenuOpen } from '../actions/menu';
 
 const Hamburger = (props) => { return (
-<button className="hamburger-wrapper" onClick={()=>props.onClick(!props.open)}>
-  <div className={"hamburger" + (props.open ? " hamburger-close" : "")}/>
-</button>
+<button className={"hamburger" + (props.open ? " hamburger-close" : "")} onClick={()=>props.onClick(!props.open)}/>
 )};
 
 export default connect(

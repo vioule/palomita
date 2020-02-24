@@ -1,12 +1,57 @@
 .menu
   font-family: $font-playfair
   height: 100vh
+  opacity: 0
+  pointer-events: none
+  & .menu-sided
+    opacity: 0
+  & .menu-categorie
+    top: 70px
+    opacity: 0
+  & .menu-anim
+    top: 70px
+    opacity: 0
+  & .socials-item
+    top: 70px
+    opacity: 0
   &-sided
     width: 50%
     height: 100%
+    float: left
   &-center
     top: 50%
     transform: translateY(-50%)
+    &-info
+      margin: 0 auto
+      width: 460px
+  &-info
+    font-size: 1.8rem
+    height: 1.8rem
+    &-span
+      position: absolute
+      left: 0
+    &-item
+      margin-top: 3rem
+      &:first-child
+        margin-top: 0
+    &-hover
+      opacity: 0
+      z-index: 3
+      &:hover
+        cursor: pointer
+        & + .menu-info-overlay
+          clip-path: inset(0 0 0 0)
+    &-overlay
+      left: -1rem
+      padding-left: 1rem
+      padding-right: 2rem
+      color: $color-palomita-dark
+      background-color: $color-palomita-lighten
+      clip-path: inset(0 100% 0 0)
+      transition: clip-path .5s cubic-bezier(.23, 1.25, .46, 1)
+      z-index: 2
+    &-text
+      z-index: 1
   &-categorie
     font-weight: 700
     text-transform: uppercase
@@ -38,27 +83,152 @@
 
 .menu
   background-color: $color-white
-  opacity: 0
-  //display: none
-  transition: opacity 1s 1s ease-in-out
+  &-sided
+    background-color: $color-white
   &-color
     background-color: $color-palomita-lighten
     border-right: 1px solid $color-palomita-light
-  &-sided
-    transition: opacity 1s 0s ease-in-out
-    opacity: 0
+    color: $color-palomita-dark
+    text-shadow: 1px 1px 0 $color-white
 
-.menu-visible
-  opacity: 1
-  transition: opacity 1s 0s ease-in-out
-  //display: block
-  & .menu-sided
-    transition: opacity 1s 1s ease-in-out
+.menu
+  &-enter
+    transition: opacity .5s 0s linear
+    opacity: 0
+    & .menu-sided
+      transition: opacity .5s .5s linear
+      opacity: 0
+    & .menu-categorie
+      transition: top .3s cubic-bezier(0.1, 0.1, 0.25, 1.2), opacity .2s ease
+      top: 70px
+      opacity: 0
+      &:nth-child(1)
+        transition-delay: 1s
+      &:nth-child(2)
+        transition-delay: 1.1s
+      &:nth-child(3)
+        transition-delay: 1.2s
+      &:nth-child(4)
+        transition-delay: 1.3s
+    & .menu-anim
+      transition: top .3s cubic-bezier(0.1, 0.1, 0.25, 1.2), opacity .2s ease
+      top: 70px
+      opacity: 0
+      &:nth-child(1)
+        transition-delay: 1.4s
+      &:nth-child(2)
+        transition-delay: 1.5s
+      &:nth-child(3)
+        transition-delay: 1.6s
+    & .socials-item
+      transition: top .3s cubic-bezier(0.1, 0.1, 0.25, 1.2), opacity .2s ease
+      top: 70px
+      opacity: 0
+      &:nth-child(1)
+        transition-delay: 1.7s
+      &:nth-child(2)
+        transition-delay: 1.8s
+      &:nth-child(3)
+        transition-delay: 1.9s
+    &-active
+      opacity: 1
+      pointer-events: none
+      & .menu-sided
+        opacity: 1
+      & .menu-categorie
+        top: 0
+        opacity: 1   
+      & .menu-anim
+        top: 0
+        opacity: 1      
+      & .socials-item
+        top: 0
+        opacity: 1      
+    &-done
+      opacity: 1
+      pointer-events: auto
+      & .menu-sided
+        opacity: 1
+      & .menu-categorie
+        top: 0
+        opacity: 1
+      & .menu-anim
+        top: 0
+        opacity: 1
+      & .socials-item
+        top: 0
+        opacity: 1      
+  &-exit
     opacity: 1
+    transition: opacity .5s 1.5s linear
+    & .menu-sided
+      opacity: 1
+      transition: opacity .5s 1s linear
+    & .menu-categorie
+      transition: top .3s cubic-bezier(0.1, 0.1, 0.25, 1.2), opacity .2s ease
+      top: 0
+      opacity: 1
+      &:nth-child(1)
+        transition-delay: .9s
+      &:nth-child(2)
+        transition-delay: .8s
+      &:nth-child(3)
+        transition-delay: .7s
+      &:nth-child(4)
+        transition-delay: .6s
+    & .menu-anim
+      transition: top .3s cubic-bezier(0.1, 0.1, 0.25, 1.2), opacity .2s ease
+      top: 0
+      opacity: 1
+      &:nth-child(1)
+        transition-delay: .5s
+      &:nth-child(2)
+        transition-delay: .4s
+      &:nth-child(3)
+        transition-delay: .3s
+    & .socials-item
+      transition: top .3s cubic-bezier(0.1, 0.1, 0.25, 1.2), opacity .2s ease
+      top: 0
+      opacity: 1
+      &:nth-child(1)
+        transition-delay: .2s
+      &:nth-child(2)
+        transition-delay: .1s
+      &:nth-child(3)
+        transition-delay: 0s
+    &-active
+      opacity: 0
+      pointer-events: none
+      & .menu-sided
+        opacity: 0
+      & .menu-categorie
+        top: 70px
+        opacity: 0
+      & .menu-anim
+        top: 70px
+        opacity: 0
+      & .socials-item
+        top: 70px
+        opacity: 0
+    &-done
+      opacity: 0
+      & .menu-sided
+        opacity: 0
+      & .menu-categorie
+        top: 70px
+        opacity: 0
+      & .menu-anim
+        top: 70px
+        opacity: 0
+      & .socials-item
+        top: 70px
+        opacity: 0
 
 
 @include media(mid)
   .menu
+    &-center-info
+      width: 400px
     &-categorie
       height: 110px
       line-height: 110px
@@ -67,6 +237,8 @@
         padding-right: calc( (100% - 400px )/2 )
 @include media(sml)
   .menu
+    &-center-info
+      width: 345px
     &-categorie
       height: 90px
       line-height: 90px
@@ -76,6 +248,21 @@
 
 @include media(portrait)
   .menu
+    &-info
+      &-item
+        margin-top: 2rem
+      &-span
+        left: unset
+        right: 0
+      &-overlay
+        right: -1rem
+        padding-left: 2rem
+        padding-right: 1rem
+        clip-path: inset(0 0 0 100%)
+    &-center-info
+      margin-right: 100px
+    &-info-item
+      text-align: right
     &-sided
       width: 100%
       height: 50vh
@@ -95,6 +282,9 @@
 
 @include media(phone)
   .menu
+    &-center-info
+      margin-right: 50px
+      width: 300px
     &-sided
       min-height: 300px
     &-categorie
@@ -107,6 +297,9 @@
 
 @include media(phonexs)
   .menu
+    &-center-info
+      margin-right: 20px
+      width: 180px
     &-sided
       min-height: 250px
     &-categorie

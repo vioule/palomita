@@ -1,4 +1,6 @@
-import { SET_MENU_OPEN } from "../actions/actionTypes";
+import { 
+  SET_MENU_OPEN
+} from "../actions/actionTypes";
 
 const DEFAULT_STATE = {
   open: false

@@ -1,0 +1,31 @@
+.search
+  width: 11rem
+  height: 1.5rem
+  float: left
+  &-input
+    width: 100%
+    position: absolute
+    top: -3px
+    left: 0
+    padding-left: 1.5rem
+    padding-bottom: .5rem
+    font-size: 1rem
+    color: $color-light-gray
+    border: none
+    border-bottom: .5px solid $color-light-gray
+    font-family: inherit
+    font-style: italic
+    transition: color 1s
+    &:focus::placeholder
+      color: darken($color-light-gray, 33%)
+    &:focus
+      color: darken($color-light-gray, 33%)
+      border-bottom-color: darken($color-light-gray, 33%)
+
+@include media(portrait)
+  .search
+    float: right
+    &-input
+      text-align: right
+      padding-left: 0
+      padding-right: 1.5rem
