@@ -1,0 +1,47 @@
+.footer
+  height: 100px
+  line-height: 100px
+  font-family: $font-playfair
+  & .copyright
+    float: left
+  & .link
+    float: right
+    &:hover
+      font-weight: 700
+  & .socials
+    position: absolute
+    left: 50%
+    top: 50%
+    transform: translate(-50%,-50%)
+
+@include media(mid)
+  .footer
+    height: 80px
+    line-height: 80px
+
+@include media(sml)
+  .footer
+    height: 60px
+    line-height: 60px
+
+@include media(portrait)
+  .footer
+    height: 30px
+    line-height: 30px
+    & .copyright
+      position: absolute
+      top: 75%
+    & .link
+      position: absolute
+      right: 60px
+      top: 75%
+
+@include media(phone)
+  .footer
+    & .link
+      right: 30px
+
+@include media(phonexs)
+  .footer
+    & .link
+      right: 20px

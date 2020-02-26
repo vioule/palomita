@@ -15,6 +15,7 @@ export default (props) => (
       date={new Date(article.date).toLocaleDateString().replace(/\//g,".")}
       img={article.content.find(el=>el.id==article.vignette).data}
       categorie={article.categorie}
+      id={article._id}
       /> : 
       <ArticleRight 
       key={article._id}
@@ -23,6 +24,7 @@ export default (props) => (
       date={new Date(article.date).toLocaleDateString().replace(/\//g,".")}
       img={article.content.find(el=>el.id==article.vignette).data}
       categorie={article.categorie}
+      id={article._id}
       /> 
 
     })}

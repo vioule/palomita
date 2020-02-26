@@ -9,7 +9,7 @@ export const Card = (props) => (
   {props.date && <Date date={props.date}/>}
   <Title title={props.title}/>
   <Paragraph paragraph={props.paragraph}/>
-  <Link />
+  <Link id={props.id}/>
   {props.children}
 </article>
 );

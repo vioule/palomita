@@ -4,7 +4,7 @@ import Image from "./image";
 const React = require("react");
 export const Thumbnail = (props) => (
 <div className={"thumbnail " + props.className}>
-  <img className="image" src={props.img}/>
+  <Image img={props.img}/>
   <span className="categorie">{props.categorie}</span>
 </div>
 );

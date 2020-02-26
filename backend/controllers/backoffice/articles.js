@@ -6,6 +6,13 @@ const del = require('del');
 exports.getData = (req,res) => {
   Article.find().then(data=>res.send(data))
 }
+exports.getArticle = (req,res) => {
+  Article
+  .findOne({_id: req.query.id})
+  .populate("comments")
+  .exec()
+  .then(data=>{res.send(data)})
+}
 
 exports.deleteArticle = (req,res) => {
   del.sync([process.cwd()+'/frontend/static/img/articles/'+req.query.id+'/**', process.cwd()+'/frontend/static/img/articles/'+req.query.id])

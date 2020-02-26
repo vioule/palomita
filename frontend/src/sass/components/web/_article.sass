@@ -1,0 +1,30 @@
+.article 
+  margin: 100px auto
+  padding: 0 100px
+  max-width: 1250px
+  width: 100%
+  & .title
+    font-size: 6.25rem
+    font-weight: 700
+    text-transform: uppercase
+    font-family: $font-playfair
+    color: $color-palomita
+    margin-bottom: 1rem
+    & .overlay
+      padding: 1rem 50px
+      background-color: $color-palomita-lighten
+      display: inline
+      box-decoration-break: clone
+
+@include media(mid)
+  .article
+    & .title
+      & .overlay
+        padding: 1rem 40px
+
+@include media(portrait)
+  .article
+    padding: 0 50px
+    & .title
+      & .overlay
+        padding: 1rem 0

@@ -1,0 +1,28 @@
+.content
+  padding-left: 50px
+  margin-top: 3.5rem
+  overflow: hidden
+  & .image
+    width: 100%
+    margin: 1.5rem 0
+  & .paragraph
+    font-weight: 300
+    margin: 1.5rem 0
+    line-height: 1.5rem
+  & .social
+    position: absolute
+    bottom: 0
+    right: 0
+
+@include media(mid)
+  .content
+    padding-left: 40px
+
+@include media(portrait)
+  .content
+    padding-left: 0
+    & .image
+      height: calc( 100vw - 100px )
+      width: auto
+      left: 50%
+      transform: translateX(-50%)

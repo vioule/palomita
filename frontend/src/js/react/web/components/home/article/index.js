@@ -29,7 +29,7 @@ export const ArticleLeft = (props)=>(
   <section className="summary left">
     <Date date={props.date}/>
     <ThumbnailDark img={props.img} categorie={props.categorie}/>
-    <CardDark title={props.title} paragraph={props.paragraph}>
+    <CardDark title={props.title} paragraph={props.paragraph} id={props.id}>
       <Social share={true}/>
     </CardDark>
   </section>
@@ -38,7 +38,7 @@ export const ArticleRight = (props)=>(
   <section className="summary right">
     <Date date={props.date}/>
     <ThumbnailDark img={props.img} categorie={props.categorie}/>
-    <CardDark title={props.title} paragraph={props.paragraph}>
+    <CardDark title={props.title} paragraph={props.paragraph} id={props.id}>
       <Social share={true}/>
     </CardDark>
   </section>
