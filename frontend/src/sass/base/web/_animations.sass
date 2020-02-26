@@ -16,3 +16,22 @@
       &:hover::after
         width: 100%
         left: 0
+
+@keyframes loader-after
+  0%
+    width: 0
+    animation-timing-function: linear
+  70%
+    width: 100%
+    animation-timing-function: cubic-bezier(.5, 0, .25, 3.0)
+  100%
+    width: 0
+@keyframes loader-before
+  0%
+    width: 0
+    animation-timing-function: linear
+  75%
+    width: 100%
+    animation-timing-function: cubic-bezier(.5, 0, .5, 4.0)
+  100%
+    width: 0

@@ -1,7 +1,6 @@
-.menu
-  font-family: $font-playfair
-  height: 100vh
+.menu-hidden
   opacity: 0
+  display: none
   pointer-events: none
   & .menu-sided
     opacity: 0
@@ -14,8 +13,30 @@
   & .socials-item
     top: 70px
     opacity: 0
+.menu
+  font-family: $font-playfair
+  height: 100vh
+  // opacity: 0
+  //pointer-events: none
+  position: fixed
+  top: 0
+  width: 100%
+  // display: none
+  z-index: 999
+  // & .menu-sided
+  //   opacity: 0
+  // & .menu-categorie
+  //   top: 70px
+  //   opacity: 0
+  // & .menu-anim
+  //   top: 70px
+  //   opacity: 0
+  // & .socials-item
+  //   top: 70px
+  //   opacity: 0
   &-sided
     width: 50%
+    max-width: 960px
     height: 100%
     float: left
   &-center
@@ -95,6 +116,7 @@
   &-enter
     transition: opacity .5s 0s linear
     opacity: 0
+    display: block
     & .menu-sided
       transition: opacity .5s .5s linear
       opacity: 0
@@ -133,6 +155,7 @@
     &-active
       opacity: 1
       pointer-events: none
+      display: block
       & .menu-sided
         opacity: 1
       & .menu-categorie
@@ -147,6 +170,7 @@
     &-done
       opacity: 1
       pointer-events: auto
+      display: block
       & .menu-sided
         opacity: 1
       & .menu-categorie
@@ -161,6 +185,7 @@
   &-exit
     opacity: 1
     transition: opacity .5s 1.5s linear
+    display: block
     & .menu-sided
       opacity: 1
       transition: opacity .5s 1s linear
@@ -199,6 +224,7 @@
     &-active
       opacity: 0
       pointer-events: none
+      display: block
       & .menu-sided
         opacity: 0
       & .menu-categorie
@@ -212,6 +238,7 @@
         opacity: 0
     &-done
       opacity: 0
+      display: none
       & .menu-sided
         opacity: 0
       & .menu-categorie

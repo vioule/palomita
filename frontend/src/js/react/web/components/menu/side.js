@@ -12,11 +12,11 @@ export const Side = (props) => { return (
 </nav>
 )};
 
-export const Categories = () => {
+export const Categories = (props) => {
   let categories = ["Deco", "Style", "Cuisine", "Voyages"];
   return (
   <Side class=" menu-color">{
-    categories.map((categorie, index)=><Categorie key={categorie} name={categorie}/>)
+    categories.map((categorie, index)=><Categorie key={categorie} name={categorie} {...props}/>)
   }</Side>
   )
 };

@@ -1,0 +1,59 @@
+.thumbnail
+  max-width: 1000px
+  width: 70%
+  overflow: hidden
+  & .image
+    width: 100%
+  & .categorie
+    position: absolute
+    left: -2rem
+    top: -5rem
+    font-size: 10.72rem
+    font-family: $font-playfair
+    font-weight: 700
+    text-transform: uppercase
+  &.light
+    border: 10px solid $color-white
+    color: $color-palomita
+    text-shadow: 1px 1px 0 $color-white
+  &.dark
+    color: $color-white
+
+@include media(mid)
+  .thumbnail
+    min-width: 700px
+    &.light
+      border-width: 7px
+
+@include media(sml)
+  .thumbnail
+    min-width: 450px
+    &.light
+      border-width: 5px
+
+@include media(portrait)
+  .thumbnail
+    width: 100%
+    height: calc( 100vw - 160px )
+    min-width: unset
+    & .image
+      height: 100%
+      width: auto
+      left: 50%
+      transform: translateX(-50%)
+    & .categorie
+      top: -4rem
+      font-size: 9rem
+    &.light
+      border-width: 2px
+
+@include media(phone)
+  .thumbnail
+    height: calc( 100vw - 60px )
+    & .categorie
+      top: -3rem
+      font-size: 7rem
+
+@include media(phonexs)
+  .thumbnail
+    height: calc( 100vw - 40px )

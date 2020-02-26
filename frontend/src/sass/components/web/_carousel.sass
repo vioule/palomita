@@ -1,0 +1,53 @@
+.carousel
+  height: 1080px
+  background-color: $color-palomita-lighten
+  overflow: hidden
+  padding-top: 200px
+  &-categorie
+    font-size: 37.5rem
+    font-family: $font-playfair
+    font-weight: 900
+    color: $color-palomita
+    text-transform: uppercase
+    position: absolute
+    bottom: -15rem
+    left: -10rem
+
+@include media(mid)
+  .carousel
+    height: 900px
+    padding-top: 150px
+    &-categorie
+      font-size: 32rem
+      bottom: -12rem
+      left: -10rem
+@include media(sml)
+  .carousel
+    height: 768px
+    padding-top: 100px
+    &-categorie
+      font-size: 27rem
+      bottom: -10rem
+      left: -10rem
+@include media(portrait)
+  .carousel
+    height: auto
+    padding-top: 120px
+    &-categorie
+      font-size: 9rem
+      top: 8px
+      left: 50px
+@include media(phone)
+  .carousel
+    padding-top: 100px
+    &-categorie
+      font-size: 8rem
+      top: 18px
+      left: 20px
+@include media(phonexs)
+  .carousel
+    padding-top: 70px
+    &-categorie
+      font-size: 6rem
+      top: 20px
+      left: 20px

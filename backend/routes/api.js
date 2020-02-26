@@ -24,6 +24,7 @@ ApiRouter.get('/checkAuthentication', require('../controllers/backoffice/login')
 
 //ARTICLES//
 ApiRouter.get('/getArticles', require('../controllers/backoffice/articles').getData);
+ApiRouter.get('/getPublishedArticlesByDate', require('../controllers/backoffice/articles').getPublishedArticlesByDate);
 ApiRouter.delete('/deleteArticle', require('../controllers/backoffice/articles').deleteArticle);
 ApiRouter.post('/createArticle', require('../controllers/backoffice/articles').createArticle);
 ApiRouter.put('/updateArticle', require('../controllers/backoffice/articles').updateArticle);

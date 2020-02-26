@@ -1,0 +1,56 @@
+.card
+  padding: 50px
+  max-width: 640px
+  width: 45%
+  & .title
+    text-transform: uppercase
+    font-family: $font-playfair
+    font-weight: 700
+    font-size: 3.12rem
+  & .paragraph
+    line-height: 2rem
+    margin: 2rem 0
+  & .link
+    line-height: 2rem
+    border-bottom-width: 1px
+    border-bottom-style: solid
+    width: calc( 100% + 50px )
+    font-weight: 300
+    font-style: italic
+  & .date
+    position: absolute
+    bottom: -.8rem
+    left: 0
+  & .social
+    position: absolute
+    bottom: -1.64rem
+  //STYLES//
+  &.dark
+    background-color: $color-palomita
+    color: $color-white
+    & .link
+      border-bottom-color: $color-white
+  &.light
+    background-color: $color-white
+    color: $color-black
+    border: .5px solid $color-palomita-dark
+    & .link
+      color: $color-palomita-dark
+      border-bottom-color: $color-palomita-dark
+
+@include media(mid)
+  .card
+    padding: 40px
+@include media(sml)
+  .card
+    padding: 30px
+@include media(portrait)
+  .card
+    max-width: unset
+    width: 100%
+    & .date
+      left: unset
+      right: 0
+@include media(phone)
+  .card
+    padding: 20px

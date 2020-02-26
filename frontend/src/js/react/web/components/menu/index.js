@@ -1,5 +1,7 @@
 const React = require("react");
 import { connect } from 'react-redux';
+import { setMenuOpen } from '../../actions/menu';
+import { setFilterCategorie } from '../../actions/filter';
 import { CSSTransition } from 'react-transition-group';
 import { Infos, Categories } from "./side";
 
@@ -11,8 +13,8 @@ class Menu extends React.Component {
       timeout={2200}
       classNames={"menu"}
     >
-      <div className="menu">
-        <Categories/>
+      <div className={"menu" + (!this.props.open ? " menu-hidden" : "")}>
+        <Categories {...this.props}/>
         <Infos/>
       </div>
     </CSSTransition>
@@ -22,5 +24,9 @@ class Menu extends React.Component {
 
 export default connect(
   state => { return { open: state.menu.open }}, 
-  null
+  // { onClick: (open,categorie)=>{
+  //   setMenuOpen(open);
+  //   setFilterCategorie(categorie);
+  // }}
+  { setFilterCategorie, setMenuOpen }
 )(Menu)

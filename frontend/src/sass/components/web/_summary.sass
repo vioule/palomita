@@ -1,0 +1,75 @@
+.summary
+  height: 750px
+  margin-top: 200px
+  &:first-child
+    margin-top: 0
+  &.right
+    & .thumbnail
+      position: absolute
+      bottom: 0
+      left: 0
+    & .card
+      position: absolute
+      top: 0
+      right: 0
+    & .social
+      right: 0
+    & .date
+      position: absolute
+      top: -2rem
+      right: 0
+  &.left
+    & .thumbnail
+      position: absolute
+      bottom: 0
+      right: 0
+      & .categorie
+        left: unset
+        right: -2rem
+    & .card
+      position: absolute
+      top: 0
+      left: 0
+    & .date
+      position: absolute
+      top: -2rem
+      left: 0
+    & .social
+      left: 0
+
+@include media(mid)
+  .summary
+    height: 550px
+    margin-top: 100px
+@include media(sml)
+  .summary
+    height: 400px
+    margin-top: 80px
+@include media(portrait)
+  .summary
+    height: unset
+    &.right
+      & .thumbnail
+        position: relative
+      & .card
+        position: relative
+    &.left
+      & .thumbnail
+        position: relative
+        & .categorie
+          left: -2rem
+          right: unset
+      & .card
+        position: relative
+      & .date
+        left: unset
+        right: 0
+      & .social
+        left: unset
+        right: 0
+@include media(phone)
+  .summary
+    margin-top: 60px
+@include media(phonexs)
+  .summary
+    margin-top: 30px

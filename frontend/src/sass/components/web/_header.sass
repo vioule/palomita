@@ -1,0 +1,32 @@
+.header
+  height: 0
+  border-bottom: .5px solid $color-palomita
+  margin: 100px 0
+  color: $color-palomita
+  & .categorie
+    font-family: $font-playfair
+    text-transform: uppercase
+    font-weight: 700
+    position: absolute
+    top: -1.5rem
+  & .article
+    position: absolute
+    right: 0
+    bottom: -1.5rem
+    font-style: italic
+  & .number
+    font-weight: 700
+    font-style: normal
+
+@include media(mid)
+  .header
+    margin: 75px 0
+@include media(sml)
+  .header
+    margin: 50px 0
+@include media(phone)
+  .header
+    margin: 40px 0
+@include media(phonexs)
+  .header
+    margin: 30px 0

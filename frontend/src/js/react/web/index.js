@@ -16,11 +16,8 @@ render(
     <BrowserRouter>
       <App>
         <Switch>
-          <Route exact path="/">
-            <Redirect to="/home"/>
-          </Route>
-          <Route exact path="/home" component={Root} />
-          <Route path="*"><div>404</div></Route>
+          <Route exact path="/notfound"><div>404</div></Route>
+          <Route path="*" component={Root} />
         </Switch>
       </App>
     </BrowserRouter>

@@ -37,3 +37,9 @@ exports.uploadArticleImages = (req,res) => {
   var output = req.files.map(file=>'/'+file.path.split('/static/')[1])
   res.send(output)
 };
+
+exports.getPublishedArticlesByDate = (req,res) => {
+  Article.find({published: true})
+  .sort({date: -1})
+  .then(data=>res.send(data))
+};
