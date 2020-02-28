@@ -10,6 +10,14 @@ exports.getData = (req,res) => {
   .then(data=>{res.send(data)})
 };
 
+exports.getCommentsByArticle = (req,res) => {
+  Comment
+  .find({parent: req.query.id, type: "comment"})
+  .populate("reponse")
+  .exec()
+  .then(data=>{res.send(data)})
+};
+
 exports.getConversation = (req,res) => {
   Comment
   .findOne({_id: req.query.id})

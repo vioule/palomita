@@ -1,0 +1,66 @@
+.comments
+  margin-top: 2rem
+  &>.text
+    font-size: 1.25rem
+    font-family: $font-playfair
+    color: $color-palomita-dark
+    font-weight: 700
+    &>.number
+      font-family: $font-roboto
+      font-weight: 300
+.reponses
+  &>.comment
+    margin-top: 0
+    &:last-child
+      border: none
+  
+.comment
+  margin-top: 1rem
+  margin-left: 1rem
+  padding-bottom: 1rem
+  border-bottom: .5px solid $color-palomita-light
+  &>.author
+    display: block
+    font-family: $font-playfair
+    color: $color-palomita-light
+    font-style: italic
+    font-size: 1.13rem
+  &-date
+    color: $color-palomita-lighten
+    font-size: .8rem
+    margin-top: .5rem
+    display: block
+  &>.text
+    font-weight: 300
+    line-height: 1.5rem
+    margin-top: .5rem
+  &>.btn
+    font-style: italic
+    color: $color-palomita-light
+    margin-top: .5rem
+    &.reponse
+      overflow: hidden
+      &::before
+        content: "Répondre"
+        display: block
+        transition: top 1s ease-in-out, opacity .5s ease-in
+        top: 0
+      &::after
+        content: "Annuler"
+        display: block
+        position: absolute
+        top: -.75rem
+        opacity: 0
+        transition: top 1s ease-in-out, opacity .5s ease-in
+      &.anim
+        &::before
+          top: .75rem
+          opacity: 0
+        &::after
+          top: 0
+          opacity: 1
+
+    &:hover
+      color: $color-palomita
+    &.right
+      float: right

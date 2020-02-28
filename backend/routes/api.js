@@ -33,6 +33,7 @@ ApiRouter.post('/uploadArticleImages', upload.array('images') ,require('../contr
 
 //COMMENTS//
 ApiRouter.get('/getComments', require('../controllers/backoffice/comments').getData);
+ApiRouter.get('/getCommentsByArticle', require('../controllers/backoffice/comments').getCommentsByArticle);
 ApiRouter.get('/getConversation', require('../controllers/backoffice/comments').getConversation);
 ApiRouter.delete('/deleteComments', require('../controllers/backoffice/comments').deleteComments);
 ApiRouter.post('/createAnswer', require('../controllers/backoffice/comments').createAnswer);

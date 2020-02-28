@@ -1,11 +1,13 @@
 const React = require("react");
 import { connect } from 'react-redux';
 import { setArticle } from '../../actions/article';
+import { setComments } from '../../actions/comments';
 import Title from './title';
 import Categorie from './categorie';
 import Content from './content';
 import Socials from '../social';
 import Datetime from '../card/date';
+import Comments from '../comments';
 
 export class Article extends React.Component {
   render(){
@@ -15,10 +17,12 @@ export class Article extends React.Component {
       <div className="background">
         <Socials/>
         <Title title={this.props.article.title}/>
-        <Content content={this.props.article.content}>
-          <Socials share={true}/>
-        </Content>
-        {this.props.article.comments.map(com=><p key={com._id}>{com.content}</p>)}
+        <div className="content">
+          <Content content={this.props.article.content}>
+            <Socials share={true}/>
+          </Content>
+          <Comments comments={this.props.comments} length={this.props.article.comments.length}/>
+        </div>
       </div>
       <Datetime date={new Date(this.props.article.date).toLocaleDateString().replace(/\//g,".")}/>
     </div>
@@ -26,10 +30,11 @@ export class Article extends React.Component {
   };
   componentDidMount(){
     this.props.setArticle(this.props.match.params.articleID);
+    this.props.setComments(this.props.match.params.articleID);
   };
 };
 
 export default connect(
-  state=>{return{article: state.article}}, 
-  { setArticle }
+  state=>{return{article: state.article, comments: state.comments}}, 
+  { setArticle, setComments }
 )(Article)

@@ -2,7 +2,7 @@ const React = require("react");
 import Paragraph from '../card/paragraph';
 import Image from '../thumbnail/image';
 export default (props) => {
-  return <div className="content">
+  return <div>
   {
   props.content.map(content=>{
     return content.type=="image" ?

@@ -1,0 +1,36 @@
+.answer
+  margin-left: 1rem
+  &-show
+    max-height: 0
+    overflow: hidden
+    margin-top: .5rem
+    &.anim
+      transition: 1s max-height ease-in-out
+  & input
+    border: none
+    display: block
+    color: $color-palomita-light
+    margin-top: .5rem
+    &::placeholder
+      color: lighten($color-palomita-light,30%)
+  & textarea
+    border: none
+    display: block
+    width: 100%
+    resize: none
+    margin-top: .5rem
+    &::placeholder
+      color: lighten($color-black, 30%)
+  &>.name
+    display: block
+    font-family: $font-playfair
+    color: $color-palomita-light
+    font-style: italic
+    font-size: 1.13rem
+    color: $color-palomita
+    text-transform: capitalize
+    margin-top: 0
+    &::placeholder
+      color: lighten($color-palomita,30%)
+  &>.btn
+    color: $color-palomita-lighten
