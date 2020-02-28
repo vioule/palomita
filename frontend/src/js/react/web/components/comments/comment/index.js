@@ -2,8 +2,11 @@ const React = require("react");
 import Datetime from './date';
 import Author from './author';
 import Text from './text';
-import Answer from '../answer';
+import Answer from './answer';
 import Reponses from './reponse';
+import CurtainRaiser from '../hoc/curtainRaiser';
+
+
 export default class Comment extends React.Component {
   constructor(props) {
     super(props);
@@ -34,8 +37,12 @@ export default class Comment extends React.Component {
         {this.props.comment.reponse.length>0 && 
           <button className="btn right" onClick={this.handleShowReponse}>{this.props.comment.reponse.length} réponse{this.props.comment.reponse.length>1?"s":""}</button>
         }
-        <Answer show={this.state.reponse} anim={true}/>
-        <Reponses show={this.state.showReponse} reponses={this.props.comment.reponse}/>
+        <CurtainRaiser trigger={this.state.reponse}>
+          <Answer/>
+        </CurtainRaiser>
+
+
+        <Reponses trigger={this.state.showReponse} reponses={this.props.comment.reponse}/>
       </div>
     )
   }

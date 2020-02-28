@@ -1,16 +1,12 @@
 .answer
   margin-left: 1rem
-  &-show
-    max-height: 0
-    overflow: hidden
-    margin-top: .5rem
-    &.anim
-      transition: 1s max-height ease-in-out
+  padding-top: .5rem
   & input
     border: none
     display: block
     color: $color-palomita-light
     margin-top: .5rem
+    font-size: 1rem
     &::placeholder
       color: lighten($color-palomita-light,30%)
   & textarea
@@ -19,6 +15,7 @@
     width: 100%
     resize: none
     margin-top: .5rem
+    font-size: 1rem
     &::placeholder
       color: lighten($color-black, 30%)
   &>.name
@@ -33,4 +30,6 @@
     &::placeholder
       color: lighten($color-palomita,30%)
   &>.btn
+    padding-top: .5rem
+    font-size: 1rem
     color: $color-palomita-lighten

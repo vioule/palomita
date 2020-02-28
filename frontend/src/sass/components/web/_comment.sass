@@ -9,10 +9,11 @@
       font-family: $font-roboto
       font-weight: 300
 .reponses
-  &>.comment
-    margin-top: 0
-    &:last-child
-      border: none
+  & .comment
+    padding-top: .5rem
+    border: none
+    border-top: .5px solid $color-palomita-light
+
   
 .comment
   margin-top: 1rem
@@ -35,9 +36,11 @@
     line-height: 1.5rem
     margin-top: .5rem
   &>.btn
+    padding-top: .5rem
     font-style: italic
     color: $color-palomita-light
     margin-top: .5rem
+    font-size: 1rem
     &.reponse
       overflow: hidden
       &::before
@@ -45,6 +48,7 @@
         display: block
         transition: top 1s ease-in-out, opacity .5s ease-in
         top: 0
+        font-size: 1rem
       &::after
         content: "Annuler"
         display: block
@@ -52,6 +56,7 @@
         top: -.75rem
         opacity: 0
         transition: top 1s ease-in-out, opacity .5s ease-in
+        font-size: 1rem
       &.anim
         &::before
           top: .75rem
