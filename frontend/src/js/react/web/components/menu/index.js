@@ -24,9 +24,5 @@ class Menu extends React.Component {
 
 export default connect(
   state => { return { open: state.menu.open }}, 
-  // { onClick: (open,categorie)=>{
-  //   setMenuOpen(open);
-  //   setFilterCategorie(categorie);
-  // }}
   { setFilterCategorie, setMenuOpen }
 )(Menu)

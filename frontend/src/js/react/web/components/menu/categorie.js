@@ -6,7 +6,7 @@ export default (props) => { return (
       <Link 
       to={"/"+props.name.toLowerCase()} 
       className="menu-categorie-item menu-categorie-hover"
-      onClick={()=>{props.setMenuOpen(!props.open); props.setFilterCategorie(props.name)}}
+      onClick={()=>{props.setMenuOpen(!props.open); props.setFilterCategorie(props.name); document.getElementById('header').scrollIntoView({behavior: 'instant'})}}
       >{props.name}</Link>
       <span className="menu-categorie-item menu-categorie-overlay">{props.name}</span>
       <span className="menu-categorie-item menu-categorie-text">{props.name}</span>
