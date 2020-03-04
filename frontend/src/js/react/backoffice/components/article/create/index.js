@@ -38,10 +38,10 @@ export class Create extends React.Component {
       <form id="article-create" onSubmit={this.handleSubmit} autoComplete="off"/>
       <select form="article-create" className="article-infos article-categorie" name="article-categorie" value={this.props.article.infos.categorie} onChange={(e)=>this.props.setArticleCategorie(e.target.value)} disabled={this.props.article.infos.validate}>
         <option value="">Categorie</option>
-        <option value="Cuisine">Cuisine</option>
-        <option value="Voyage">Voyage</option>
-        <option value="Style">Style</option>
-        <option value="Deco">Deco</option>
+        <option value="cuisine">Cuisine</option>
+        <option value="voyages">Voyages</option>
+        <option value="style">Style</option>
+        <option value="deco">Deco</option>
       </select>
       <input form="article-create" className="article-infos article-title" type="text" placeholder="title" value={this.props.article.infos.title} onChange={(e)=>this.props.setArticleTitle(e.target.value)} readOnly={this.props.article.infos.validate}/>
       {!this.props.article.infos.validate && <><ButtonAddParagraph/> <ButtonAddImage/></>}

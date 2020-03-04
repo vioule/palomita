@@ -13,7 +13,9 @@ export default (state=DEFAULT_STATE, action) => {
     case SET_ARTICLES_CONTENT:
       return Object.assign({}, state, {content: action.payload, filter: action.payload});
     case SET_FILTER_CATEGORIE:
-      return Object.assign({}, state, {filter: state.content.filter(el=>el.categorie==action.payload)});
+      return action.payload ?
+      Object.assign({}, state, {filter: state.content.filter(el=>el.categorie==action.payload)}) :
+      Object.assign({}, state, {filter: state.content})
     default:
       return state
   };

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default (props) => { return (
   <li className="menu-categorie">
       <Link 
-      to={"/"+props.name.toLowerCase()} 
+      to={"/"+props.name} 
       className="menu-categorie-item menu-categorie-hover"
       onClick={()=>{props.setMenuOpen(!props.open); props.setFilterCategorie(props.name); document.getElementById('header').scrollIntoView({behavior: 'instant'})}}
       >{props.name}</Link>

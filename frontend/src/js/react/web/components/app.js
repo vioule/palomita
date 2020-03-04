@@ -4,7 +4,11 @@ import { setArticlesContent } from '../actions/articles';
 
 export class App extends React.Component {
   render(){
-    return(this.props.children)
+    if (this.props.content.length>0) {
+      return(this.props.children)
+    } else {
+      return(<div>loading</div>)
+    }
   };
   componentDidMount(){
     this.props.setArticlesContent();
@@ -12,6 +16,6 @@ export class App extends React.Component {
 };
 
 export default connect(
-  null, 
+  state=>{return{content: state.articles.content}}, 
   { setArticlesContent }
 )(App)
