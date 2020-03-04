@@ -1,30 +1,19 @@
 const React = require("react");
-import Text from './text';
-import {Dark as TextDark} from './text';
-import Vignette from './vignette';
 
 import {CardDark, CardLight} from '../../card';
-import {ThumbnailDark} from '../../thumbnail';
+import {ThumbnailDark, ThumbnailLight} from '../../thumbnail';
 import Date from '../../card/date';
 import Social from '../../social';
 
-export const Article = {
-  Text,
-  Vignette
-}
-export const ArticleDarkLeft = (props)=>(
-  <article className="articles-left">
-    <TextDark {...props}/>
-    <Vignette/>
-  </article>
-);
-export const ArticleDarkRight = (props)=>(
-  <article className="articles-right">
-    <TextDark {...props}/>
-    <Vignette/>
-  </article>
-);
 
+export const Article = (props)=>(
+  <section className="summary left">
+    <span className="info">dernier articles</span>
+    <ThumbnailLight img={props.img} />
+    <CardLight date={props.date} title={props.title} paragraph={props.paragraph} id={props.id}/>
+    <span className="index"><span className="number">1</span>.</span>
+  </section>
+);
 export const ArticleLeft = (props)=>(
   <section className="summary left">
     <Date date={props.date}/>

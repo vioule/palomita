@@ -6,6 +6,7 @@ export const Thumbnail = (props) => (
 <div className={"thumbnail " + props.className}>
   <Image img={props.img}/>
   <span className="categorie">{props.categorie}</span>
+  {props.children}
 </div>
 );
 

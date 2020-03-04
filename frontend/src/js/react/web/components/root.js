@@ -22,6 +22,9 @@ export default class Root extends React.Component {
             }
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/article/:articleID" component={Article} />
+            <Route path="/">
+              <Redirect to="/home"/>
+            </Route>
             <Route path="*">
               <Redirect to="/notfound"/>
             </Route>

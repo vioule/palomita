@@ -1,7 +1,11 @@
 .thumbnail
-  max-width: 1000px
-  width: 70%
+  max-width: 999px
+  min-width: 792px
+  width: 50vw
   overflow: hidden
+  height: calc((50vw/3)*2)
+  min-height: 528px
+  max-height: 666px
   & .image
     width: 100%
   & .categorie
@@ -21,13 +25,15 @@
 
 @include media(mid)
   .thumbnail
-    min-width: 700px
+    min-width: 600px
+    min-height: 400px
     &.light
       border-width: 7px
 
 @include media(sml)
   .thumbnail
     min-width: 450px
+    min-height: 300px
     &.light
       border-width: 5px
 
@@ -36,6 +42,7 @@
     width: 100%
     height: calc( 100vw - 160px )
     min-width: unset
+    min-height: unset
     & .image
       height: 100%
       width: auto

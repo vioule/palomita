@@ -30,21 +30,62 @@
       position: absolute
       top: 0
       left: 0
+      &.light .date
+        top: unset
     & .date
       position: absolute
       top: -2rem
       left: 0
     & .social
       left: 0
+    & .index
+      position: absolute
+      right: -3.5rem
+      font-size: 14.29rem
+      font-family: $font-playfair
+      font-weight: 700
+      bottom: -6.5rem
+      z-index: 1
+      color: $color-palomita-dark
+      & .number
+        color: $color-white
+    & .info
+      position: absolute
+      top: -2rem
+      display: inline-block
+      max-width: 640px
+      min-width: 560px
+      width: 45%
+      text-align: right
+      font-style: italic
+      font-size: 1.5rem
+      font-family: $font-playfair
+      color: $color-palomita-dark
+      text-shadow: .5px .5px 0 $color-white
+
 
 @include media(mid)
   .summary
     height: 550px
     margin-top: 100px
+    &.left
+      & .index
+        font-size: 11rem
+        right: -3rem
+        bottom: -5rem
+      & .info
+        min-width: 450px
 @include media(sml)
   .summary
     height: 400px
     margin-top: 80px
+    &.left
+      & .index
+        font-size: 10rem
+        right: -2rem
+        bottom: -5rem
+      & .info
+        min-width: 350px
 @include media(portrait)
   .summary
     height: unset
@@ -67,6 +108,18 @@
       & .social
         left: unset
         right: 0
+      & .index
+        font-size: 7rem
+        right: 1rem
+        bottom: unset
+        top: -2rem
+      & .info
+        transform: rotateZ(-90deg)
+        transform-origin: top left
+        top: 8rem
+        left: -1.4rem
+        font-size: 1rem
+        text-align: left
 @include media(phone)
   .summary
     margin-top: 60px

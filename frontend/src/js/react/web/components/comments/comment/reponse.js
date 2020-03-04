@@ -3,7 +3,7 @@ import Datetime from './date';
 import Author from './author';
 import Text from './text';
 import Answer from './answer';
-import CurtainRaiser from '../hoc/curtainRaiser';
+import CurtainRaiser from '../../curtainRaiser';
 
 export default class Reponses extends React.Component {
   render() {

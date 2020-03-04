@@ -4,7 +4,7 @@ import Author from './author';
 import Text from './text';
 import Answer from './answer';
 import Reponses from './reponse';
-import CurtainRaiser from '../hoc/curtainRaiser';
+import CurtainRaiser from '../../curtainRaiser';
 
 
 export default class Comment extends React.Component {

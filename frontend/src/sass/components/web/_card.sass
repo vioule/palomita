@@ -1,15 +1,26 @@
 .card
   padding: 50px
   max-width: 640px
+  min-width: 560px
   width: 45%
   & .title
     text-transform: uppercase
     font-family: $font-playfair
     font-weight: 700
     font-size: 3.12rem
+    line-height: 4rem
+    max-height: 16rem
+    overflow-wrap: break-word
+    hyphens: auto
+    overflow: hidden
   & .paragraph
     line-height: 2rem
     margin: 2rem 0
+    overflow-wrap: break-word
+    hyphens: auto
+    text-align: justify
+    max-height: 6rem
+    overflow: hidden
   & .link
     line-height: 2rem
     border-bottom-width: 1px
@@ -25,8 +36,9 @@
     left: 0
   & .social
     position: absolute
-    bottom: -1.64rem
-  //STYLES//
+    //bottom: -1.64rem
+    bottom: 0
+    transform: translateY(100%)
   &.dark
     background-color: $color-palomita
     color: $color-white
@@ -39,16 +51,22 @@
     & .link
       color: $color-palomita-dark
       border-bottom-color: $color-palomita-dark
-
 @include media(mid)
   .card
     padding: 40px
+    min-width: 450px
+    & .link
+      width: calc( 100% + 40px )
 @include media(sml)
   .card
     padding: 30px
+    min-width: 350px
+    & .link
+      width: calc( 100% + 30px )
 @include media(portrait)
   .card
     max-width: unset
+    min-width: unset
     width: 100%
     & .date
       left: unset
@@ -56,3 +74,5 @@
 @include media(phone)
   .card
     padding: 20px
+    & .link
+      width: calc( 100% + 20px )

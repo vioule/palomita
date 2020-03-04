@@ -2,7 +2,6 @@
   height: 1080px
   background-color: $color-palomita-lighten
   overflow: hidden
-  padding-top: 200px
   &-categorie
     font-size: 37.5rem
     font-family: $font-playfair
@@ -12,11 +11,14 @@
     position: absolute
     bottom: -15rem
     left: -10rem
+  & .summary
+    margin-top: 200px
 
 @include media(mid)
   .carousel
     height: 900px
-    padding-top: 150px
+    & .summary
+      margin-top: 150px
     &-categorie
       font-size: 32rem
       bottom: -12rem
@@ -24,7 +26,9 @@
 @include media(sml)
   .carousel
     height: 768px
-    padding-top: 100px
+    & .summary
+      margin-top: 100px
+      height: 500px
     &-categorie
       font-size: 27rem
       bottom: -10rem
@@ -32,21 +36,25 @@
 @include media(portrait)
   .carousel
     height: auto
-    padding-top: 120px
+    & .summary
+      margin-top: 120px
+      height: auto
     &-categorie
       font-size: 9rem
       top: 8px
       left: 50px
 @include media(phone)
   .carousel
-    padding-top: 100px
+    & .summary
+      margin-top: 100px
     &-categorie
       font-size: 8rem
       top: 18px
       left: 20px
 @include media(phonexs)
   .carousel
-    padding-top: 70px
+    & .summary
+      margin-top: 70px
     &-categorie
       font-size: 6rem
       top: 20px
