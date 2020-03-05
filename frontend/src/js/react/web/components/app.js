@@ -1,13 +1,16 @@
 const React = require("react");
 import { connect } from 'react-redux';
 import { setArticlesContent } from '../actions/articles';
+import Loader from '../components/home/loader';
 
 export class App extends React.Component {
   render(){
     if (this.props.content.length>0) {
-      return(this.props.children)
+      return(<div className="entrance">
+        {this.props.children}
+      </div>)
     } else {
-      return(<div>loading</div>)
+      return(<Loader/>)
     }
   };
   componentDidMount(){

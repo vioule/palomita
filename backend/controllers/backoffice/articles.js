@@ -46,7 +46,13 @@ exports.uploadArticleImages = (req,res) => {
 };
 
 exports.getPublishedArticlesByDate = (req,res) => {
+  // setTimeout(()=>{
+  //   Article.find({published: true})
+  //   .sort({date: -1})
+  //   .then(data=>{res.send(data)})
+  // },3000)
+  
   Article.find({published: true})
   .sort({date: -1})
-  .then(data=>res.send(data))
+  .then(data=>{res.send(data)})
 };

@@ -13,3 +13,50 @@ button
     cursor: pointer
 b
   font-weight: 700
+
+.loading
+  font-size: 10rem
+  text-align: center
+  font-family: $font-playfair
+  font-weight: 700
+  height: 100vh
+  line-height: 100vh
+  &>.anim
+    animation: 1s ease-in-out 0s infinite alternate loaderX, 2s ease-out 0s infinite loaderY
+    display: inline-block
+
+@keyframes loaderX
+  0%
+    left: 0
+  100%
+    left: 5rem
+
+@keyframes loaderY
+  0%
+    top: 0
+  15%
+    top: -2rem
+  25%
+    top: 0
+  30%
+    top: -1rem
+  35%
+    top: 0
+  40%
+    top: -.5rem
+  45%
+    top: 0
+  50%
+    top: 0
+  100%
+    top: 0
+
+.entrance
+  opacity: 0
+  animation: 2s .5s 1 forwards entrance
+
+@keyframes entrance
+  0%
+    opacity: 0
+  100%
+    opacity: 1

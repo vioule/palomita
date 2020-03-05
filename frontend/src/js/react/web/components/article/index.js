@@ -29,6 +29,7 @@ export class Article extends React.Component {
     )
   };
   componentDidMount(){
+    window.scrollTo(0,0);
     this.props.setArticle(this.props.match.params.articleID);
     this.props.setComments(this.props.match.params.articleID);
   };

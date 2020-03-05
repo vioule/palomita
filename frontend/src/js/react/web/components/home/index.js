@@ -18,6 +18,13 @@ export class Home extends React.Component {
       this.props.setFilterCategorie('') :
       this.props.setFilterCategorie(categorie)
   };
+  componentDidUpdate() {
+    if (this.props.categorie !== '') {
+      document.getElementById('header').scrollIntoView({behavior: 'instant'})
+    } else {
+      window.scrollTo(0,0);
+    }
+  }
 };
 
 export default connect(
