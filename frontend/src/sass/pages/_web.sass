@@ -60,3 +60,12 @@ b
     opacity: 0
   100%
     opacity: 1
+
+.fade-enter
+  opacity: 0
+  z-index: 10
+  &.fade-enter-active
+    opacity: 1
+    transition: opacity 1s 0s ease-in
+.fade-exit
+  display: none

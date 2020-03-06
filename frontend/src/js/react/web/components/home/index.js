@@ -18,11 +18,13 @@ export class Home extends React.Component {
       this.props.setFilterCategorie('') :
       this.props.setFilterCategorie(categorie)
   };
-  componentDidUpdate() {
-    if (this.props.categorie !== '') {
-      document.getElementById('header').scrollIntoView({behavior: 'instant'})
-    } else {
-      window.scrollTo(0,0);
+  componentDidUpdate(prevProps) {
+    if (prevProps.categorie !== this.props.categorie) {
+      if (this.props.categorie !== '') {
+        document.getElementById('header').scrollIntoView({behavior: 'instant'})
+      } else {
+        window.scrollTo(0,0)
+    }
     }
   }
 };
