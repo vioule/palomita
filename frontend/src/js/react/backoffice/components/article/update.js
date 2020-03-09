@@ -14,6 +14,7 @@ const Update = (props)=><Article onClick={
       id: props.article.infos._id,
       title: props.article.infos.title,
       categorie: props.article.infos.categorie,
+      vignette: props.article.infos.vignette,
       content: props.article.content,
       published: true
     }, props._csrf);
@@ -22,6 +23,7 @@ const Update = (props)=><Article onClick={
 componentDidMount = { ()=>props.setArticle({
   title: props.location.state.title, 
   categorie: props.location.state.categorie, 
+  vignette: props.location.state.vignette, 
   content: props.location.state.content, 
   _id: props.location.state._id,
   published: props.location.state.published

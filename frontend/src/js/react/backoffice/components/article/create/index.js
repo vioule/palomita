@@ -6,6 +6,7 @@ import { setArticleTitle, setArticleCategorie, sortArticleContent, setArticle } 
 import { createArticle, createRough } from '../../../actions/articles';
 import ButtonAddParagraph from './buttonAddParagraph';
 import ButtonAddImage from './buttonAddImage';
+import ButtonAddVignette from './buttonAddVignette';
 import PopulateArticle from './populateArticle';
 const bson = require('bson');
 
@@ -44,6 +45,7 @@ export class Create extends React.Component {
         <option value="deco">Deco</option>
       </select>
       <input form="article-create" className="article-infos article-title" type="text" placeholder="title" value={this.props.article.infos.title} onChange={(e)=>this.props.setArticleTitle(e.target.value)} readOnly={this.props.article.infos.validate}/>
+      <ButtonAddVignette {...this.props}/>
       {!this.props.article.infos.validate && <><ButtonAddParagraph/> <ButtonAddImage/></>}
       {
       !this.props.article.infos.published && !this.props.article.infos.validate && window.location.pathname.includes("edit") &&
@@ -52,6 +54,7 @@ export class Create extends React.Component {
           id: this.props.article.infos._id,
           title: this.props.article.infos.title,
           categorie: this.props.article.infos.categorie,
+          vignette: this.props.article.infos.vignette,
           content: this.props.article.content,
           published: false
         }, this.props._csrf)
@@ -91,6 +94,7 @@ const CreateConnected = (props) => <Create onClick={
       categorie: props.article.infos.categorie,
       date: new Date(),
       content: props.article.content,
+      vignette: props.article.infos.vignette,
       comments: [],
       published: true
     },props._csrf);
@@ -102,6 +106,7 @@ const CreateConnected = (props) => <Create onClick={
         _id: props.article.infos._id,
         title: props.article.infos.title,
         categorie: props.article.infos.categorie,
+        vignette: props.article.infos.vignette,
         date: new Date(),
         content: props.article.content,
         comments: [],
@@ -111,6 +116,7 @@ const CreateConnected = (props) => <Create onClick={
   componentDidMount = {()=>props.setArticle({
     title: "", 
     categorie: "", 
+    vignette: "", 
     content: [], 
     _id: new bson.ObjectId(),
     published: false

@@ -49,7 +49,7 @@ const TopbarArticle = (props)=><Topbar title="article" rightBtn={true} {...props
 export const TopbarArticleConnected = connect(
   (state) => { return {
     validate: state.article.infos.validate,
-    content: state.article.infos.title && state.article.infos.categorie
+    content: state.article.infos.title && state.article.infos.categorie && state.article.infos.vignette
   }},
   {onClick: setArticleValidate}
 )(TopbarArticle)

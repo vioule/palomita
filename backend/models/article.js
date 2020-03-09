@@ -7,6 +7,7 @@ const articleSchema = Schema({
   date: Date,
   content: [{}],
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+  vignette: String,
   published: Boolean
 })
 

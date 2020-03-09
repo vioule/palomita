@@ -9,7 +9,8 @@ import {
   SET_ARTICLE_CONTENT_SELECTED,
   SET_ARTICLE_VALIDATE,
   SET_ARTICLE_PUBLISHED,
-  SET_ARTICLE
+  SET_ARTICLE,
+  SET_ARTICLE_VIGNETTE
 } from "./actionTypes";
 const arrayMove = require('array-move');
 const axios = require('axios');
@@ -22,6 +23,9 @@ export function setArticlePublished(payload) {
 };
 export function setArticleCategorie(payload) {
   return {type: SET_ARTICLE_CATEGORIE, payload}
+};
+export function setArticleVignette(payload) {
+  return {type: SET_ARTICLE_VIGNETTE, payload}
 };
 export function addArticleParagraph() {
   return {type: ADD_ARTICLE_PARAGRAPH}
