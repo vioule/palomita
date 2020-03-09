@@ -7,26 +7,18 @@ export class Home extends React.Component {
   render() {
     return (
       <div className="home">
-        {this.props.articles.length>0 && <Carousel articles={this.props.articles} />}
+        {this.props.articles.length>0 && this.props.match.path == '/home' && <Carousel articles={this.props.articles} />}
         <Content content={this.props.filter} categorie={this.props.categorie}/>
       </div>
     )
   };
   componentDidMount() {
+    window.scrollTo(0,0);
     let categorie = this.props.match.path.substring(1);
     categorie === 'home' ?
       this.props.setFilterCategorie('') :
       this.props.setFilterCategorie(categorie)
   };
-  componentDidUpdate(prevProps) {
-    if (prevProps.categorie !== this.props.categorie) {
-      if (this.props.categorie !== '') {
-        document.getElementById('header').scrollIntoView({behavior: 'instant'})
-      } else {
-        window.scrollTo(0,0)
-    }
-    }
-  }
 };
 
 export default connect(

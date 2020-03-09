@@ -26,7 +26,7 @@ export const Infos = () => {
     <Side secondClass=" menu-center-info clearfix">
       <Info name="Contact"/>
       <Info name="A propos"/>
-      <Search/>
+      {/* <Search/> */}
       <Socials/>
     </Side>
   )

@@ -15,13 +15,13 @@ export class Article extends React.Component {
     <div className="article">
       <Categorie categorie={this.props.article.categorie}/>
       <div className="background">
-        <Socials/>
+        {/* <Socials/> */}
         <Title title={this.props.article.title}/>
         <div className="content">
           <Content content={this.props.article.content}>
-            <Socials share={true}/>
+            {/* <Socials share={true}/> */}
           </Content>
-          <Comments comments={this.props.comments} length={this.props.article.comments.length}/>
+          {/* <Comments comments={this.props.comments} length={this.props.article.comments.length}/> */}
         </div>
       </div>
       <Datetime date={new Date(this.props.article.date).toLocaleDateString().replace(/\//g,".")}/>
