@@ -6,6 +6,7 @@ import Hamburger from './hamburger';
 import Menu from './menu/';
 import Home from './home/';
 import Contact from './contact/';
+import UnderConstruction from './underConstruction';
 import Footer from './footer';
 import Article from './article';
 
@@ -27,7 +28,8 @@ export default class Root extends React.Component {
                 ["/home","/deco","/style","/cuisine","/voyages"]
                 .map(el=><Route key={el} exact path={el} component={Home} />)
                 }
-                <Route exact path="/contact" component={Contact} />
+                <Route exact path="/contact" component={UnderConstruction} />
+                <Route exact path="/about" component={UnderConstruction} />
                 <Route exact path="/article/:articleID" component={Article} />
                 <Route path="/">
                   <Redirect to="/home"/>

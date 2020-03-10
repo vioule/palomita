@@ -1,0 +1,54 @@
+.construction
+  text-align: center
+  height: calc( 100vh - 7rem )
+  min-height: 400px
+  overflow: hidden
+  &-center
+    top: 50%
+    transform: translateY(-50%)
+    &.marge
+      padding-bottom: 0
+  &-title
+    display: inline-block
+    max-width: 900px
+    font-size: 5.7rem
+    line-height: 5.7rem
+    font-weight: 900
+    color: $color-palomita
+    word-break: break-word
+  &-info
+    font-size: 1.3rem
+    font-style: italic
+    margin-top: 2rem
+    font-weight: 300
+  &-logo
+    display: inline-block
+    width: 100%
+    font-size: 70rem
+    position: absolute
+    bottom: 0
+    left: 0
+    line-height: 60rem
+    font-family: $font-playfair
+    font-weight: 700
+    color: $color-palomita-lighten
+    text-align: left
+
+@include media(portrait)
+  .construction
+    &-title
+      font-size: 3.8rem
+      line-height: 3.8rem
+    &-info
+      font-size: 1rem
+    &-logo
+      text-align: center
+      bottom: unset
+      top: 50%
+      transform: translateY(-50%)
+      font-size: 40rem
+      line-height: 40rem
+
+@include media(phone)
+  .construction
+    min-height: 300px

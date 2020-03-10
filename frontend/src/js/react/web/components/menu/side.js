@@ -21,11 +21,11 @@ export const Categories = (props) => {
   )
 };
 
-export const Infos = () => {
+export const Infos = (props) => {
   return (
     <Side secondClass=" menu-center-info clearfix">
-      <Info name="Contact"/>
-      <Info name="A propos"/>
+      <Info name="Contact" link="contact" {...props}/>
+      <Info name="A propos" link="about" {...props}/>
       {/* <Search/> */}
       <Socials/>
     </Side>

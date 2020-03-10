@@ -15,7 +15,7 @@ class Menu extends React.Component {
     >
       <div className={"menu" + (!this.props.open ? " menu-hidden" : "")}>
         <Categories {...this.props}/>
-        <Infos/>
+        <Infos {...this.props}/>
       </div>
     </CSSTransition>
     )
