@@ -18,7 +18,6 @@ export class Article extends React.Component {
     this.prec = '';
   };
   render(){
-    console.log(this.prec, this.next)
     return (
     <div className="article">
       <Categorie categorie={this.props.article.categorie}/>
