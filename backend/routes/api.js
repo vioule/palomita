@@ -29,7 +29,7 @@ ApiRouter.get('/getArticle', require('../controllers/backoffice/articles').getAr
 ApiRouter.delete('/deleteArticle', require('../controllers/backoffice/articles').deleteArticle);
 ApiRouter.post('/createArticle', require('../controllers/backoffice/articles').createArticle);
 ApiRouter.put('/updateArticle', require('../controllers/backoffice/articles').updateArticle);
-ApiRouter.post('/uploadArticleImages', upload.array('images') ,require('../controllers/backoffice/articles').uploadArticleImages);
+ApiRouter.post('/uploadArticleImages', upload.array('images'),require('../controllers/backoffice/articles').resizeArticleImages, require('../controllers/backoffice/articles').uploadArticleImages);
 
 //COMMENTS//
 ApiRouter.get('/getComments', require('../controllers/backoffice/comments').getData);

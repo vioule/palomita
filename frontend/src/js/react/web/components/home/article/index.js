@@ -1,5 +1,5 @@
 const React = require("react");
-import { useInView } from 'react-intersection-observer'
+import { useInView } from 'react-intersection-observer';
 
 import {CardDark, CardLight} from '../../card';
 import {ThumbnailDark, ThumbnailLight} from '../../thumbnail';
@@ -16,7 +16,7 @@ export const Article = (props)=>(
   </section>
 );
 export const ArticleLeft = (props)=>{
-  const [ref, inView, entry] = useInView({threshold: .5,triggerOnce: true});
+  const [ref, inView] = useInView({threshold: .5,triggerOnce: true});
   return (
     <section className={"summary left" + (inView ? "" : " hidden")} ref={ref}>
       <Date date={props.date}/>

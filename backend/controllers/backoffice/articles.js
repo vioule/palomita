@@ -2,6 +2,7 @@ const Article = require('../../models/article').Article;
 const Comment = require('../../models/comment').Comment;
 const getComments = require('./comments').getData;
 const del = require('del');
+const Jimp = require('jimp');
 
 exports.getData = (req,res) => {
   Article.find().then(data=>res.send(data))
@@ -34,10 +35,31 @@ exports.createArticle = (req,res) => {
 exports.updateArticle = (req,res) => {
   let urls = req.body.article.content.filter(content=>content.type=="image")
   urls = urls.map(url=>'!'+process.cwd()+'/frontend/static'+url.data)
-  del.sync([process.cwd()+'/frontend/static/img/articles/'+req.body.article.id+'/*'].concat(urls))
+  let placeholders = urls.map(url=>{
+    return url.substring(0,url.lastIndexOf('.'))+'-placeholder'+url.substring(url.lastIndexOf('.'))
+  })
+
+
+  del.sync([process.cwd()+'/frontend/static/img/articles/'+req.body.article.id+'/*'].concat(urls).concat(placeholders))
   Article
   .updateOne({_id: req.body.article.id}, {title: req.body.article.title, categorie: req.body.article.categorie, vignette: req.body.article.vignette, content: req.body.article.content, published: req.body.article.published})
   .then(()=>this.getData(req,res))
+};
+
+exports.resizeArticleImages = (req,res,next) => {
+  req.files.map(file=>{
+    Jimp.read(file.path)
+    .then(img=>{
+      return img
+      .resize(Jimp.AUTO, 10)
+      .resize(Jimp.AUTO, 500)
+      .quality(50)
+      .blur(50)
+      .write(file.path.substring(0, file.path.lastIndexOf('.'))+'-placeholder'+file.path.substring(file.path.lastIndexOf('.')))
+    })
+    .catch(err=>console.error(err))
+  })
+  next();
 };
 
 exports.uploadArticleImages = (req,res) => {
