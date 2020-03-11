@@ -4,14 +4,55 @@
   &:first-child
     margin-top: 0
   &.right
+    &.hidden
+      & .thumbnail
+        opacity: 0
+        bottom: -4rem
+        & .categorie
+          opacity: 0
+          top: -10rem
+      & .date
+        opacity: 0
+        top: 4rem
+      & .card
+        opacity: 0
+        top: 4rem
+        & .title
+          opacity: 0
+          top: 4rem  
+        & .paragraph
+          opacity: 0
+          top: 4rem  
+        & .link
+          opacity: 0
+          top: 4rem  
     & .thumbnail
       position: absolute
       bottom: 0
       left: 0
+      transition: opacity .6s .3s ease-out, bottom .6s .3s ease-out
+      opacity: 1
+      & .categorie
+        opacity: 1
+        transition: opacity .6s .4s ease-out, top .6s .4s ease-out
     & .card
       position: absolute
       top: 0
       right: 0
+      opacity: 1
+      transition: opacity .6s .1s ease-out, top .6s .1s ease-out
+      & .title
+        top: 0
+        opacity: 1
+        transition: opacity .6s .2s ease-out, top .6s .2s ease-out
+      & .paragraph
+        top: 0
+        opacity: 1
+        transition: opacity .6s .3s ease-out, top .6s .3s ease-out
+      & .link
+        top: 0
+        opacity: 1
+        transition: opacity .6s .4s ease-out, top .6s .4s ease-out
     & .social
       right: 0
     & .date
@@ -19,24 +60,71 @@
       top: -2rem
       right: 0
       padding: 0 .5rem 0 1rem
+      opacity: 1
+      transition: opacity .6s ease-out, top .6s ease-out
   &.left
+    &.hidden
+      & .thumbnail
+        opacity: 0
+        bottom: -4rem
+        & .categorie
+          opacity: 0
+          top: -10rem
+      & .date
+        opacity: 0
+        top: 4rem
+      & .card
+        opacity: 0
+        top: 4rem
+        & .title
+          opacity: 0
+          top: 4rem  
+        & .paragraph
+          opacity: 0
+          top: 4rem  
+        & .link
+          opacity: 0
+          top: 4rem  
+
+
+
     & .thumbnail
       position: absolute
       bottom: 0
       right: 0
+      transition: opacity .6s .3s ease-out, bottom .6s .3s ease-out
+      opacity: 1
       & .categorie
         left: unset
         right: -2rem
+        opacity: 1
+        transition: opacity .6s .4s ease-out, top .6s .4s ease-out
     & .card
       position: absolute
       top: 0
       left: 0
+      opacity: 1
+      transition: opacity .6s .1s ease-out, top .6s .1s ease-out
+      & .title
+        top: 0
+        opacity: 1
+        transition: opacity .6s .2s ease-out, top .6s .2s ease-out
+      & .paragraph
+        top: 0
+        opacity: 1
+        transition: opacity .6s .3s ease-out, top .6s .3s ease-out
+      & .link
+        top: 0
+        opacity: 1
+        transition: opacity .6s .4s ease-out, top .6s .4s ease-out
       &.light .date
         top: unset
     & .date
       position: absolute
       top: -2rem
       left: 0
+      opacity: 1
+      transition: opacity .6s ease-out, top .6s ease-out
     & .social
       left: 0
     & .index

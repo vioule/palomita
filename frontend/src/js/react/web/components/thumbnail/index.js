@@ -1,4 +1,3 @@
-import Categorie from "./categorie";
 import Image from "./image";
 
 const React = require("react");

@@ -1,4 +1,5 @@
 const React = require("react");
+import { useInView } from 'react-intersection-observer'
 
 import {CardDark, CardLight} from '../../card';
 import {ThumbnailDark, ThumbnailLight} from '../../thumbnail';
@@ -14,21 +15,27 @@ export const Article = (props)=>(
     {/* <span className="index"><span className="number">1</span>.</span> */}
   </section>
 );
-export const ArticleLeft = (props)=>(
-  <section className="summary left">
+export const ArticleLeft = (props)=>{
+  const [ref, inView, entry] = useInView({threshold: .5,triggerOnce: true});
+  return (
+    <section className={"summary left" + (inView ? "" : " hidden")} ref={ref}>
+      <Date date={props.date}/>
+      <ThumbnailDark img={props.img} categorie={props.categorie}/>
+      <CardDark title={props.title} paragraph={props.paragraph} id={props.id}>
+        {/* <Social share={true}/> */}
+      </CardDark>
+    </section>
+  )
+};
+export const ArticleRight = (props)=>{
+  const [ref, inView, entry] = useInView({threshold: .5,triggerOnce: true});
+  return (
+  <section className={"summary right" + (inView ? "" : " hidden")} ref={ref}>
     <Date date={props.date}/>
     <ThumbnailDark img={props.img} categorie={props.categorie}/>
     <CardDark title={props.title} paragraph={props.paragraph} id={props.id}>
       {/* <Social share={true}/> */}
     </CardDark>
   </section>
-);
-export const ArticleRight = (props)=>(
-  <section className="summary right">
-    <Date date={props.date}/>
-    <ThumbnailDark img={props.img} categorie={props.categorie}/>
-    <CardDark title={props.title} paragraph={props.paragraph} id={props.id}>
-      {/* <Social share={true}/> */}
-    </CardDark>
-  </section>
-);
+  )
+};
