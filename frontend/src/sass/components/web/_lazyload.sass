@@ -5,6 +5,7 @@
   background-position: center
   background-color: lightgray
   &>.text
+    position: absolute
     left: 50%
     top: 50%
     transform: translate(-50%,-50%)
@@ -13,4 +14,7 @@
     font-size: 2rem
   &>.image
     transition: opacity 1s linear
+    width: 100%
+    height: 100%
+    object-fit: cover
 
