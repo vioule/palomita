@@ -8,6 +8,7 @@ import thunkMiddleware from 'redux-thunk';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import App from './components/app';
 import Root from './components/root';
+import notFound from './components/notFound';
 
 export const store = createStore(Reducer, applyMiddleware(thunkMiddleware))
 
@@ -16,7 +17,7 @@ render(
     <BrowserRouter>
       <App>
         <Switch>
-          <Route exact path="/notfound"><div>404</div></Route>
+          <Route exact path="/notfound" component={notFound} />
           <Route path="*" component={Root} />
         </Switch>
       </App>

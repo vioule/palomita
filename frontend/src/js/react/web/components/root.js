@@ -31,7 +31,7 @@ export default class Root extends React.Component {
                 <Route exact path="/contact" component={UnderConstruction} />
                 <Route exact path="/about" component={UnderConstruction} />
                 <Route exact path="/article/:articleID" component={Article} />
-                <Route path="/">
+                <Route exact path="/">
                   <Redirect to="/home"/>
                 </Route>
                 <Route path="*">
