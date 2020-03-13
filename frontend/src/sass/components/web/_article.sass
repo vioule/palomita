@@ -5,7 +5,7 @@
   width: 100%
   & .background
     background-color: $color-white
-    border-left: .5px solid $color-palomita
+    border-left: 1px solid $color-palomita
     &>.social
       top: -1.5rem
   & .title
@@ -16,15 +16,19 @@
     color: $color-palomita
     margin-bottom: 1rem
     & .overlay
-      padding: 1rem 50px
-      background-color: $color-palomita-lighten
       display: inline
+      padding: 1rem 50px
+      background: linear-gradient(to top, rgba(254, 232, 225, 1), rgba(254, 232, 225, 1)) no-repeat
+      background-size: 0% 100%
       box-decoration-break: clone
+      animation: 1.5s .5s 1 ease-in-out forwards title-entrance
   & .date
     position: absolute
     top: 12rem
     left: 0
     font-size: 1.5rem
+    opacity: 0
+    animation: 1s .5s 1 ease-in-out forwards date-entrance
   & .categorie
     position: absolute
     top: 5rem
@@ -36,6 +40,8 @@
     transform: translateX(-100%) rotateZ(-90deg) translateY(3rem)
     transform-origin: bottom right
     direction: rtl
+    opacity: 0
+    animation: 1s .7s 1 ease-in-out forwards categorie-entrance
 
 @include media(mid)
   .article
@@ -105,3 +111,51 @@
     & .title
       & .overlay
         padding: 1rem 10px
+
+@keyframes categorie-entrance
+  0%
+    top: 12rem
+    opacity: 0
+  100%
+    top: 5rem
+    opacity: 1
+
+@keyframes date-entrance
+  0%
+    top: 16rem
+    opacity: 0
+  100%
+    top: 12rem
+    opacity: 1
+
+@keyframes title-entrance
+  0%
+    background-size: 0% 100%
+    opacity: 0
+  100%
+    background-size: 100% 100%
+    opacity: 1
+
+@include media(portrait)
+  @keyframes categorie-entrance
+    0%
+      top: 0rem
+      opacity: 0
+    100%
+      top: -7.5rem
+      opacity: 1
+  @keyframes date-entrance
+    0%
+      top: 1rem
+      opacity: 0
+    100%
+      top: -1.2rem
+      opacity: 1
+@include media(phone)
+  @keyframes categorie-entrance
+    0%
+      top: -1rem
+      opacity: 0
+    100%
+      top: -5.5rem
+      opacity: 1

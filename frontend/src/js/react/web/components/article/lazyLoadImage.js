@@ -39,3 +39,12 @@ export default (props) => {
     </div>
     )
   };
+
+export const Appear = (props) => {
+  const [ref, inView] = useInView({threshold: .25,triggerOnce: true});
+  return (
+    <div className={"lazy-appear" + (inView ? "" : " hidden")} ref={ref}>
+      {props.children}
+    </div>
+  )
+};

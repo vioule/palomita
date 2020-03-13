@@ -28,7 +28,7 @@ export const ArticleLeft = (props)=>{
   )
 };
 export const ArticleRight = (props)=>{
-  const [ref, inView, entry] = useInView({threshold: .5,triggerOnce: true});
+  const [ref, inView] = useInView({threshold: .5,triggerOnce: true});
   return (
   <section className={"summary right" + (inView ? "" : " hidden")} ref={ref}>
     <Date date={props.date}/>
