@@ -1,0 +1,21 @@
+.legal
+  height: calc( 100vh - 7rem )
+  min-height: 400px
+  overflow: hidden
+  &>.center
+    top: 50%
+    transform: translateY(-50%)
+  &-title
+    font-size: 4rem
+    text-transform: uppercase
+    font-weight: 700
+  &-categorie
+    margin-top: 1rem
+  &-text
+    font-weight: 300
+    line-height: 1.5rem
+    margin-top: .5rem
+
+@include media(phone)
+  .legal
+    min-height: 300px

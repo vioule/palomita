@@ -21,7 +21,6 @@ export const Pinterest = () => (
 export const Socials = () => (
   <div className="socials">
     <Instagram />
-    <Facebook />
     <Pinterest />
   </div>
 )

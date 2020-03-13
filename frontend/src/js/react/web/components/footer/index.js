@@ -7,7 +7,7 @@ export default () => (
   <Socials />
   <div className="legals clearfix">
     <span className="copyright">©Palomita - </span>
-    <Link to="/" className="link">Mentions légales</Link>
+    <Link to="/legals" className="link">Mentions légales</Link>
   </div>
 </footer>
 );
