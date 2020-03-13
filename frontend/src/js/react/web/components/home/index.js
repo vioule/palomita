@@ -8,7 +8,7 @@ export class Home extends React.Component {
     return (
       <div className="home">
         {this.props.articles.length>0 && this.props.match.path == '/home' && <Carousel articles={this.props.articles} />}
-        <Content content={this.props.filter} categorie={this.props.categorie}/>
+        <Content content={this.props.filter} show={this.props.show} categorie={this.props.categorie}/>
       </div>
     )
   };
@@ -23,6 +23,7 @@ export class Home extends React.Component {
 
 export default connect(
   state=>{return{
+    show: state.articles.show,
     articles: state.articles.content,
     filter: state.articles.filter,
     categorie: state.filter.categorie

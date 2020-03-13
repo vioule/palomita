@@ -1,5 +1,6 @@
 import { 
-  SET_ARTICLES_CONTENT
+  SET_ARTICLES_CONTENT, 
+  ADD_ARTICLES_SHOW
 } from './actionTypes';
 const axios = require('axios');
 
@@ -12,3 +13,4 @@ export const setArticlesContent = () => {
     .catch(err=>err)
   }
 };
+export const addArticlesShow = () => { return { type: ADD_ARTICLES_SHOW } };

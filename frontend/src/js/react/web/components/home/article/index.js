@@ -16,7 +16,7 @@ export const Article = (props)=>(
   </section>
 );
 export const ArticleLeft = (props)=>{
-  const [ref, inView] = useInView({threshold: .5,triggerOnce: true});
+  const [ref, inView] = useInView({threshold: .2,triggerOnce: true});
   return (
     <section className={"summary left" + (inView ? "" : " hidden")} ref={ref}>
       <Date date={props.date}/>
@@ -28,7 +28,7 @@ export const ArticleLeft = (props)=>{
   )
 };
 export const ArticleRight = (props)=>{
-  const [ref, inView] = useInView({threshold: .5,triggerOnce: true});
+  const [ref, inView] = useInView({threshold: .2,triggerOnce: true});
   return (
   <section className={"summary right" + (inView ? "" : " hidden")} ref={ref}>
     <Date date={props.date}/>

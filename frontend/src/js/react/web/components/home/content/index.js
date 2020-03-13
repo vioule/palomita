@@ -1,12 +1,13 @@
 const React = require("react");
 import {ArticleLeft, ArticleRight} from '../article';
 import Header from './header';
+import Footer from './footer';
 
 export default (props) => (
   <div className="marge">
     <Header count={props.content.length} categorie={props.categorie}/>
     <div>
-    {props.content.map((article, index)=>{
+    {props.show.map((article, index)=>{
       return index%2 == 0 ? 
       <ArticleLeft 
       key={article._id}
@@ -28,6 +29,7 @@ export default (props) => (
       /> 
 
     })}
+    {props.show.length<props.content.length && <Footer/>}
     </div>
     
   </div>
