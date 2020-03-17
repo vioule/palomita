@@ -5,8 +5,9 @@ const flash          = require('connect-flash');
 const session        = require('express-session');
 const csrf           = require("csurf");
 const mongoose       = require('mongoose');
+const MongoStore     = require('connect-mongo')(session);
 
-module.exports = function(app, db) {
+module.exports = function(app, db, argv) {
   passport.serializeUser(function(user, done) {
     done(null, user._id);
   });
@@ -27,10 +28,11 @@ module.exports = function(app, db) {
       });
     }
   ));
-
   app.use(session({secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
-    resave: false
+    resave: false,
+    cookie: {maxAge: 3 * 60 * 60 * 1000 }, // 3 hours
+    store: argv.env === 'production' ? new MongoStore({ mongooseConnection: mongoose.connection }) : ''
   }));
   app.use(passport.initialize());
   app.use(passport.session());

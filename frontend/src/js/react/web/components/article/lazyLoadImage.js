@@ -12,7 +12,7 @@ export const Lazy = (props) => {
   return (
     <div className="lazyload" style={{
       backgroundImage: props.phLoaded && 'url('+props.placeholder+')',
-      paddingTop: !props.phLoaded ? '' : !props.imgLoaded && placeholder.height/placeholder.width*100+'%'
+      paddingTop: !props.phLoaded ? '' : placeholder.height/placeholder.width*100+'%'
       }}>
       {props.phLoaded && <img className="image" style={{opacity: props.imgLoaded ? 1 : 0}} src={props.img} onLoad={()=>props.setImgLoaded(true)}/>}
     </div>

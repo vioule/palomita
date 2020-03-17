@@ -50,12 +50,16 @@ exports.resizeArticleImages = (req,res,next) => {
   req.files.map(file=>{
     Jimp.read(file.path)
     .then(img=>{
+      img
+      .resize(1000, Jimp.AUTO)
+      .quality(80)
+      .write(file.path)
       return img
-      .resize(Jimp.AUTO, 10)
-      .resize(Jimp.AUTO, 500)
+      .resize(10, Jimp.AUTO)
+      .resize(500, Jimp.AUTO)
       .quality(50)
       .blur(50)
-      .write(file.path.substring(0, file.path.lastIndexOf('.'))+'-placeholder'+file.path.substring(file.path.lastIndexOf('.')))
+      .write(file.path.substring(0, file.path.lastIndexOf('.'))+'-placeholder'+file.path.substring(file.path.lastIndexOf('.')));
     })
     .catch(err=>console.error(err))
   })
