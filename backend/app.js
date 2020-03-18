@@ -4,6 +4,7 @@ const argv          = require('minimist')(process.argv.slice(2));
 const mongoose      = require("mongoose");
 require('dotenv').config()
 
+process.env.NODE_ENV = argv.env;
 const uri = argv.env === 'production' ? process.env.DATABASE_URI_PROD : process.env.DATABASE_URI;
 
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, (err, con)=>{

@@ -2,7 +2,7 @@ const React = require("react");
 import { connect } from 'react-redux';
 import {TopbarArticleConnected} from '../../topbar';
 import TextEditBar from '../../topbar/texteditbar';
-import { setArticleTitle, setArticleCategorie, sortArticleContent, setArticle } from '../../../actions/article';
+import { setArticleTitle, setArticleCategorie, sortArticleContent, setArticle, uploadArticleImages } from '../../../actions/article';
 import { createArticle, createRough } from '../../../actions/articles';
 import ButtonAddParagraph from './buttonAddParagraph';
 import ButtonAddImage from './buttonAddImage';
@@ -11,7 +11,7 @@ import PopulateArticle from './populateArticle';
 const bson = require('bson');
 
 const mapStateToProps = state => { return {article: state.article, _csrf: state._csrf}};
-const mapDispatchToProps = { setArticleTitle, setArticleCategorie, sortArticleContent, createArticle, createRough, setArticle };
+const mapDispatchToProps = { setArticleTitle, setArticleCategorie, sortArticleContent, createArticle, createRough, setArticle, uploadArticleImages};
 
 export class Create extends React.Component {
   handleSortEnd({oldIndex, newIndex}) {
@@ -88,6 +88,7 @@ export class Create extends React.Component {
 
 const CreateConnected = (props) => <Create onClick={
   async() => {
+    await props.uploadArticleImages(props.article.content.filter(el=>el.type=='image'), props._csrf, props.article.infos._id);
     await props.createArticle({
       _id: props.article.infos._id,
       title: props.article.infos.title,

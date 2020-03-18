@@ -1,9 +1,10 @@
 import { 
   ADD_ARTICLE_PARAGRAPH,
-  ADD_ARTICLE_IMAGES,
+  ADD_ARTICLE_IMAGE,
   DELETE_ARTICLE_ITEM,
   SORT_ARTICLE_CONTENT,
   SET_ARTICLE_CONTENT,
+  SET_ARTICLE_IMAGES,
   SET_ARTICLE
 } from "../../actions/actionTypes";
 const uuidv4 = require('uuid/v4');
@@ -22,15 +23,22 @@ export default (state=DEFAULT_STATE, action) => {
   switch(action.type) {
     case ADD_ARTICLE_PARAGRAPH:
       return state.concat(createContent("paragraph", ""));
-    case ADD_ARTICLE_IMAGES:
-      let images = action.urls.map(url=>{
-        let id = url.split('/');
-        id = id[id.length-1].split('.')[0];
-        return createContent("image", url, id);
+    case ADD_ARTICLE_IMAGE:
+      return state.concat(createContent("image", window.URL.createObjectURL(action.img)));
+
+    case SET_ARTICLE_IMAGES:
+      return state.map(el=>{
+        let index = action.ids.indexOf(el.id);
+        if (index != -1) {
+          window.URL.revokeObjectURL(el.data)
+          el.data = action.urls[index]
+        }
+        return el
       })
-      return state.concat(images);
+
     case DELETE_ARTICLE_ITEM:
       var newState = [...state];
+      window.URL.revokeObjectURL(newState[action.index].data);
       newState.splice(action.index, 1)
       return newState;
     case SORT_ARTICLE_CONTENT:

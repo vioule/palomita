@@ -3,6 +3,8 @@ const Comment = require('../../models/comment').Comment;
 const getComments = require('./comments').getData;
 const del = require('del');
 const Jimp = require('jimp');
+const fs = require('fs');
+const FileType = require('file-type')
 
 exports.getData = (req,res) => {
   Article.find().then(data=>res.send(data))
@@ -46,29 +48,42 @@ exports.updateArticle = (req,res) => {
   .then(()=>this.getData(req,res))
 };
 
-exports.resizeArticleImages = (req,res,next) => {
-  req.files.map(file=>{
-    Jimp.read(file.path)
-    .then(img=>{
-      img
-      .resize(1000, Jimp.AUTO)
-      .quality(80)
-      .write(file.path)
-      return img
-      .resize(10, Jimp.AUTO)
-      .resize(500, Jimp.AUTO)
-      .quality(50)
-      .blur(50)
-      .write(file.path.substring(0, file.path.lastIndexOf('.'))+'-placeholder'+file.path.substring(file.path.lastIndexOf('.')));
-    })
-    .catch(err=>console.error(err))
-  })
+exports.resizeArticleImages = async (req,res,next) => {
+  let imgs = req.files.images;
+  if (!Array.isArray(imgs)){imgs = [imgs]};
+  var resizeImgs = [];
+  const resizeImages = async () => {
+    return Promise.all(imgs.map(async file=>{
+      await Jimp
+      .read(file.path)
+      .then(img=>img.resize(1000, Jimp.AUTO).quality(80))
+      .then(img=>img.getBufferAsync(file.type))
+      .then(img=>resizeImgs.push(img))
+      return Promise.resolve('ok')
+    }))
+  }
+  await resizeImages();
+  req.files.images = resizeImgs;
   next();
 };
 
-exports.uploadArticleImages = (req,res) => {
-  var output = req.files.map(file=>'/'+file.path.split('/static/')[1])
-  res.send(output)
+exports.uploadArticleImages = async (req,res) => {
+  var imagesID = JSON.parse(req.fields.imagesID);
+  var urls = [];
+  if (process.env.NODE_ENV === 'development') {
+    var dir = process.cwd()+'/frontend/static/img/articles/'+req.fields.articleID+'/'
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+    }
+    for (i=0; i<req.files.images.length; i++) {
+      let extension = await FileType.fromBuffer(req.files.images[i])
+      urls.push('/img/articles/'+req.fields.articleID+'/'+imagesID[i]+'.'+extension.ext);
+      fs.writeFile(dir+imagesID[i]+'.'+extension.ext, req.files.images[i], "binary", (err)=>console.log(err))
+    }
+  } else {
+    console.log("PRODUCTION ==> SAVE IMAGE IN AWS S3")
+  }
+  res.send({urls, ids: imagesID});
 };
 
 exports.getPublishedArticlesByDate = (req,res) => {
