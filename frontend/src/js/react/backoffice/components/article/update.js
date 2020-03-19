@@ -1,15 +1,19 @@
 const React = require("react");
 import { connect } from 'react-redux';
 import {Create as Article} from './create';
-import { setArticleTitle, setArticleCategorie, sortArticleContent } from '../../actions/article';
+import { setArticleTitle, setArticleCategorie, sortArticleContent, uploadArticleImages } from '../../actions/article';
 import { updateArticle, updateRough } from '../../actions/articles';
 import { setArticle } from '../../actions/article';
 
 const mapStateToProps = state => { return {article: state.article, _csrf: state._csrf}};
-const mapDispatchToProps = { setArticleTitle, setArticleCategorie, sortArticleContent, updateArticle, setArticle, updateRough };
+const mapDispatchToProps = { setArticleTitle, setArticleCategorie, sortArticleContent, updateArticle, setArticle, updateRough, uploadArticleImages };
 
 const Update = (props)=><Article onClick={
   async() => {
+    let uploadImgs = props.article.content.filter(el=>el.type=='image' && el.data.startsWith('blob:'))
+    if (uploadImgs.length>0) {
+      await props.uploadArticleImages(uploadImgs, props._csrf, props.article.infos._id);
+    }
     await props.updateArticle({
       id: props.article.infos._id,
       title: props.article.infos.title,

@@ -5,6 +5,31 @@ const del = require('del');
 const Jimp = require('jimp');
 const fs = require('fs');
 const FileType = require('file-type')
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3({
+  accessKeyId: process.env.S3_KEY_ACCESS,
+  secretAccessKey: process.env.S3_ACCESS_SECRET
+});
+
+async function deleteS3ObjectsFromDirectory(bucket, dir, preserve=[]) {
+  const listParams = {
+      Bucket: bucket,
+      Prefix: dir
+  };
+  const listedObjects = await s3.listObjectsV2(listParams).promise();
+  if (listedObjects.Contents.length === 0) return;
+  const deleteParams = {
+      Bucket: bucket,
+      Delete: { Objects: [] }
+  };
+  listedObjects.Contents.forEach(({ Key }) => {
+      if (!preserve.includes(Key)) {
+        deleteParams.Delete.Objects.push({ Key });
+      }
+  });
+  await s3.deleteObjects(deleteParams).promise();
+  if (listedObjects.IsTruncated) await deleteS3ObjectsFromDirectory(bucket, dir, preserve);
+};
 
 exports.getData = (req,res) => {
   Article.find().then(data=>res.send(data))
@@ -17,8 +42,12 @@ exports.getArticle = (req,res) => {
   .then(data=>{res.send(data)})
 }
 
-exports.deleteArticle = (req,res) => {
-  del.sync([process.cwd()+'/frontend/static/img/articles/'+req.query.id+'/**', process.cwd()+'/frontend/static/img/articles/'+req.query.id])
+exports.deleteArticle = async (req,res) => {
+  if (process.env.NODE_ENV === 'development') {
+    del.sync([process.cwd()+'/frontend/static/img/articles/'+req.query.id+'/**', process.cwd()+'/frontend/static/img/articles/'+req.query.id])
+  } else {
+    await deleteS3ObjectsFromDirectory(process.env.S3_BUCKET_NAME, 'articles/'+req.query.id)
+  }
   Article
   .deleteOne({_id: req.query.id})
   .then(()=>{
@@ -34,15 +63,18 @@ exports.createArticle = (req,res) => {
   .then(()=>this.getData(req,res))
 };
 
-exports.updateArticle = (req,res) => {
-  let urls = req.body.article.content.filter(content=>content.type=="image")
-  urls = urls.map(url=>'!'+process.cwd()+'/frontend/static'+url.data)
-  let placeholders = urls.map(url=>{
-    return url.substring(0,url.lastIndexOf('.'))+'-placeholder'+url.substring(url.lastIndexOf('.'))
-  })
-
-
-  del.sync([process.cwd()+'/frontend/static/img/articles/'+req.body.article.id+'/*'].concat(urls).concat(placeholders))
+exports.updateArticle = async (req,res) => {
+  if (process.env.NODE_ENV === 'development') {
+    let urls = req.body.article.content.filter(content=>content.type=="image")
+    urls = urls.map(url=>'!'+process.cwd()+'/frontend/static'+url.data)
+    del.sync([process.cwd()+'/frontend/static/img/articles/'+req.body.article.id+'/*'])
+  } else {
+    await deleteS3ObjectsFromDirectory(
+      process.env.S3_BUCKET_NAME, 
+      'articles/'+req.body.article.id, 
+      req.body.article.content.filter(el=>el.type=='image').map(el=>'articles/'+el.data.split('/articles/')[1])
+    )
+  }
   Article
   .updateOne({_id: req.body.article.id}, {title: req.body.article.title, categorie: req.body.article.categorie, vignette: req.body.article.vignette, content: req.body.article.content, published: req.body.article.published})
   .then(()=>this.getData(req,res))
@@ -81,7 +113,33 @@ exports.uploadArticleImages = async (req,res) => {
       fs.writeFile(dir+imagesID[i]+'.'+extension.ext, req.files.images[i], "binary", (err)=>console.log(err))
     }
   } else {
-    console.log("PRODUCTION ==> SAVE IMAGE IN AWS S3")
+    const uploadImgs = async () =>{
+      let promises = [];
+      for (i=0; i<req.files.images.length; i++) {
+        let extension = await FileType.fromBuffer(req.files.images[i])
+        let params = {
+          Bucket: process.env.S3_BUCKET_NAME,
+          Key: 'articles/'+req.fields.articleID+'/'+imagesID[i]+'.'+extension.ext,
+          ContentType: extension.mime,
+          Body: req.files.images[i],
+          ACL: 'public-read'
+        }
+        let upload = s3.upload(params)
+        let promise = upload
+        .promise()
+        .then(
+          (data)=>{
+            urls.push(data.Location)
+            return Promise.resolve('ok')
+          },(err)=>{
+            console.log(err)
+            return Promise.reject(err)
+          })
+        promises.push(promise)
+      };
+      return Promise.all(promises)
+    };
+    await uploadImgs();
   }
   res.send({urls, ids: imagesID});
 };
