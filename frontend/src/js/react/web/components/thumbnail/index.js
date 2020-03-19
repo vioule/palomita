@@ -1,4 +1,3 @@
-import Image from "./image";
 import LazyLoadImage from "./lazyLoadImage";
 import { useInView } from 'react-intersection-observer';
 
@@ -10,8 +9,7 @@ export const Thumbnail = (props) => {
   });
   return (
     <div className={"thumbnail " + props.className} ref={ref}>
-      {/* <Image img={props.img}/> */}
-      {inView && <LazyLoadImage img={props.img} placeholder={props.img.split('.jpg')[0]+'-placeholder.jpg'}/>}
+      {inView && <LazyLoadImage img={props.img}/>}
       <span className="categorie">{props.categorie}</span>
       {props.children}
     </div>

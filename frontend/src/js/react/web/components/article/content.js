@@ -8,7 +8,7 @@ export default (props) => {
   props.content.map(content=>{
     return content.type=="image" ?
     <Appear key={content.id}>
-      <Image img={content.data} placeholder={content.data.split('.jpg')[0]+'-placeholder.jpg'}/> 
+      <Image img={content.data}/> 
     </Appear> :
     <Appear key={content.id}>
       <Paragraph paragraph={content.data}/>

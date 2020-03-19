@@ -24,7 +24,4 @@ ApiRouter.post('/createAnswer', require('../controllers/backoffice/comments').cr
 ApiRouter.post('/createComment', require('../controllers/backoffice/comments').createComment);
 ApiRouter.put('/readComments', require('../controllers/backoffice/comments').readComments);
 
-//IMAGE PROCESSING//
-ApiRouter.get('/imageProcess', require('../controllers/backoffice/imgProcessing').process);
-
 module.exports = ApiRouter;
