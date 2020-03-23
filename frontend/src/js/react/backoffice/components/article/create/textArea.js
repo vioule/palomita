@@ -30,7 +30,6 @@ const TextAreaConnect = (props) => (
   onFocus = { () => { props.onFocus(props.index) }} 
   onBlur = { () => props.onFocus(-1) } 
   onInput = { (e) => props.onInput(props.index, e.target.innerHTML) }
-  onKeyDown = { (e) => { if( e.keyCode==13 && !e.ctrlKey ) { e.preventDefault() }}} 
   readOnly = {props.validate}
   data = {props.data}
   />

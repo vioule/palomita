@@ -34,7 +34,7 @@ export default (props) => {
 
   return (
     <div className="observer" ref={ref} style={{paddingTop: !phLoaded && '66.66%'}}>
-      {!phLoaded && <span className="text">Chargement</span>}
+      {!phLoaded && <span className="text">Chargement...</span>}
       {inView && <Lazy 
       phLoaded={phLoaded} 
       setPhLoaded={setPhLoaded}
