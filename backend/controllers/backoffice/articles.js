@@ -27,8 +27,10 @@ async function deleteS3ObjectsFromDirectory(bucket, dir, preserve=[]) {
         deleteParams.Delete.Objects.push({ Key });
       }
   });
-  await s3.deleteObjects(deleteParams).promise();
-  if (listedObjects.IsTruncated) await deleteS3ObjectsFromDirectory(bucket, dir, preserve);
+  if (deleteParams.Delete.Objects.length > 0) {
+    await s3.deleteObjects(deleteParams).promise();
+    await deleteS3ObjectsFromDirectory(bucket, dir, preserve);
+  }
 };
 
 exports.getData = (req,res) => {
@@ -141,6 +143,7 @@ exports.uploadArticleImages = async (req,res) => {
     };
     await uploadImgs();
   }
+  urls = imagesID.map(id=>urls.find(el=>el.includes(id))) //ensure imgs order
   res.send({urls, ids: imagesID});
 };
 
