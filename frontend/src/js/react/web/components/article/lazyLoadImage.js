@@ -2,21 +2,25 @@ const React = require("react");
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-
-export const Lazy = (props) => {
-
-  const placeholder = new Image();
-  placeholder.onload = ()=>props.setPhLoaded(true);
-  placeholder.src = '/imgPS/placeholder/?url='+props.img;
-
-  return (
-    <div className="lazyload" style={{
-      backgroundImage: props.phLoaded && 'url('+placeholder.src+')',
-      paddingTop: !props.phLoaded ? '' : placeholder.height/placeholder.width*100+'%'
-      }}>
-      {props.phLoaded && <img className="image" style={{opacity: props.imgLoaded ? 1 : 0}} src={props.img} onLoad={()=>props.setImgLoaded(true)}/>}
-    </div>
-  )
+export class Lazy extends React.Component {
+  constructor(props) {
+    super(props)
+    this.placeholder = new Image();
+  };
+  render() {
+    return (
+      <div className="lazyload" style={{
+        backgroundImage: this.props.phLoaded && 'url('+this.placeholder.src+')',
+        paddingTop: !this.props.phLoaded ? '' : this.placeholder.height/this.placeholder.width*100+'%'
+        }}>
+        {this.props.phLoaded && <img className="image" style={{opacity: this.props.imgLoaded ? 1 : 0}} src={this.props.img} onLoad={()=>this.props.setImgLoaded(true)}/>}
+      </div>
+    )
+  };
+  componentDidMount() {
+    this.placeholder.src = '/imgPS/placeholder/?url='+this.props.img;
+    this.placeholder.onload = (img)=>{this.props.setPhLoaded(true)};  
+  }
 };
 
 export default (props) => {
