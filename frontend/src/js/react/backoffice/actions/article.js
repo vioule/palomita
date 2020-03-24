@@ -1,4 +1,5 @@
 import { 
+  FETCH_ARTICLES,
   SET_ARTICLE_TITLE,
   SET_ARTICLE_CATEGORIE,
   ADD_ARTICLE_IMAGE,
@@ -44,6 +45,7 @@ export function setArticleImages({ids, urls}) {
 
 export function uploadArticleImages(imgs, _csrf, articleID='') {
   return async (dispatch) => {
+    dispatch({type: FETCH_ARTICLES})
     var formData = new FormData();
     formData.append('articleID', articleID)
     formData.append('imagesID', JSON.stringify(imgs.map(img=>img.id)))

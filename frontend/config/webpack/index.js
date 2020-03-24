@@ -5,6 +5,7 @@ module.exports = (env,argv) => {
   return {
     mode: env,
     devtool: env==='development' ? 'cheap-module-source-map' : '',
+    devServer: {host: '0.0.0.0'},
     optimization: env==='production' ? {minimizer: [new TerserPlugin()]} : {},
     context: path.resolve(__dirname, '../../src'),
     entry: require("./entry")(env, argv),

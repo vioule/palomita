@@ -12,6 +12,15 @@ import notFound from './components/notFound';
 
 export const store = createStore(Reducer, applyMiddleware(thunkMiddleware))
 
+
+async function loadPolyfills() {
+  if (typeof window.IntersectionObserver === 'undefined') {
+    await import('intersection-observer')
+  }
+}
+
+loadPolyfills();
+
 render(
   <Provider store={store}>
     <BrowserRouter>

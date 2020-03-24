@@ -5,7 +5,7 @@ import { setArticleTitle, setArticleCategorie, sortArticleContent, uploadArticle
 import { updateArticle, updateRough } from '../../actions/articles';
 import { setArticle } from '../../actions/article';
 
-const mapStateToProps = state => { return {article: state.article, _csrf: state._csrf}};
+const mapStateToProps = state => { return {article: state.article, _csrf: state._csrf, isFetching: state.articles.isFetching, didInvalidate: state.articles.didInvalidate}};
 const mapDispatchToProps = { setArticleTitle, setArticleCategorie, sortArticleContent, updateArticle, setArticle, updateRough, uploadArticleImages };
 
 const Update = (props)=><Article onClick={

@@ -10,7 +10,7 @@ import ButtonAddVignette from './buttonAddVignette';
 import PopulateArticle from './populateArticle';
 const bson = require('bson');
 
-const mapStateToProps = state => { return {article: state.article, _csrf: state._csrf}};
+const mapStateToProps = state => { return {article: state.article, _csrf: state._csrf, isFetching: state.articles.isFetching, didInvalidate: state.articles.didInvalidate}};
 const mapDispatchToProps = { setArticleTitle, setArticleCategorie, sortArticleContent, createArticle, createRough, setArticle, uploadArticleImages};
 
 export class Create extends React.Component {
@@ -30,12 +30,14 @@ export class Create extends React.Component {
     <TopbarArticleConnected {...this.props}/>
     <TextEditBar/>
     <div className="content-page article-light">
-    {
-    this.props.article.infos.validate && 
-    <div className="publish-text">
-      Vous êtes sur le point de {this.info} un article sur le blog.
-    </div> 
-    }
+    {this.props.isFetching ? <div className="article-fetching">Les informations sont en cours de traitement.<br/>Cela peut prendre quelques instants.<br/>Merci de patienter.</div> : (
+      <>
+      {
+      this.props.article.infos.validate && 
+      <div className="publish-text">
+        Vous êtes sur le point de {this.info} un article sur le blog.
+      </div>
+      }
       <form id="article-create" onSubmit={this.handleSubmit} autoComplete="off"/>
       <select form="article-create" className="article-infos article-categorie" name="article-categorie" value={this.props.article.infos.categorie} onChange={(e)=>this.props.setArticleCategorie(e.target.value)} disabled={this.props.article.infos.validate}>
         <option value="">Categorie</option>
@@ -47,8 +49,8 @@ export class Create extends React.Component {
       <input form="article-create" className="article-infos article-title" type="text" placeholder="title" value={this.props.article.infos.title} onChange={(e)=>this.props.setArticleTitle(e.target.value)} readOnly={this.props.article.infos.validate}/>
       <ButtonAddVignette {...this.props}/>
       {!this.props.article.infos.validate && <><ButtonAddParagraph/> <ButtonAddImage/></>}
-      {
-      !this.props.article.infos.published && !this.props.article.infos.validate && window.location.pathname.includes("edit") &&
+
+      {!this.props.article.infos.published && !this.props.article.infos.validate && window.location.pathname.includes("edit") &&
       <button className="article-btn" onClick={()=>{
         this.props.updateRough({      
           id: this.props.article.infos._id,
@@ -61,7 +63,6 @@ export class Create extends React.Component {
       }}>Sauvegarder brouillon</button>
     }
       <PopulateArticle items={this.props.article.content} validate={this.props.article.infos.validate} onSortEnd={this.handleSortEnd.bind(this)} pressDelay={200}/>
-
       {this.props.article.infos.validate && 
       <div className="publish-text">
         <span>
@@ -71,7 +72,13 @@ export class Create extends React.Component {
         </button>
         </span>
       </div>}
+      </>
+    )}
+
     </div>
+    
+
+    
     </>
     )
   };
