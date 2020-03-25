@@ -4,22 +4,18 @@ export default () => {
   let socials = [
   {
     name: "Instagram",
-    link: "/"
-  }, 
-  {
-    name: "Facebook",
-    link: "/"
+    link: "https://www.instagram.com/estellepalomita/"
   }, 
   {
     name: "Pinterest",
-    link: "/"
+    link: "https://www.pinterest.fr/EstellePalomita/"
   }];
   return (
   <ul className="menu-info-item socials">
     {socials.map(social=><li key={social.name} className="socials-item border-bottom-center">
-      <Link to={social.link}>
+      <a href={social.link} target="_blank">
         {social.name}
-      </Link>
+      </a>
     </li>)}
   </ul>
 )}
