@@ -22,20 +22,28 @@ export class Vignette extends React.Component {
     vignette='/img/backoffice.svg#camera-blue' :
     vignette = vignette[0].data
     return (
-    <div className="vignette" onClick={this.handleOnClick}>
+    <div className="vignette" onClick={this.props.article.infos.validate ? null : this.handleOnClick}>
       <img className="vignette-icon" src={vignette}/>
       <ul className={"vignette-list" + (this.state.open ? ' vignette-list-show' : '')}>
         {imgs.map(
           img=><li 
           className="vignette-item" 
           key={img.id} 
-          style={{backgroundImage: 'url("'+img.data+'")'}}
           onClick={()=>this.props.setArticleVignette(img.id)}
-          />
+          >
+            <img className="vignette-img" src={img.data}/>
+          </li>
         )}
       </ul>
     </div>
   )}
+  componentDidUpdate(prevProps) {
+    if (prevProps.article.infos.validate != this.props.article.infos.validate) {
+      if (this.props.article.infos.validate && this.state.open) {
+        this.setState(state=>{return{open: !state.open}})
+      }
+    }
+  };
 };
 
 export default connect(null, mapDispatchToProps)(Vignette);
