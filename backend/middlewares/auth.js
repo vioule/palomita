@@ -28,14 +28,14 @@ module.exports = function(app, db, argv) {
       });
     }
   ));
-  app.use(session({secret: process.env.SESSION_SECRET,
+  app.use(["/administration", "/administration/*", "/api/*"],session({secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
     cookie: {maxAge: 3 * 60 * 60 * 1000 }, // 3 hours
     store: argv.env === 'production' ? new MongoStore({ mongooseConnection: mongoose.connection }) : ''
   }));
   app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(csrf());
-  app.use(flash());
+  app.use(["/administration", "/administration/*", "/api/*"],passport.session());
+  app.use(["/administration", "/administration/*"],csrf());
+  app.use(["/administration", "/administration/*"],flash());
 }

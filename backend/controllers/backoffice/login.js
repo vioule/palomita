@@ -1,3 +1,11 @@
+exports.authenticationControl = function(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.sendStatus(401);
+  }
+};
+
 exports.checkAuthentication = function(req, res) {
   res.send({
     user: req.user,
