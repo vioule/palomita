@@ -1,20 +1,11 @@
 const React = require("react");
 import { useInView } from 'react-intersection-observer';
 
-import {CardDark, CardLight} from '../../card';
-import {ThumbnailDark, ThumbnailLight} from '../../thumbnail';
+import {CardDark} from '../../card';
+import {ThumbnailDark} from '../../thumbnail';
 import Date from '../../card/date';
 import Social from '../../social';
 
-
-export const Article = (props)=>(
-  <section className="summary left">
-    <span className="info">dernier article</span>
-    <ThumbnailLight img={props.img} />
-    <CardLight date={props.date} title={props.title} paragraph={props.paragraph} id={props.id}/>
-    {/* <span className="index"><span className="number">1</span>.</span> */}
-  </section>
-);
 export const ArticleLeft = (props)=>{
   const [ref, inView] = useInView({threshold: .2,triggerOnce: true});
   return (

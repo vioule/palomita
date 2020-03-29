@@ -69,7 +69,7 @@ exports.updateArticle = async (req,res) => {
   if (process.env.NODE_ENV === 'development') {
     let urls = req.body.article.content.filter(content=>content.type=="image")
     urls = urls.map(url=>'!'+process.cwd()+'/frontend/static'+url.data)
-    del.sync([process.cwd()+'/frontend/static/img/articles/'+req.body.article.id+'/*'])
+    del.sync([process.cwd()+'/frontend/static/img/articles/'+req.body.article.id+'/*'].concat(urls))
   } else {
     await deleteS3ObjectsFromDirectory(
       process.env.S3_BUCKET_NAME, 

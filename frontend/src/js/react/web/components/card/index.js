@@ -5,7 +5,7 @@ import Date from "./date";
 
 const React = require("react");
 export const Card = (props) => (
-<article className={"card " + props.className}>
+<article className={"card " + props.className} ref={props.inputRef}>
   {props.date && <Date date={props.date}/>}
   <Title title={props.title}/>
   <Paragraph paragraph={props.paragraph}/>
@@ -14,5 +14,5 @@ export const Card = (props) => (
 </article>
 );
 
-export const CardLight = (props) => <Card className="light" {...props}/>;
+export const CardLight = (props) => <Card {...props}/>;
 export const CardDark = (props) => <Card className="dark" {...props}/>;

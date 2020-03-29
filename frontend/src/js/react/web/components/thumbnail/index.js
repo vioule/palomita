@@ -16,5 +16,13 @@ export const Thumbnail = (props) => {
   )
 };
 
-export const ThumbnailLight = (props) => <Thumbnail className="light" {...props}/>;
+export const ThumbnailCarousel = (props) => {
+  return (
+    <div className={"thumbnail " + props.className}>
+      <LazyLoadImage img={props.img}/>
+    </div>
+  )
+};
+
+export const ThumbnailLight = (props) => <ThumbnailCarousel {...props}/>;
 export const ThumbnailDark = (props) => <Thumbnail className="dark" {...props}/>;

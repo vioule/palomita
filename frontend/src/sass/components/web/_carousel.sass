@@ -1,7 +1,129 @@
+
+@keyframes carousel-timer
+  0%
+    width: 100%
+  5%
+    width: 0
+  100%
+    width: 100%
+@keyframes carousel-categorie
+  0%
+    left: 300rem
+    opacity: 0
+  33%
+    left: 300rem
+    opacity: 0
+  40%
+    left: -10rem
+    opacity: 1
+  66%
+    left: -10rem
+    opacity: 1
+  73%
+    left: -300rem
+    opacity: 0
+  100%
+    left: 300rem
+    opacity: 0
+@keyframes carousel-thumbnail
+  0%
+    opacity: 0
+  33%
+    opacity: 0
+  40%
+    opacity: 1
+  66%
+    opacity: 1
+  73%
+    opacity: 0
+  100%
+    opacity: 0
+
 .carousel
   height: 1080px
   background-color: $color-palomita-lighten
   overflow: hidden
+  &-thumbnails
+    position: absolute
+    width: 100%
+    height: 100%
+  & .thumbnail.timer
+    overflow: visible
+  & .thumbnail
+    background-color: $color-palomita-lighten
+  &-timer
+    height: .25rem
+    width: 100%
+    position: absolute
+    bottom: -.25rem
+    left: 0
+    background-color: $color-palomita-dark
+    animation: carousel-timer 7s linear 0s infinite
+    overflow: visible
+  &-cards
+    max-width: 640px
+    min-width: 560px
+    width: 45%
+    overflow: hidden
+    padding-bottom: 10px
+    background-color: $color-white
+    color: $color-black
+    border: .5px solid $color-palomita-dark
+    overflow-block: visible
+    transition: height 1s ease-out
+    z-index: 3
+    &> .card
+      width: 100%
+      max-width: unset
+      min-width: unset
+      & .date
+        top: unset !important
+        bottom: 0
+      & .title
+        transition: left 1s cubic-bezier(.65,.5,.4,1.15) !important
+      & .paragraph
+        transition: left 1s .1s cubic-bezier(.65,.5,.4,1.15) !important
+      & .link
+        color: $color-palomita-dark
+        transition: left 1s .2s cubic-bezier(.65,.5,.4,1.15) !important
+      & .date
+        transition: opacity 1s .3s ease-out !important
+    &> .card.in
+      opacity: 0 !important
+      z-index: 0
+      & .title
+        left: 200%
+      & .paragraph
+        left: 200%
+      & .link
+        left: 200%
+      & .date
+        opacity: 0
+    &> .card.enter
+      opacity: 1 !important
+      z-index: 1
+      & .title
+        left: 0
+      & .paragraph
+        left: 0
+      & .link
+        left: 0
+      & .date
+        opacity: 1
+    &> .card.out
+      opacity: 0 !important
+      z-index: 0
+      & .title
+        left: -200%
+      & .paragraph
+        left: -200%
+      & .link
+        left: -200%
+      & .date
+        opacity: 0
+
+  &-thumbnail
+    animation: carousel-thumbnail 21s infinite
   &-categorie
     font-size: 37.5rem
     font-family: $font-playfair
@@ -11,12 +133,23 @@
     position: absolute
     bottom: -15rem
     left: -10rem
+    text-shadow: .5rem .5rem 0 $color-white
+    animation: carousel-categorie 21s infinite
+  &-wait0
+    animation-delay: -7s
+  &-wait1
+    animation-delay: 0s
+  &-wait2
+    animation-delay: -14s
+    opacity: 0
   & .summary
     margin-top: 200px
 
 @include media(mid)
   .carousel
     height: 900px
+    &-cards
+      min-width: 450px
     & .summary
       margin-top: 150px
     &-categorie
@@ -26,6 +159,8 @@
 @include media(sml)
   .carousel
     height: 768px
+    &-cards
+      min-width: 350px
     & .summary
       margin-top: 100px
       height: 500px
@@ -36,6 +171,22 @@
 @include media(portrait)
   .carousel
     height: auto
+    &-timer
+      z-index: 3
+      bottom: 0
+      height: .25rem
+    &-thumbnails
+      position: relative
+      height: calc( 100vw - 160px)
+      & .thumbnail
+        position: absolute !important
+        bottom: unset !important
+    &-cards
+      max-width: unset
+      min-width: unset
+      width: 100%
+      & .card
+        position: absolute !important
     & .summary
       margin-top: 120px
       height: auto
@@ -43,16 +194,60 @@
       font-size: 9rem
       top: 8px
       left: 50px
+      text-shadow: .25rem .25rem 0 $color-white
+  @keyframes carousel-categorie
+    0%
+      left: 100rem
+      opacity: 0
+    33%
+      left: 100rem
+      opacity: 0
+    40%
+      left: 50px
+      opacity: 1
+    66%
+      left: 50px
+      opacity: 1
+    73%
+      left: -100rem
+      opacity: 0
+    100%
+      left: 100rem
+      opacity: 0
+
 @include media(phone)
   .carousel
+    &-thumbnails
+      height: calc( 100vw - 60px )
     & .summary
       margin-top: 100px
     &-categorie
       font-size: 8rem
       top: 18px
       left: 20px
+  @keyframes carousel-categorie
+    0%
+      left: 100rem
+      opacity: 0
+    33%
+      left: 100rem
+      opacity: 0
+    40%
+      left: 20px
+      opacity: 1
+    66%
+      left: 20px
+      opacity: 1
+    73%
+      left: -100rem
+      opacity: 0
+    100%
+      left: 100rem
+      opacity: 0
 @include media(phonexs)
   .carousel
+    &-thumbnails
+      height: calc( 100vw - 40px )
     & .summary
       margin-top: 70px
     &-categorie
