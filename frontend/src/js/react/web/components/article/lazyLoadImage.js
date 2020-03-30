@@ -13,7 +13,7 @@ export class Lazy extends React.Component {
         backgroundImage: this.props.phLoaded && 'url('+this.placeholder.src+')',
         paddingTop: !this.props.phLoaded ? '' : this.placeholder.height/this.placeholder.width*100+'%'
         }}>
-        {this.props.phLoaded && <img className="image" style={{opacity: this.props.imgLoaded ? 1 : 0}} src={this.props.img} onLoad={()=>this.props.setImgLoaded(true)}/>}
+        <img className="image" style={{opacity: this.props.imgLoaded ? 1 : 0}} src={this.props.img} onLoad={()=>this.props.setImgLoaded(true)}/>
       </div>
     )
   };
